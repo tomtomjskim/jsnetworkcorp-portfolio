@@ -2,7 +2,7 @@
 
 ## Scope
 
-Prepare the server for the public sanitized portfolio first. Detailed interview materials are a separate protected surface and should not be served from the public static build output.
+Prepare the server for the public sanitized portfolio first. Detailed interview materials are a separate protected surface and must not be served from the public static build output.
 
 ## Public Portfolio Deploy
 
@@ -27,7 +27,17 @@ Recommended server path:
 /var/www/jsnetworkcorp-portfolio/public/
 ```
 
-The public site should serve only the `out/` contents produced by this repository.
+The public site should serve only the `out/` contents produced by this repository. The deploy user should have write access only to this directory.
+
+Recommended GitHub Actions values:
+
+```text
+PORTFOLIO_HOST=<server-ip-or-hostname>
+PORTFOLIO_USER=portfolio-deploy
+PORTFOLIO_DEPLOY_PATH=/var/www/jsnetworkcorp-portfolio/public
+```
+
+The workflow in `.github/workflows/deploy-static.yml` runs on `main` pushes and manual dispatch. It validates content before syncing.
 
 ## Interview Materials Surface
 
@@ -41,7 +51,7 @@ Recommended server path:
 
 This path should not be populated by the public portfolio GitHub Actions workflow.
 
-Access control should be configured at the web server or gateway layer. Acceptable options include HTTP Basic Auth, SSO, VPN/Tailscale, or IP allowlist.
+Access control should be configured at the web server or gateway layer. Acceptable options include HTTP Basic Auth, SSO, VPN/Tailscale, or IP allowlist. Static-export client-side password prompts are not protection.
 
 ## Server Preparation Checklist
 
@@ -56,6 +66,27 @@ Access control should be configured at the web server or gateway layer. Acceptab
 9. Configure authentication for the protected interview surface.
 10. Confirm protected material is not inside the public `out/` directory.
 
+## TLS Notes
+
+Let's Encrypt HTTP validation requires DNS to resolve to the server before certificate issuance:
+
+```bash
+sudo certbot --nginx -d portfolio.jsnetworkcorp.com
+sudo certbot --nginx -d interview.jsnetworkcorp.com
+```
+
+If using a protected path instead of a separate interview subdomain, only the public portfolio certificate is required.
+
+## Protected Path Model
+
+If `interview.jsnetworkcorp.com` DNS is not ready, use a protected path first:
+
+```text
+https://portfolio.jsnetworkcorp.com/interview/
+```
+
+The nginx location must point outside the public static deploy path and must require authentication.
+
 ## Safety Checks
 
 Before deployment:
@@ -65,3 +96,4 @@ Before deployment:
 - verify screen data is sanitized
 - verify interview material is not included in this repository or public build output
 - verify deploy target path is correct
+- verify GitHub Actions does not upload private interview output

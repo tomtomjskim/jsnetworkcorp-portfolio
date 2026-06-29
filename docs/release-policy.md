@@ -4,7 +4,7 @@
 
 ```text
 v0.1.0: scaffold
-v0.2.0: refined project pages
+v0.2.0: sanitized project pages, screen metadata, deploy/auth runbooks
 v0.3.0: AI/Agent portfolio cases
 v0.4.0: resume PDFs
 v0.5.0: public beta

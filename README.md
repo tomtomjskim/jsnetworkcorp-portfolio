@@ -24,7 +24,9 @@ See:
 
 - `docs/content-boundary.md`
 - `docs/interview-materials-architecture.md`
+- `docs/interview-kit-pipeline.md`
 - `docs/remote-deploy-runbook.md`
+- `deploy/README.md`
 
 ## Scope
 
@@ -34,8 +36,9 @@ See:
 - screen / wireframe gallery with client state
 - AI agents / LLM workflow portfolio section
 - release notes
-- static export target
-- CI and remote deploy placeholder
+- static export target for `portfolio.jsnetworkcorp.com`
+- CI and GitHub Actions rsync deployment
+- protected interview-surface deployment guidance
 
 ## Routes
 
@@ -58,11 +61,30 @@ npm run validate:content
 npm run build
 ```
 
+## Deployment
+
+Public deployment is a static export:
+
+```text
+GitHub Actions -> npm ci -> npm run build -> out/ -> rsync -> nginx static root
+```
+
+Required GitHub Actions secrets:
+
+```text
+PORTFOLIO_HOST
+PORTFOLIO_USER
+PORTFOLIO_SSH_KEY
+PORTFOLIO_DEPLOY_PATH
+```
+
+The deploy workflow must target only the public static root. Interview materials are generated and deployed from a separate private/source-only workflow.
+
 ## Release Plan
 
 ```text
 v0.1.0: IA, component skeleton, project index, screen placeholders, CI/deploy placeholder
-v0.2.0: project pages and refined wireframes
+v0.2.0: sanitized project pages, screen metadata, rsync deploy, protected interview architecture
 v0.3.0: AI/Agent portfolio case studies
 v0.4.0: resume variants and downloadable PDFs
 v0.5.0: public beta under portfolio.jsnetworkcorp.com

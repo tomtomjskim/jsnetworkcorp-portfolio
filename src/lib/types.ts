@@ -17,8 +17,11 @@ export type Project = {
   status: string;
   problem: string;
   approach: string;
+  publicEvidence: string[];
+  redactionNotes: string[];
   verification: string[];
   screens: string[];
+  nextMilestone: string;
 };
 
 export type ScreenSpec = {
@@ -27,7 +30,11 @@ export type ScreenSpec = {
   title: string;
   status: ScreenStatus;
   purpose: string;
+  targetUser: string;
+  entryPoint: string;
+  components: string[];
   states: string[];
   engineeringSignal: string;
+  dataBoundary: string;
   wireframe: string;
 };

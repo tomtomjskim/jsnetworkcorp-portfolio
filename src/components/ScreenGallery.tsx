@@ -25,7 +25,10 @@ export function ScreenGallery({ screens }: { screens: ScreenSpec[] }) {
             <h3>{screen.title}</h3>
             <p>{screen.purpose}</p>
             <p className="muted">Signal: {screen.engineeringSignal}</p>
+            <p className="muted">Target: {screen.targetUser}</p>
             <p className="muted">States: {screen.states.join(', ')}</p>
+            <p className="muted">Components: {screen.components.join(', ')}</p>
+            <p className="muted">Boundary: {screen.dataBoundary}</p>
           </article>
         ))}
       </div>

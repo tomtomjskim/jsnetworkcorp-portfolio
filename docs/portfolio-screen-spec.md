@@ -9,6 +9,7 @@ Each portfolio screen should include:
 - visible states
 - validation rules
 - API or data relationship
+- public data boundary
 - publication status
 - AI or agent usage, when relevant
 - verification evidence
@@ -26,4 +27,5 @@ implemented | prototype | planned | sanitized | archived
 - At least one wireframe or screenshot placeholder exists.
 - Architecture diagram is present or marked pending.
 - Verification evidence exists or is marked pending.
+- Redaction boundary is visible on public project pages.
 - Publication boundary was reviewed.

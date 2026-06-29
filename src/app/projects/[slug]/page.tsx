@@ -25,7 +25,21 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
 
       <section className="card"><h2>Problem</h2><p>{project.problem}</p></section>
       <section className="card"><h2>Approach</h2><p>{project.approach}</p></section>
-      <section className="card"><h2>Verification</h2><ul>{project.verification.map((item) => <li key={item}>{item}</li>)}</ul></section>
+      <div className="split">
+        <section className="card">
+          <h2>Public Evidence</h2>
+          <ul>{project.publicEvidence.map((item) => <li key={item}>{item}</li>)}</ul>
+        </section>
+        <section className="card">
+          <h2>Redaction Boundary</h2>
+          <ul>{project.redactionNotes.map((item) => <li key={item}>{item}</li>)}</ul>
+        </section>
+      </div>
+      <section className="card">
+        <h2>Verification</h2>
+        <ul>{project.verification.map((item) => <li key={item}>{item}</li>)}</ul>
+        <p className="muted">Next: {project.nextMilestone}</p>
+      </section>
 
       <section>
         <h2>Screens</h2>
@@ -35,6 +49,12 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               <div className="wireframeBox">{screen.id}</div>
               <h3>{screen.title}</h3>
               <p>{screen.purpose}</p>
+              <dl className="screenMeta">
+                <div><dt>Target</dt><dd>{screen.targetUser}</dd></div>
+                <div><dt>Entry</dt><dd>{screen.entryPoint}</dd></div>
+                <div><dt>Signal</dt><dd>{screen.engineeringSignal}</dd></div>
+                <div><dt>Boundary</dt><dd>{screen.dataBoundary}</dd></div>
+              </dl>
             </div>
           ))}
         </div>

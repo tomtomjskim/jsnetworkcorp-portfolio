@@ -17,7 +17,7 @@ portfolio.jsnetworkcorp.com
 
 Restricted interview kit
 interview.jsnetworkcorp.com or protected server path
-└─ built from a private source or server-only generated files
+└─ built from a private/source-only pipeline or server-only generated files
    ├─ detailed project specs
    ├─ interview Q&A scripts
    ├─ claim-to-evidence map
@@ -25,6 +25,8 @@ interview.jsnetworkcorp.com or protected server path
    ├─ failure and tradeoff stories
    └─ source checklists
 ```
+
+See `docs/interview-kit-pipeline.md` for the proposed private/source-only repository structure and generation gates.
 
 ## Static Export Constraint
 

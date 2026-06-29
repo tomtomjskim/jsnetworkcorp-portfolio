@@ -1,6 +1,6 @@
 {
   "name": "jsnetworkcorp-portfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "scripts": {
     "dev": "next dev",
@@ -19,6 +19,9 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "typescript": "latest"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   },
   "engines": {
     "node": ">=20.9.0"

@@ -2,27 +2,62 @@ name: Deploy Static Portfolio
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/deploy-static.yml'
+      - 'docs/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'src/**'
+      - 'next.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-static-deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm install
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run validate:content
       - run: npm run build
+      - name: Install rsync
+        run: sudo apt-get update && sudo apt-get install -y rsync
       - name: Configure SSH
         run: |
+          test -n "$PORTFOLIO_HOST"
+          test -n "$PORTFOLIO_USER"
+          test -n "$PORTFOLIO_SSH_KEY"
+          test -n "$PORTFOLIO_DEPLOY_PATH"
           mkdir -p ~/.ssh
           echo "$PORTFOLIO_SSH_KEY" > ~/.ssh/portfolio_key
           chmod 600 ~/.ssh/portfolio_key
+          ssh-keyscan -H "$PORTFOLIO_HOST" >> ~/.ssh/known_hosts
         env:
+          PORTFOLIO_HOST: ${{ secrets.PORTFOLIO_HOST }}
+          PORTFOLIO_USER: ${{ secrets.PORTFOLIO_USER }}
           PORTFOLIO_SSH_KEY: ${{ secrets.PORTFOLIO_SSH_KEY }}
+          PORTFOLIO_DEPLOY_PATH: ${{ secrets.PORTFOLIO_DEPLOY_PATH }}
       - name: Deploy
-        run: rsync -az --delete -e "ssh -i ~/.ssh/portfolio_key -o StrictHostKeyChecking=no" out/ "$PORTFOLIO_USER@$PORTFOLIO_HOST:$PORTFOLIO_DEPLOY_PATH/"
+        run: |
+          rsync -az --delete --delay-updates \
+            -e "ssh -i ~/.ssh/portfolio_key -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
+            out/ "$PORTFOLIO_USER@$PORTFOLIO_HOST:$PORTFOLIO_DEPLOY_PATH/"
         env:
           PORTFOLIO_HOST: ${{ secrets.PORTFOLIO_HOST }}
           PORTFOLIO_USER: ${{ secrets.PORTFOLIO_USER }}
