@@ -78,7 +78,7 @@ export const projects: Project[] = [
     stack: ['Markdown', 'Git', 'LLM Context', 'Review Workflow', 'Release Notes'],
     publicStatus: 'public',
     status: 'governance case',
-    problem: 'Generated notes, AI-assisted code review, and resume data need trust levels, redaction rules, and repeatable version management.',
+    problem: 'Generated notes, AI-assisted code review, and resume data need trust levels, redaction rules, and version management before they are used in resumes or public portfolio pages.',
     approach: 'Show a public-safe workflow from raw/private evidence through reviewed claims, sanitized public content, and protected interview-kit generation.',
     publicEvidence: [
       'Versioned resume-data workflow with goal, roadmap, changelog, and redaction boundaries.',
@@ -301,6 +301,10 @@ export const capabilities = [
 ];
 
 export const releases = [
+  { version: 'PF-v1.0.0', date: '2026-06-29', summary: 'Application-ready public-safe resume and portfolio content architecture with final checklist and handoff.' },
+  { version: 'PF-v0.9.0', date: '2026-06-29', summary: 'Added protected interview bridge documentation and public-safe templates.' },
+  { version: 'PF-v0.8.0', date: '2026-06-29', summary: 'Added role-specific public-safe resume variants for backend, full-stack, commerce, manufacturing, AI workflow, and English backend use.' },
+  { version: 'PF-v0.7.0', date: '2026-06-29', summary: 'Added public-safe project pages for manufacturing, commerce/fulfillment, live-commerce direction, AI workflow, and DB/MCP safety.' },
   { version: 'PF-v0.6.0', date: '2026-06-29', summary: 'Connected sanitized resume/project content to the site-facing data model and removed private project identifiers from public project metadata.' },
   { version: 'PF-v0.5.1', date: '2026-06-29', summary: 'Added /goal, roadmap, versioned workflow, and governance gates through PF-v1.0.0.' },
   { version: 'PF-v0.5.0', date: '2026-06-29', summary: 'Introduced public-safe resume data layer, claim bank, redaction boundary, and sanitized resume/project drafts.' },
