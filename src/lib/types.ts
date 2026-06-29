@@ -1,5 +1,8 @@
 export type ProjectFamily =
+  | 'manufacturing-systems'
+  | 'commerce-fulfillment'
   | 'product-engineering'
+  | 'architecture-direction'
   | 'ai-workflow-agent-tooling'
   | 'infra-mcp-safety'
   | 'legacy-modernization';
