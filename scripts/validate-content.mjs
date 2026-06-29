@@ -5,6 +5,7 @@ const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
 const ignoredFiles = new Set(['scripts/validate-content.mjs']);
 const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
+const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0']);
 
 const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
 const metricTerms = ['15%', '50%', '95%'];
@@ -63,7 +64,7 @@ function validateProjectIndex() {
   if (!existsSync(join(root, indexPath))) return;
 
   const index = readJson(indexPath);
-  assert(index.version === 'PF-v0.6.0', `${indexPath}: version must be PF-v0.6.0`);
+  assert(allowedPortfolioVersions.has(index.version), `${indexPath}: unsupported version ${index.version}`);
   assert(Array.isArray(index.projects), `${indexPath}: projects must be an array`);
 
   const slugs = new Set();
@@ -85,7 +86,7 @@ function validateResumeIndex() {
   if (!existsSync(join(root, indexPath))) return;
 
   const index = readJson(indexPath);
-  assert(index.version === 'PF-v0.6.0', `${indexPath}: version must be PF-v0.6.0`);
+  assert(allowedPortfolioVersions.has(index.version), `${indexPath}: unsupported version ${index.version}`);
   assert(Array.isArray(index.resumes), `${indexPath}: resumes must be an array`);
 
   for (const resume of index.resumes ?? []) {

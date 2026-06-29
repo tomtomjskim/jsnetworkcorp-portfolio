@@ -2,6 +2,24 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-06-29 / PF-v0.7.0
+
+### Added
+
+- Added public-safe project pages for Manufacturing MES Business Systems, Seller Commerce & Fulfillment Operations, Live-Commerce Architecture Direction, AI-assisted Development Workflow, and DB MCP Safety Boundary.
+- Linked project metadata index entries to their draft markdown pages.
+- Added explicit role-scope review notes for commerce/fulfillment claims.
+- Added public-safe architecture and redaction sections for each project page.
+
+### Changed
+
+- Project pages now use anonymized domain-oriented titles and avoid private identifiers.
+- Validation accepts PF-v0.7.0 project indexes while retaining redaction-sensitive scanning.
+
+### Boundary
+
+- Project pages remain public-safe drafts; detailed claim-to-evidence maps and private implementation details stay outside this public repository.
+
 ## 2026-06-29 / PF-v0.6.0
 
 ### Added
