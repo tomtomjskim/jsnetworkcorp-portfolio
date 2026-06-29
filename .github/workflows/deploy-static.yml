@@ -6,10 +6,13 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/deploy-static.yml'
+      - 'content/**'
       - 'docs/**'
       - 'public/**'
       - 'scripts/**'
       - 'src/**'
+      - 'README.md'
+      - 'VERSION'
       - 'next.config.mjs'
       - 'package.json'
       - 'package-lock.json'
@@ -36,6 +39,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run validate:content
       - run: npm run build
+      - run: npm run smoke:static
       - name: Install rsync
         run: sudo apt-get update && sudo apt-get install -y rsync
       - name: Configure SSH

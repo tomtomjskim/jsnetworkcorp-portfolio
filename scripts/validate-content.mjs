@@ -5,7 +5,7 @@ const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
 const ignoredFiles = new Set(['scripts/validate-content.mjs']);
 const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
-const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0', 'PF-v0.8.0']);
+const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0', 'PF-v0.8.0', 'PF-v0.9.0', 'PF-v1.0.0']);
 
 const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
 const metricTerms = ['15%', '50%', '95%'];
@@ -98,10 +98,45 @@ function validateResumeIndex() {
     assert(existsSync(join(root, resume.claimBank)), `${indexPath}: claimBank missing for ${resume.id}: ${resume.claimBank}`);
     assert(['PUBLIC_SAFE', 'ROLE_CONFIRM'].includes(resume.redactionLevel), `${indexPath}: invalid redactionLevel for ${resume.id}`);
   }
+
+  const indexedPaths = new Set((index.resumes ?? []).map((resume) => resume.contentPath));
+  const variantDir = join(root, 'content/resume/variants');
+  if (existsSync(variantDir)) {
+    for (const name of readdirSync(variantDir)) {
+      if (extname(name) !== '.md') continue;
+      const path = `content/resume/variants/${name}`;
+      assert(indexedPaths.has(path), `${indexPath}: variant file is not indexed: ${path}`);
+    }
+  }
 }
 
 validateProjectIndex();
 validateResumeIndex();
+
+function validateVersionMetadata() {
+  const version = readFileSync(join(root, 'VERSION'), 'utf8').trim();
+  const packageJson = readJson('package.json');
+  assert(version === packageJson.version, `VERSION and package.json version differ: ${version} != ${packageJson.version}`);
+}
+
+function validateReleaseTimeline() {
+  const releaseDir = join(root, 'content/releases');
+  if (!existsSync(releaseDir)) return;
+
+  const dataSource = readFileSync(join(root, 'src/lib/data.ts'), 'utf8');
+  for (const name of readdirSync(releaseDir)) {
+    if (extname(name) !== '.md') continue;
+    const markdown = readFileSync(join(releaseDir, name), 'utf8');
+    const version = markdown.match(/^#\s+([A-Za-z0-9.-]+)/)?.[1];
+    assert(Boolean(version), `content/releases/${name}: release heading version required`);
+    if (version) {
+      assert(dataSource.includes(`version: '${version}'`), `src/lib/data.ts: release timeline missing ${version}`);
+    }
+  }
+}
+
+validateVersionMetadata();
+validateReleaseTimeline();
 
 if (hits.length > 0) {
   console.error('Content validation failed:');

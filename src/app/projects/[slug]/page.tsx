@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((item) => item.slug === params.slug);
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
   if (!project) notFound();
 
   const projectScreens = screens.filter((screen) => project.screens.includes(screen.id));
