@@ -60,11 +60,16 @@ Access control should be configured at the web server or gateway layer. Acceptab
 3. Configure nginx static host for `portfolio.jsnetworkcorp.com`.
 4. Configure TLS certificate.
 5. Add GitHub Actions secrets.
-6. Run `Deploy Static Portfolio` workflow manually.
-7. Verify public pages and static assets.
-8. Create separate protected interview directory if needed.
-9. Configure authentication for the protected interview surface.
-10. Confirm protected material is not inside the public `out/` directory.
+6. Allow GitHub Actions SSH access through the server firewall.
+7. Run `Deploy Static Portfolio` workflow manually.
+8. Verify public pages and static assets.
+9. Create separate protected interview directory if needed.
+10. Configure authentication for the protected interview surface.
+11. Confirm protected material is not inside the public `out/` directory.
+
+## Firewall Notes
+
+If the server restricts SSH with iptables, allow GitHub-hosted runner source ranges with the `deploy/server/update-github-actions-ssh-allowlist.sh` script and the matching systemd timer templates. The script builds an `ipset` from GitHub's published Actions metadata and inserts an allow rule for SSH before the final reject rule.
 
 ## TLS Notes
 

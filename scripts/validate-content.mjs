@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
-const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.ts', '.tsx', '.yml', '.yaml']);
+const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
 const forbidden = [
   /api[_-]?key\s*[:=]/i,
   /secret\s*[:=]/i,
