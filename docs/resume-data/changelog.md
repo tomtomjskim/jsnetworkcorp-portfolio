@@ -2,6 +2,27 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-06-29 / PF-v0.6.0
+
+### Added
+
+- Added public project metadata index at `content/projects/index.json`.
+- Added public resume metadata index at `content/resume/index.json`.
+- Added release note `content/releases/pf-v0.6.0.md`.
+- Expanded site-facing project families for manufacturing systems, commerce/fulfillment, and architecture direction.
+- Extended content validation to check metadata indexes and redaction-sensitive public patterns.
+
+### Changed
+
+- Replaced site-facing private project naming with public-safe project names.
+- Promoted Manufacturing MES Business Systems and Seller Commerce & Fulfillment Operations as first-class public project axes.
+- Reframed live-commerce as architecture direction, not a completed integration claim.
+- Removed unfinished/non-commercial app work from the primary site project model.
+
+### Boundary
+
+- Private source evidence, project identifiers, private repository links, customer/order/admin/session/payment data, credentials, endpoints, logs, and raw AI transcripts remain outside this repository.
+
 ## 2026-06-29 / RB-v0.5 / PF-v0.5.0
 
 ### Added

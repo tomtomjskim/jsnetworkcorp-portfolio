@@ -1,0 +1,52 @@
+{
+  "version": "PF-v0.6.0",
+  "updated": "2026-06-29",
+  "visibility": "public-sanitized",
+  "projects": [
+    {
+      "slug": "manufacturing-mes-business-systems",
+      "title": "Manufacturing MES Business Systems",
+      "family": "manufacturing-systems",
+      "status": "planned-page",
+      "source": "src/lib/data.ts",
+      "contentPath": null,
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "slug": "commerce-fulfillment-operations",
+      "title": "Seller Commerce & Fulfillment Operations",
+      "family": "commerce-fulfillment",
+      "status": "draft-page",
+      "source": "content/projects/commerce-fulfillment-operations.md",
+      "contentPath": "content/projects/commerce-fulfillment-operations.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "slug": "live-commerce-architecture-direction",
+      "title": "Live-Commerce Architecture Direction",
+      "family": "architecture-direction",
+      "status": "planned-page",
+      "source": "src/lib/data.ts",
+      "contentPath": null,
+      "redactionLevel": "ROLE_CONFIRM"
+    },
+    {
+      "slug": "ai-assisted-development-workflow",
+      "title": "AI-assisted Development Workflow",
+      "family": "ai-workflow-agent-tooling",
+      "status": "planned-page",
+      "source": "src/lib/data.ts",
+      "contentPath": null,
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "slug": "db-mcp-safety-boundary",
+      "title": "DB MCP Safety Boundary",
+      "family": "infra-mcp-safety",
+      "status": "planned-page",
+      "source": "src/lib/data.ts",
+      "contentPath": null,
+      "redactionLevel": "ROLE_CONFIRM"
+    }
+  ]
+}

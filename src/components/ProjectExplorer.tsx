@@ -6,7 +6,10 @@ import { ProjectCard } from './ProjectCard';
 
 const families: Array<ProjectFamily | 'all'> = [
   'all',
+  'manufacturing-systems',
+  'commerce-fulfillment',
   'product-engineering',
+  'architecture-direction',
   'ai-workflow-agent-tooling',
   'infra-mcp-safety',
   'legacy-modernization'
@@ -20,7 +23,14 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
     const q = query.trim().toLowerCase();
     return projects.filter((project) => {
       const matchesFamily = family === 'all' || project.family === family;
-      const searchable = [project.name, project.summary, project.stack.join(' '), project.status].join(' ').toLowerCase();
+      const searchable = [
+        project.name,
+        project.family,
+        project.summary,
+        project.stack.join(' '),
+        project.status,
+        project.publicEvidence.join(' ')
+      ].join(' ').toLowerCase();
       const matchesQuery = !q || searchable.includes(q);
       return matchesFamily && matchesQuery;
     });

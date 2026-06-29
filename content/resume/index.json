@@ -1,0 +1,25 @@
+{
+  "version": "PF-v0.6.0",
+  "updated": "2026-06-29",
+  "visibility": "public-sanitized",
+  "resumes": [
+    {
+      "id": "resume-ko-v0.5",
+      "title": "Korean Resume Draft v0.5",
+      "language": "ko",
+      "targetRole": "backend-fullstack-general",
+      "status": "draft",
+      "contentPath": "content/resume/resume-ko-v0.5.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    }
+  ],
+  "plannedVariants": [
+    "backend-ko",
+    "fullstack-ko",
+    "commerce-backend-ko",
+    "manufacturing-systems-ko",
+    "ai-assisted-workflow-ko",
+    "backend-en"
+  ]
+}
