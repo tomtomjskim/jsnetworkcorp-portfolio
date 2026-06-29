@@ -2,6 +2,24 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-06-29 / PF-v1.0.0
+
+### Added
+
+- Added application-ready checklist.
+- Added final handoff document.
+- Added `PF-v1.0.0` release note.
+- Updated visible release timeline data to include PF-v1.0.0 through PF-v0.7.0.
+
+### Changed
+
+- Marked the public-safe resume/portfolio content architecture as application-ready from a content-management perspective.
+- Documented remaining non-blocking work: validation/build execution, future UI rendering of resume variants, diagrams, downloadable resume artifacts, and private interview kit generation.
+
+### Boundary
+
+- This release finalizes public-safe content architecture only. It does not include private evidence, private repository links, customer/order/admin/session/payment data, credentials, endpoints, logs, raw screenshots, generated interview kits, or raw AI transcripts.
+
 ## 2026-06-29 / PF-v0.9.0
 
 ### Added
