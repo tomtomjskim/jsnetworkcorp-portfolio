@@ -2,7 +2,29 @@
 
 Next.js / React portfolio scaffold for `portfolio.jsnetworkcorp.com`.
 
-This repository is the dedicated portfolio site repository. It is intentionally separate from `personal-wiki`.
+This repository is the dedicated public portfolio site repository. It is intentionally separate from `personal-wiki`.
+
+## Content Boundary
+
+This repository remains sanitized and public.
+
+Detailed interview materials should be generated separately and served only through a protected private surface. Do not commit detailed internal specs, raw evidence, credentials, production endpoints, customer data, order data, admin data, private wiki exports, or raw AI transcripts to this repository.
+
+Recommended split:
+
+```text
+portfolio.jsnetworkcorp.com
+└─ public sanitized static portfolio from this repo
+
+interview.jsnetworkcorp.com or protected server path
+└─ detailed interview kit from private source or server-only generated artifacts
+```
+
+See:
+
+- `docs/content-boundary.md`
+- `docs/interview-materials-architecture.md`
+- `docs/remote-deploy-runbook.md`
 
 ## Scope
 
