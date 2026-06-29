@@ -3,36 +3,39 @@ import { extname, join, relative } from 'node:path';
 
 const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
+const ignoredFiles = new Set(['scripts/validate-content.mjs']);
 const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
+
+const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
+const metricTerms = ['15%', '50%', '95%'];
 
 const sensitivePatterns = [
   { label: 'api key assignment', pattern: /api[_-]?key\s*[:=]/i },
   { label: 'secret assignment', pattern: /secret\s*[:=]/i },
   { label: 'password assignment', pattern: /password\s*[:=]/i },
   { label: 'private key block', pattern: /BEGIN (RSA|OPENSSH|PRIVATE) KEY/ },
-  { label: 'private repository identifier', pattern: /tomtomjskim\/burstexpress/i },
-  { label: 'internal project identifier', pattern: /\bBurstExpress\b/i },
-  { label: 'internal project identifier', pattern: /\bFrecto\b/i },
-  { label: 'dropped primary project identifier', pattern: /\bmykitchen\b/i },
-  { label: 'raw metric claim', pattern: /\b(15%|50%|95%)\b/ }
+  ...privateTerms.map((term) => ({ label: 'private or excluded project identifier', pattern: new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') })),
+  ...metricTerms.map((term) => ({ label: 'raw metric claim', pattern: new RegExp(term.replace('%', '\\%')) }))
 ];
 
 function extensionOf(path) {
   return extname(path);
 }
 
+function toRepoPath(path) {
+  return relative(root, path).replaceAll('\\\\', '/');
+}
+
 function collectFiles(dir) {
   return readdirSync(dir).flatMap((name) => {
     if (ignoredDirs.has(name)) return [];
     const path = join(dir, name);
+    const repoPath = toRepoPath(path);
+    if (ignoredFiles.has(repoPath)) return [];
     const stat = statSync(path);
     if (stat.isDirectory()) return collectFiles(path);
     return scannedExtensions.has(extensionOf(path)) ? [path] : [];
   });
-}
-
-function toRepoPath(path) {
-  return relative(root, path).replaceAll('\\\\', '/');
 }
 
 function readJson(path) {
@@ -45,7 +48,7 @@ for (const file of collectFiles(root)) {
   const content = readFileSync(file, 'utf8');
   for (const item of sensitivePatterns) {
     if (item.pattern.test(content)) {
-      hits.push(`${toRepoPath(file)}: ${item.label} (${item.pattern})`);
+      hits.push(`${toRepoPath(file)}: ${item.label}`);
     }
   }
 }
