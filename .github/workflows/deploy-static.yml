@@ -1,0 +1,29 @@
+name: Deploy Static Portfolio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm install
+      - run: npm run build
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PORTFOLIO_SSH_KEY" > ~/.ssh/portfolio_key
+          chmod 600 ~/.ssh/portfolio_key
+        env:
+          PORTFOLIO_SSH_KEY: ${{ secrets.PORTFOLIO_SSH_KEY }}
+      - name: Deploy
+        run: rsync -az --delete -e "ssh -i ~/.ssh/portfolio_key -o StrictHostKeyChecking=no" out/ "$PORTFOLIO_USER@$PORTFOLIO_HOST:$PORTFOLIO_DEPLOY_PATH/"
+        env:
+          PORTFOLIO_HOST: ${{ secrets.PORTFOLIO_HOST }}
+          PORTFOLIO_USER: ${{ secrets.PORTFOLIO_USER }}
+          PORTFOLIO_DEPLOY_PATH: ${{ secrets.PORTFOLIO_DEPLOY_PATH }}
