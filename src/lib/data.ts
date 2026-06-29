@@ -8,7 +8,7 @@ export const projects: Project[] = [
     summary: 'PHP/Laravel/MySQL business-system experience around manufacturing production management, maintenance, and on-premise operations.',
     stack: ['PHP', 'Laravel', 'MySQL', 'MES', 'On-Premise'],
     publicStatus: 'sanitized',
-    status: 'PF-v0.6.0 content-model case',
+    status: 'Public-safe case study',
     problem: 'Manufacturing business systems need stable maintenance, clear data handling, and domain-aware changes without exposing customer operations.',
     approach: 'Present the work as sanitized MES and business-system experience focused on backend maintenance, data processing, and gradual legacy improvement.',
     publicEvidence: [
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     ],
     verification: ['resume raw data reviewed', 'public claim wording downgraded to non-metric form', 'customer identifiers excluded'],
     screens: ['S-MES-001', 'S-MES-002'],
-    nextMilestone: 'Add a public-safe architecture diagram for MES maintenance and data-flow boundaries.'
+    nextMilestone: 'MES maintenance, legacy PHP, and public-safe data-flow boundaries.'
   },
   {
     slug: 'commerce-fulfillment-operations',
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     summary: 'Sanitized seller commerce and logistics operations case covering product, inbound, inventory, external order, outbound, dashboard, and fulfillment integration themes.',
     stack: ['PHP', 'MySQL', 'Commerce Operations', 'OMS', 'Signed API', 'Idempotency'],
     publicStatus: 'sanitized',
-    status: 'PF-v0.6.0 content-model case',
+    status: 'Public-safe case study',
     problem: 'Seller operations can fragment across inbound, inventory, external order intake, outbound processing, and fulfillment tracking unless the integration model is explicit.',
     approach: 'Use a public-safe architecture narrative: canonical order normalization, all-or-nothing batch handling, signed integration, masked payloads, and read-only synchronization verification.',
     publicEvidence: [
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     ],
     verification: ['private evidence reviewed outside public repo', 'public-safe one-pager added', 'redaction boundary documented'],
     screens: ['S-COM-001', 'S-COM-002', 'S-COM-003'],
-    nextMilestone: 'Convert this case into a structured project page with problem, architecture, reliability, and boundary sections.'
+    nextMilestone: 'Order intake, fulfillment dispatch, idempotency, and read-only reconciliation.'
   },
   {
     slug: 'live-commerce-architecture-direction',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     summary: 'Portfolio-adjacent architecture direction for extending commerce operations into live sales channels without claiming a completed production integration.',
     stack: ['WebRTC', 'SFU', 'LiveKit', 'Realtime UX', 'Commerce Channel'],
     publicStatus: 'sanitized',
-    status: 'architecture direction',
+    status: 'Architecture direction',
     problem: 'A live sales channel needs realtime media, chat, product exposure, order handoff, moderation, and fulfillment boundaries to fit existing commerce operations.',
     approach: 'Describe live-commerce as a channel-extension architecture that can reuse product, order, fulfillment, and reconciliation boundaries from the commerce operations model.',
     publicEvidence: [
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     ],
     verification: ['architecture direction preserved', 'completion claim removed', 'synthetic screen boundary retained'],
     screens: ['S-LC-001', 'S-LC-002', 'S-LC-003'],
-    nextMilestone: 'Add a sequence diagram for live session to order-handoff boundaries using synthetic data only.'
+    nextMilestone: 'Realtime commerce channel boundaries without claiming completed production integration.'
   },
   {
     slug: 'ai-assisted-development-workflow',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     summary: 'Workflow case for AI-assisted documentation, review, test planning, version management, and public/private knowledge boundaries.',
     stack: ['Markdown', 'Git', 'LLM Context', 'Review Workflow', 'Release Notes'],
     publicStatus: 'public',
-    status: 'governance case',
+    status: 'Workflow governance case',
     problem: 'Generated notes, AI-assisted code review, and resume data need trust levels, redaction rules, and version management before they are used in resumes or public portfolio pages.',
     approach: 'Show a public-safe workflow from raw/private evidence through reviewed claims, sanitized public content, and protected interview-kit generation.',
     publicEvidence: [
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     ],
     verification: ['goal and workflow documents added', 'content boundary reviewed', 'public/private split documented'],
     screens: ['S-AI-001', 'S-AI-002'],
-    nextMilestone: 'Add a public-safe workflow diagram for claim review and interview-kit handoff.'
+    nextMilestone: 'Claim review, redaction, versioning, and protected interview-kit handoff.'
   },
   {
     slug: 'db-mcp-safety-boundary',
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     summary: 'Safe multi-database MCP workflow pattern for agent-assisted schema and query analysis.',
     stack: ['MCP', 'Database', 'Query Validation', 'Security Boundary'],
     publicStatus: 'sanitized',
-    status: 'safety-boundary case',
+    status: 'Safety boundary case',
     problem: 'Agent database access must be constrained by read-only policy, schema visibility, query validation, and human review.',
     approach: 'Use synthetic connection registry and query validation screens to show safety boundaries without exposing real schemas or logs.',
     publicEvidence: [
@@ -112,9 +112,9 @@ export const projects: Project[] = [
       'No database URLs, credentials, real table names, customer schemas, or query logs.',
       'Connection names and schemas remain abstracted into public-safe examples.'
     ],
-    verification: ['read-only boundary pending recheck', 'secret values excluded', 'synthetic examples only'],
+    verification: ['read-only boundary described at public-safe level', 'secret values excluded', 'synthetic examples only'],
     screens: ['S-MCP-001', 'S-MCP-002'],
-    nextMilestone: 'Add public-safe schema browser screen after the read-only boundary is reverified.'
+    nextMilestone: 'Read-only query validation and human-review boundaries for database-assisted workflows.'
   }
 ];
 
