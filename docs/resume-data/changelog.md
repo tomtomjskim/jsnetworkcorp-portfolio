@@ -2,6 +2,23 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-06-29 / PF-v0.9.0
+
+### Added
+
+- Added protected interview bridge documentation.
+- Added public-safe interview kit template.
+- Added `PF-v0.9.0` release note.
+
+### Changed
+
+- Clarified public-to-protected handoff for target-role interview preparation.
+- Reinforced that claim-to-evidence maps and generated interview kits stay outside this public repository.
+
+### Boundary
+
+- This release includes templates and boundary docs only. It does not include private evidence, private repository links, customer/order/admin/session/payment data, credentials, endpoints, logs, screenshots, or raw AI transcripts.
+
 ## 2026-06-29 / PF-v0.8.0
 
 ### Added
