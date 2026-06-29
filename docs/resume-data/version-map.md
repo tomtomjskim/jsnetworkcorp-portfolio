@@ -26,9 +26,9 @@ updated: 2026-06-29
 | `PF-v0.6.0` | Content model integration | merged | `content/projects/index.json`, `content/resume/index.json`, site data model |
 | `PF-v0.7.0` | Public-safe project pages | merged | expanded project markdown pages |
 | `PF-v0.8.0` | Resume variants | merged | role-specific public resume variants |
-| `PF-v0.9.0` | Protected interview bridge | active | public boundary docs and templates only |
-| `PF-v1.0.0` | Application-ready portfolio release | next | final release checklist and public site content |
-| `IK-v0.1` | Protected interview material plan | planned-private | must not be committed here |
+| `PF-v0.9.0` | Protected interview bridge | merged | public boundary docs and templates only |
+| `PF-v1.0.0` | Application-ready portfolio release | active | final release checklist and public site content |
+| `IK-v0.1` | Protected interview material plan | next-private | must not be committed here |
 
 ## Branching Rule
 
@@ -40,7 +40,7 @@ resume-data-v0.6
 portfolio-project-pages-v0.7
 resume-variants-v0.8
 interview-bridge-v0.9
-portfolio-release-v1.0
+portfolio-v1-final
 ```
 
 Each branch should include:
