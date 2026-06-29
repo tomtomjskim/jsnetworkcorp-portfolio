@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { projects, screens } from '@/lib/data';
+import { familyLabels, publicStatusLabels } from '@/lib/labels';
+import { ScreenEvidence } from '@/components/ScreenEvidence';
 import { StatusBadge } from '@/components/StatusBadge';
 
 export function generateStaticParams() {
@@ -18,8 +20,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <p className="eyebrow">Case study</p>
       <h1>{project.name}</h1>
       <div className="cardMeta">
-        <StatusBadge>{project.family}</StatusBadge>
-        <StatusBadge>{project.publicStatus}</StatusBadge>
+        <StatusBadge>{familyLabels[project.family]}</StatusBadge>
+        <StatusBadge>{publicStatusLabels[project.publicStatus]}</StatusBadge>
         <StatusBadge>{project.status}</StatusBadge>
       </div>
       <p>{project.summary}</p>
@@ -39,7 +41,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       <section className="card">
         <h2>Verification</h2>
         <ul>{project.verification.map((item) => <li key={item}>{item}</li>)}</ul>
-        <p className="muted">Next: {project.nextMilestone}</p>
+        <p className="muted">Evidence focus: {project.nextMilestone}</p>
       </section>
 
       <section>
@@ -47,7 +49,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="grid">
           {projectScreens.map((screen) => (
             <div className="card" key={screen.id}>
-              <div className="wireframeBox">{screen.id}</div>
+              <ScreenEvidence screen={screen} />
               <h3>{screen.title}</h3>
               <p>{screen.purpose}</p>
               <dl className="screenMeta">

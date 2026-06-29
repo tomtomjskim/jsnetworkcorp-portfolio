@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import type { Project, ProjectFamily } from '@/lib/types';
+import { familyLabels } from '@/lib/labels';
 import { ProjectCard } from './ProjectCard';
 
 const families: Array<ProjectFamily | 'all'> = [
@@ -39,10 +40,18 @@ export function ProjectExplorer({ projects }: { projects: Project[] }) {
   return (
     <section>
       <div className="toolbar">
-        <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects, stack, evidence..." />
-        <select value={family} onChange={(event) => setFamily(event.target.value as ProjectFamily | 'all')}>
-          {families.map((item) => <option key={item} value={item}>{item}</option>)}
-        </select>
+        <label>
+          <span className="visuallyHidden">Search projects</span>
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects, stack, evidence..." />
+        </label>
+        <label>
+          <span className="visuallyHidden">Filter by portfolio family</span>
+          <select value={family} onChange={(event) => setFamily(event.target.value as ProjectFamily | 'all')}>
+            {families.map((item) => (
+              <option key={item} value={item}>{item === 'all' ? 'All families' : familyLabels[item]}</option>
+            ))}
+          </select>
+        </label>
       </div>
       {visible.length === 0 ? (
         <p className="muted">No project matched the current filter.</p>
