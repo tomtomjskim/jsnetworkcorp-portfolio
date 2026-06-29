@@ -1,0 +1,44 @@
+import { notFound } from 'next/navigation';
+import { projects, screens } from '@/lib/data';
+import { StatusBadge } from '@/components/StatusBadge';
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
+  const project = projects.find((item) => item.slug === params.slug);
+  if (!project) notFound();
+
+  const projectScreens = screens.filter((screen) => project.screens.includes(screen.id));
+
+  return (
+    <article className="detail">
+      <p className="eyebrow">Case study</p>
+      <h1>{project.name}</h1>
+      <div className="cardMeta">
+        <StatusBadge>{project.family}</StatusBadge>
+        <StatusBadge>{project.publicStatus}</StatusBadge>
+        <StatusBadge>{project.status}</StatusBadge>
+      </div>
+      <p>{project.summary}</p>
+
+      <section className="card"><h2>Problem</h2><p>{project.problem}</p></section>
+      <section className="card"><h2>Approach</h2><p>{project.approach}</p></section>
+      <section className="card"><h2>Verification</h2><ul>{project.verification.map((item) => <li key={item}>{item}</li>)}</ul></section>
+
+      <section>
+        <h2>Screens</h2>
+        <div className="grid">
+          {projectScreens.map((screen) => (
+            <div className="card" key={screen.id}>
+              <div className="wireframeBox">{screen.id}</div>
+              <h3>{screen.title}</h3>
+              <p>{screen.purpose}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </article>
+  );
+}
