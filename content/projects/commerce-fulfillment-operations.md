@@ -1,6 +1,6 @@
 # Seller Commerce & Fulfillment Operations System
 
-version: PF-v0.5.0
+version: PF-v0.7.0
 updated: 2026-06-29
 visibility: public-sanitized
 status: draft
@@ -38,7 +38,18 @@ Seller operations often split across product preparation, inbound request handli
 | Fail-closed gates | Keep dangerous or incomplete integration paths disabled unless configuration and approval are explicit. |
 | Read-only reconcile | Compare dispatch logs with external projections to identify matched, missing, external inflow, and status-difference cases. |
 
-## Resume Claims Supported
+## Reliability Narrative
+
+The strongest public-safe signal is not a metric claim. It is the presence of operational boundaries:
+
+1. file-based intake is separated into preview and confirm stages,
+2. batch confirmation is explicit and all-or-nothing unless a later contract permits partial success,
+3. external dispatch is represented through canonical fields and idempotency,
+4. external API calls are treated as signed service-to-service integration,
+5. payloads are masked unless an approved private path exists,
+6. dispatch results can be checked against an external projection without mutating the external system.
+
+## Public Resume Claims Supported
 
 - PHP 기반 셀러형 커머스/물류 운영 시스템에서 상품, 입고, 재고, 외부출고, 대시보드 관련 기능 개선에 참여
 - 외부 주문 등록 흐름에서 파일 업로드, preview, confirm, all-or-nothing batch semantics를 다룸
@@ -50,6 +61,24 @@ Seller operations often split across product preparation, inbound request handli
 
 The same commerce-domain model can be extended conceptually toward live-commerce channels: a live session becomes another sales channel that creates orders and requires the same product, order, fulfillment, and reconciliation boundaries. This is a direction for portfolio architecture discussion, not a completed integration claim.
 
+## Role-Scope Review
+
+Keep these as `role-confirm` before final resume use:
+
+- designed or implemented canonical order normalization
+- implemented signed import/projection clients
+- owned dispatch/reconcile screens
+- designed PII guard or security policy
+- owned production rollout or operational monitoring
+
+Use safer public wording until confirmed:
+
+- 다룸
+- 참여
+- 검토
+- 고도화에 참여
+- 운영 리스크 제어 요소를 고려
+
 ## Redaction Notes
 
 - Do not expose private project names.
@@ -58,3 +87,7 @@ The same commerce-domain model can be extended conceptually toward live-commerce
 - Do not include credentials, endpoints, or environment names.
 - Do not publish internal evidence maps in this repository.
 - Do not claim completed SaaS or live-commerce integration without separate proof and redaction review.
+
+## Next Evidence Work
+
+Protected interview material can later include a deeper claim-to-evidence map, but it must be generated outside this public repository.
