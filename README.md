@@ -40,6 +40,28 @@ See:
 - CI and GitHub Actions rsync deployment
 - protected interview-surface deployment guidance
 
+## Resume Data Versioning
+
+Public-safe resume and portfolio content is tracked under:
+
+```text
+docs/resume-data/
+content/projects/
+content/resume/
+```
+
+The current resume data pass is `RB-v0.5 / PF-v0.5.0` and keeps only sanitized claims in this public repository. Private claim-to-evidence maps, internal project identifiers, private repository links, raw evidence, credentials, endpoints, customer/order/admin/session/payment data, and raw AI transcripts remain outside this repository.
+
+Key files:
+
+- `docs/resume-data/README.md`
+- `docs/resume-data/changelog.md`
+- `docs/resume-data/version-map.md`
+- `docs/resume-data/public-claim-bank.md`
+- `docs/resume-data/redaction-boundary.md`
+- `content/projects/commerce-fulfillment-operations.md`
+- `content/resume/resume-ko-v0.5.md`
+
 ## Routes
 
 ```text
@@ -87,6 +109,6 @@ v0.1.0: IA, component skeleton, project index, screen placeholders, CI/deploy pl
 v0.2.0: sanitized project pages, screen metadata, rsync deploy, protected interview architecture
 v0.3.0: AI/Agent portfolio case studies
 v0.4.0: resume variants and downloadable PDFs
-v0.5.0: public beta under portfolio.jsnetworkcorp.com
+v0.5.0: public beta under portfolio.jsnetworkcorp.com + sanitized resume data versioning
 v1.0.0: application-ready portfolio release
 ```
