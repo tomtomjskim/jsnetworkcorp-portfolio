@@ -24,9 +24,9 @@ updated: 2026-06-29
 | `PF-v0.5.0` | Portfolio content packet | merged | sanitized project/resume content |
 | `PF-v0.5.1` | Planning and governance | merged | goal, roadmap, workflow |
 | `PF-v0.6.0` | Content model integration | merged | `content/projects/index.json`, `content/resume/index.json`, site data model |
-| `PF-v0.7.0` | Public-safe project pages | active | expanded project markdown pages |
-| `PF-v0.8.0` | Resume variants | next | role-specific public resume variants |
-| `PF-v0.9.0` | Protected interview bridge | planned | public boundary docs only |
+| `PF-v0.7.0` | Public-safe project pages | merged | expanded project markdown pages |
+| `PF-v0.8.0` | Resume variants | active | role-specific public resume variants |
+| `PF-v0.9.0` | Protected interview bridge | next | public boundary docs only |
 | `PF-v1.0.0` | Application-ready portfolio release | planned | final release checklist and public site content |
 | `IK-v0.1` | Protected interview material plan | planned-private | must not be committed here |
 

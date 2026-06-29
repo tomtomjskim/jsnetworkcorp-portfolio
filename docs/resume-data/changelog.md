@@ -2,6 +2,25 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-06-29 / PF-v0.8.0
+
+### Added
+
+- Added role-specific resume variants under `content/resume/variants/`.
+- Added Korean variants for backend, full-stack, commerce backend, manufacturing systems, and AI-assisted workflow positioning.
+- Added an English backend variant.
+- Updated `content/resume/index.json` to link all resume variants.
+- Extended validation to accept PF-v0.8.0 and detect duplicate resume IDs.
+
+### Changed
+
+- Resume variants now separate general backend, commerce/logistics, manufacturing/MES, and AI workflow emphasis.
+- Stronger commerce claims remain `ROLE_CONFIRM` in the resume index.
+
+### Boundary
+
+- Variants remain public-sanitized and exclude private project names, private repository links, customer/order/admin/session/payment data, credentials, endpoints, logs, raw AI transcripts, and unsupported metric claims.
+
 ## 2026-06-29 / PF-v0.7.0
 
 ### Added

@@ -1,5 +1,5 @@
 {
-  "version": "PF-v0.6.0",
+  "version": "PF-v0.8.0",
   "updated": "2026-06-29",
   "visibility": "public-sanitized",
   "resumes": [
@@ -12,14 +12,67 @@
       "contentPath": "content/resume/resume-ko-v0.5.md",
       "claimBank": "docs/resume-data/public-claim-bank.md",
       "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "backend-ko",
+      "title": "Backend Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "backend",
+      "status": "draft",
+      "contentPath": "content/resume/variants/backend-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "fullstack-ko",
+      "title": "Full-stack Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "fullstack",
+      "status": "draft",
+      "contentPath": "content/resume/variants/fullstack-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "commerce-backend-ko",
+      "title": "Commerce Backend Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "commerce-backend",
+      "status": "draft",
+      "contentPath": "content/resume/variants/commerce-backend-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "ROLE_CONFIRM"
+    },
+    {
+      "id": "manufacturing-systems-ko",
+      "title": "Manufacturing Systems Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "manufacturing-systems",
+      "status": "draft",
+      "contentPath": "content/resume/variants/manufacturing-systems-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "ai-assisted-workflow-ko",
+      "title": "AI-assisted Workflow Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "ai-assisted-workflow",
+      "status": "draft",
+      "contentPath": "content/resume/variants/ai-assisted-workflow-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "backend-en",
+      "title": "Backend Resume Variant — EN",
+      "language": "en",
+      "targetRole": "backend",
+      "status": "draft",
+      "contentPath": "content/resume/variants/backend-en.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
     }
   ],
-  "plannedVariants": [
-    "backend-ko",
-    "fullstack-ko",
-    "commerce-backend-ko",
-    "manufacturing-systems-ko",
-    "ai-assisted-workflow-ko",
-    "backend-en"
-  ]
+  "plannedVariants": []
 }

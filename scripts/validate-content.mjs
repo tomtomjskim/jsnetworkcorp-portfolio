@@ -5,7 +5,7 @@ const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
 const ignoredFiles = new Set(['scripts/validate-content.mjs']);
 const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
-const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0']);
+const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0', 'PF-v0.8.0']);
 
 const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
 const metricTerms = ['15%', '50%', '95%'];
@@ -89,8 +89,11 @@ function validateResumeIndex() {
   assert(allowedPortfolioVersions.has(index.version), `${indexPath}: unsupported version ${index.version}`);
   assert(Array.isArray(index.resumes), `${indexPath}: resumes must be an array`);
 
+  const ids = new Set();
   for (const resume of index.resumes ?? []) {
     assert(typeof resume.id === 'string' && resume.id.length > 0, `${indexPath}: resume id required`);
+    assert(!ids.has(resume.id), `${indexPath}: duplicate resume id ${resume.id}`);
+    ids.add(resume.id);
     assert(existsSync(join(root, resume.contentPath)), `${indexPath}: contentPath missing for ${resume.id}: ${resume.contentPath}`);
     assert(existsSync(join(root, resume.claimBank)), `${indexPath}: claimBank missing for ${resume.id}: ${resume.claimBank}`);
     assert(['PUBLIC_SAFE', 'ROLE_CONFIRM'].includes(resume.redactionLevel), `${indexPath}: invalid redactionLevel for ${resume.id}`);
