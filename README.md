@@ -4,6 +4,16 @@ Next.js / React portfolio scaffold for `portfolio.jsnetworkcorp.com`.
 
 This repository is the dedicated public portfolio site repository. It is intentionally separate from `personal-wiki`.
 
+## Current Positioning
+
+The public site is organized around three primary problem-solving cases:
+
+1. commerce order, shipping, claim, and settlement state consistency,
+2. MES requirements converted into input, state, permission, query, and statistics conditions,
+3. legacy PHP change-impact analysis across code, data, batch, API, and runtime layers.
+
+Live-commerce architecture, AI-assisted workflow, and DB MCP safety remain supporting cases rather than the primary hiring message.
+
 ## Content Boundary
 
 This repository remains sanitized and public.
@@ -35,8 +45,9 @@ See:
 - Next.js App Router
 - React + TypeScript
 - project explorer with client state
+- problem-solving case-study pages
 - screen / wireframe gallery with client state
-- AI agents / LLM workflow portfolio section
+- supporting AI agents / LLM workflow section
 - release notes
 - static export target for `portfolio.jsnetworkcorp.com`
 - CI and static deployment guidance
@@ -54,7 +65,7 @@ content/resume/
 content/releases/
 ```
 
-The current public portfolio content milestone is `PF-v1.0.0`. It keeps only sanitized claims in this public repository. Private claim-to-evidence maps, internal project identifiers, private repository links, raw evidence, private deployment values, production endpoints, customer/order/admin/session/payment data, and raw AI transcripts remain outside this repository.
+The current public portfolio content milestone is `PF-v1.1.0`. It keeps only sanitized claims in this public repository. Private claim-to-evidence maps, internal project identifiers, private repository links, raw evidence, private deployment values, production endpoints, customer/order/admin/session/payment data, and raw AI transcripts remain outside this repository.
 
 Key files:
 
@@ -67,8 +78,11 @@ Key files:
 - `docs/resume-data/application-ready-checklist.md`
 - `docs/resume-data/final-handoff.md`
 - `content/projects/index.json`
+- `content/projects/commerce-fulfillment-operations.md`
+- `content/projects/manufacturing-mes-business-systems.md`
+- `content/projects/legacy-php-impact-analysis.md`
 - `content/resume/index.json`
-- `content/releases/pf-v1.0.0.md`
+- `content/releases/pf-v1.1.0.md`
 
 ## Routes
 
@@ -111,4 +125,5 @@ PF-v0.7.0: public-safe project pages
 PF-v0.8.0: role-specific resume variants
 PF-v0.9.0: protected interview bridge
 PF-v1.0.0: application-ready public portfolio/resume content architecture
+PF-v1.1.0: three primary problem-solving cases and supporting-case hierarchy
 ```
