@@ -1,31 +1,40 @@
 {
-  "version": "PF-v0.7.0",
-  "updated": "2026-06-29",
+  "version": "PF-v1.1.0",
+  "updated": "2026-07-19",
   "visibility": "public-sanitized",
   "projects": [
     {
+      "slug": "commerce-fulfillment-operations",
+      "title": "Commerce State Consistency",
+      "family": "commerce-fulfillment",
+      "status": "primary-case",
+      "source": "content/projects/commerce-fulfillment-operations.md",
+      "contentPath": "content/projects/commerce-fulfillment-operations.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
       "slug": "manufacturing-mes-business-systems",
-      "title": "Manufacturing MES Business Systems",
+      "title": "MES Requirement Systemization",
       "family": "manufacturing-systems",
-      "status": "draft-page",
+      "status": "primary-case",
       "source": "content/projects/manufacturing-mes-business-systems.md",
       "contentPath": "content/projects/manufacturing-mes-business-systems.md",
       "redactionLevel": "PUBLIC_SAFE"
     },
     {
-      "slug": "commerce-fulfillment-operations",
-      "title": "Seller Commerce & Fulfillment Operations",
-      "family": "commerce-fulfillment",
-      "status": "draft-page",
-      "source": "content/projects/commerce-fulfillment-operations.md",
-      "contentPath": "content/projects/commerce-fulfillment-operations.md",
+      "slug": "legacy-php-impact-analysis",
+      "title": "Legacy PHP Change Impact Analysis",
+      "family": "legacy-modernization",
+      "status": "primary-case",
+      "source": "content/projects/legacy-php-impact-analysis.md",
+      "contentPath": "content/projects/legacy-php-impact-analysis.md",
       "redactionLevel": "PUBLIC_SAFE"
     },
     {
       "slug": "live-commerce-architecture-direction",
       "title": "Live-Commerce Architecture Direction",
       "family": "architecture-direction",
-      "status": "draft-page",
+      "status": "supporting-direction",
       "source": "content/projects/live-commerce-architecture-direction.md",
       "contentPath": "content/projects/live-commerce-architecture-direction.md",
       "redactionLevel": "ROLE_CONFIRM"
@@ -34,7 +43,7 @@
       "slug": "ai-assisted-development-workflow",
       "title": "AI-assisted Development Workflow",
       "family": "ai-workflow-agent-tooling",
-      "status": "draft-page",
+      "status": "supporting-case",
       "source": "content/projects/ai-assisted-development-workflow.md",
       "contentPath": "content/projects/ai-assisted-development-workflow.md",
       "redactionLevel": "PUBLIC_SAFE"
@@ -43,7 +52,7 @@
       "slug": "db-mcp-safety-boundary",
       "title": "DB MCP Safety Boundary",
       "family": "infra-mcp-safety",
-      "status": "draft-page",
+      "status": "supporting-case",
       "source": "content/projects/db-mcp-safety-boundary.md",
       "contentPath": "content/projects/db-mcp-safety-boundary.md",
       "redactionLevel": "ROLE_CONFIRM"

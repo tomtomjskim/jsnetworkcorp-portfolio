@@ -1,93 +1,111 @@
-# Seller Commerce & Fulfillment Operations System
+# Commerce State Consistency
 
-version: PF-v0.7.0
-updated: 2026-06-29
+version: PF-v1.1.0
+updated: 2026-07-19
 visibility: public-sanitized
-status: draft
+status: primary-case
 
-## Summary
+## 20-second summary
 
-A sanitized project case describing backend/full-stack work around a seller commerce and logistics operations system. The system context includes product operations, inbound requests, inventory visibility, external order registration, outbound status, dashboards, and fulfillment integration.
+A public-safe case about tracing inconsistent order, shipping, claim, and settlement states across database records, admin actions, user-facing conditions, batch jobs, and external API responses. The work focused on identifying every state-changing path before applying the minimum safe production change.
 
-This document intentionally omits private project names, private repository links, customer data, order data, credentials, endpoints, and internal evidence details.
+## Operational context
 
-## Problem Space
+A commerce order does not end at checkout. Product, order, payment, shipping, cancellation, return, refund, settlement, admin, and customer-service flows can all depend on related but different state values.
 
-Seller operations often split across product preparation, inbound request handling, inventory visibility, external order intake, outbound processing, and fulfillment tracking. The engineering problem is to keep these flows consistent while avoiding unsafe writes, duplicate transmission, private data exposure, and ambiguous operational states.
+The same order can therefore appear differently depending on:
 
-## Public-Safe Domain Scope
+- the source table and state,
+- the admin action history,
+- the buyer, seller, or admin display condition,
+- a scheduled batch job,
+- an external shipping response,
+- a cancellation, return, or refund path.
 
-- seller product operation
-- inbound request and document flow
-- read-only inventory visibility
-- external order registration
-- file-based order preview and confirmation
-- outbound summary and dashboard surfaces
-- fulfillment/OMS integration
-- synchronization verification between internal dispatch logs and external projections
+## Problem and risk
 
-## Architecture Themes
+Treating an inconsistent screen as one incorrect status value could leave downstream behavior unresolved.
 
-| Theme | Public-Safe Description |
+Possible failure modes included:
+
+- the screen looks correct while source data remains inconsistent,
+- a shipping change does not reach the settlement condition,
+- a cancellation or refund is reflected in one screen but not another,
+- a scheduled job overwrites a manual correction,
+- an external API timeout leaves the internal order in an ambiguous state.
+
+## My working boundary
+
+The public-safe scope covers:
+
+- tracing PHP entry points and admin state-changing paths,
+- comparing related MySQL records and display conditions,
+- checking admin history, batch jobs, and external API effects,
+- separating the immediate fix from reusable verification rules,
+- documenting permission, failure, duplicate-processing, and downstream-state checks.
+
+It does not claim ownership of accounting policy, financial payout execution, or the original design of every commerce state model.
+
+## Decision process
+
+### 1. Reproduce the inconsistency
+
+Compare the same synthetic order across source data, admin views, user views, and the state before and after manual or scheduled processing.
+
+### 2. Classify candidate causes
+
+| Candidate | Public-safe check |
 |---|---|
-| Canonical order model | Normalize order data by channel, region, source status, and source order reference before integration. |
-| Idempotency | Use stable keys to reduce duplicate import and retry ambiguity. |
-| Batch safety | Keep file preview and confirm semantics explicit; prefer all-or-nothing behavior unless partial success is specified. |
-| Signed API integration | Use service-to-service signed requests for external system integration. |
-| Masked payloads | Avoid transmitting or displaying raw personal information unless the approved path requires it. |
-| Fail-closed gates | Keep dangerous or incomplete integration paths disabled unless configuration and approval are explicit. |
-| Read-only reconcile | Compare dispatch logs with external projections to identify matched, missing, external inflow, and status-difference cases. |
+| source state | compare related order, payment, shipping, claim, and settlement records |
+| display condition | compare buyer, seller, and admin query conditions |
+| admin action | compare permissions and action history |
+| batch job | check target conditions and duplicate execution risk |
+| external API | compare success, failure, and timeout handling |
+| claim linkage | check cancellation, return, and refund downstream conditions |
 
-## Reliability Narrative
+### 3. Check downstream impact
 
-The strongest public-safe signal is not a metric claim. It is the presence of operational boundaries:
+```text
+order
+→ payment
+→ shipping
+→ cancellation / return / refund
+→ settlement state
+→ buyer / seller / admin screens
+```
 
-1. file-based intake is separated into preview and confirm stages,
-2. batch confirmation is explicit and all-or-nothing unless a later contract permits partial success,
-3. external dispatch is represented through canonical fields and idempotency,
-4. external API calls are treated as signed service-to-service integration,
-5. payloads are masked unless an approved private path exists,
-6. dispatch results can be checked against an external projection without mutating the external system.
+### 4. Select the minimum safe change
 
-## Public Resume Claims Supported
+The selected approach separated source state from display state, identified each state-changing actor, and limited the production change only after dependent flows were understood.
 
-- PHP 기반 셀러형 커머스/물류 운영 시스템에서 상품, 입고, 재고, 외부출고, 대시보드 관련 기능 개선에 참여
-- 외부 주문 등록 흐름에서 파일 업로드, preview, confirm, all-or-nothing batch semantics를 다룸
-- 주문 데이터를 canonical model로 정규화하고, 재전송/중복 처리 안정성을 고려한 연동 구조를 검토
-- signed API, dry-run/fail-closed gate, masked payload, PII guard 등 외부 연동 리스크 제어 요소를 다룸
-- 내부 dispatch log와 외부 projection 간 read-only sync verification 구조를 다룸
+## What changed
 
-## Live-Commerce Extension Angle
+- State inconsistency was treated as a multi-path operational problem rather than a single field correction.
+- Source data, display conditions, admin actions, batch jobs, and API responses were reviewed as separate causes.
+- Normal and failure-path verification was defined before the change was considered complete.
+- The investigation and verification structure could be reused for similar state-drift incidents.
 
-The same commerce-domain model can be extended conceptually toward live-commerce channels: a live session becomes another sales channel that creates orders and requires the same product, order, fulfillment, and reconciliation boundaries. This is a direction for portfolio architecture discussion, not a completed integration claim.
+## Verification
 
-## Role-Scope Review
+- buyer, seller, and admin permission variants,
+- normal, cancellation, return, and refund paths,
+- scheduled batch execution and duplicate-processing conditions,
+- external API success, failure, and timeout behavior,
+- downstream shipping and settlement-state effects,
+- related admin and customer-service screens.
 
-Keep these as `role-confirm` before final resume use:
+## Public evidence artifacts
 
-- designed or implemented canonical order normalization
-- implemented signed import/projection clients
-- owned dispatch/reconcile screens
-- designed PII guard or security policy
-- owned production rollout or operational monitoring
+Planned synthetic artifacts:
 
-Use safer public wording until confirmed:
+1. state-transition map,
+2. source-state / display-state / change-actor / downstream-impact matrix,
+3. external API failure-handling table,
+4. role-based regression checklist.
 
-- 다룸
-- 참여
-- 검토
-- 고도화에 참여
-- 운영 리스크 제어 요소를 고려
+## Redaction boundary
 
-## Redaction Notes
-
-- Do not expose private project names.
-- Do not link private repositories.
-- Do not include real order/customer/admin/session/payment data.
-- Do not include credentials, endpoints, or environment names.
-- Do not publish internal evidence maps in this repository.
-- Do not claim completed SaaS or live-commerce integration without separate proof and redaction review.
-
-## Next Evidence Work
-
-Protected interview material can later include a deeper claim-to-evidence map, but it must be generated outside this public repository.
+- No real project name or private repository link.
+- No real order, customer, seller, payment, shipment, or settlement data.
+- No table names, status codes, endpoints, credentials, payloads, or logs.
+- No unverified improvement percentage, revenue effect, or processing-volume claim.

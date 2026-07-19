@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProjectExplorer projects={projects} />
+      <ProjectExplorer projects={projects.slice(0, 3)} />
       <CapabilityMap capabilities={capabilities} />
       <ReleaseTimeline />
     </>

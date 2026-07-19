@@ -1,15 +1,16 @@
 export function Hero() {
   return (
     <section className="hero">
-      <p className="eyebrow">JSNetworkCorp Portfolio</p>
-      <h1>Backend / Full-stack engineer with AI-assisted workflow and agent tooling capability.</h1>
+      <p className="eyebrow">PHP / MySQL Backend Portfolio</p>
+      <h1>Backend engineer for commerce, logistics, and manufacturing business systems.</h1>
       <p>
-        A screen-first portfolio for product engineering, legacy modernization, live commerce integration,
-        LLM knowledge systems, MCP safety, and release-governed AI workflows.
+        I analyze existing code, database states, permissions, admin workflows, batch jobs, and external API effects
+        before changing production features. This portfolio focuses on three problem-solving cases: commerce state
+        consistency, MES requirement systemization, and safe change analysis in legacy PHP systems.
       </p>
       <div className="actions">
-        <a href="/projects/">View projects</a>
-        <a href="/ai-agents/">AI / Agent portfolio</a>
+        <a href="/projects/">View problem-solving cases</a>
+        <a href="/resume/">View resume</a>
       </div>
     </section>
   );

@@ -45,7 +45,7 @@ const projectSlugs = existsSync(projectRoot)
 assert(projectSlugs.length > 0, 'no exported project detail routes found');
 for (const slug of projectSlugs) {
   const html = assertNoFallback(`projects/${slug}/index.html`);
-  assert(/Case study/.test(html), `project detail missing case-study marker: ${slug}`);
+  assert(/case study/i.test(html), `project detail missing case-study marker: ${slug}`);
 }
 
 const resumeHtml = assertNoFallback('resume/index.html');
@@ -61,7 +61,7 @@ for (const id of [
 }
 
 const releasesHtml = assertNoFallback('releases/index.html');
-for (const version of ['PF-v1.0.0', 'PF-v0.9.0', 'PF-v0.8.0', 'PF-v0.7.0', 'PF-v0.6.0']) {
+for (const version of ['PF-v1.1.0', 'PF-v1.0.0', 'PF-v0.9.0', 'PF-v0.8.0', 'PF-v0.7.0', 'PF-v0.6.0']) {
   assert(releasesHtml.includes(version), `release route missing version: ${version}`);
 }
 
