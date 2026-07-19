@@ -12,8 +12,9 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <h3><Link href={`/projects/${project.slug}/`}>{project.name}</Link></h3>
       <p>{project.summary}</p>
+      <p><strong>Problem:</strong> {project.problem}</p>
       <p className="muted">{project.stack.join(' · ')}</p>
-      <p className="muted">Evidence: {project.status}</p>
+      <p className="muted">Case status: {project.status}</p>
     </article>
   );
 }
