@@ -2,6 +2,20 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-08-13 / CL-v0.6 / PF-v1.0.1
+
+### Changed
+
+- Replaced the generic AI-assisted workflow claim with four bounded, evidence-backed cases.
+- Updated the Korean AI workflow resume variant with TOM/AI role separation, validation counts, and known limitations.
+- Marked public evidence separately from protected evidence and kept unpublished remediation work out of public completion claims.
+
+### Boundary
+
+- Public links are limited to public repositories.
+- Private product and knowledge-governance cases are described without private repository names, paths, raw transcripts, customer data, credentials, endpoints, or logs.
+- Test counts are functional validation evidence, not productivity or live-model quality claims.
+
 ## 2026-06-29 / PF-v1.0.0
 
 ### Added

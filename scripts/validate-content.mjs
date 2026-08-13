@@ -5,7 +5,14 @@ const root = new URL('..', import.meta.url).pathname;
 const ignoredDirs = new Set(['.git', '.next', 'node_modules', 'out']);
 const ignoredFiles = new Set(['scripts/validate-content.mjs']);
 const scannedExtensions = new Set(['.css', '.js', '.json', '.md', '.mjs', '.sh', '.ts', '.tsx', '.yml', '.yaml']);
-const allowedPortfolioVersions = new Set(['PF-v0.6.0', 'PF-v0.7.0', 'PF-v0.8.0', 'PF-v0.9.0', 'PF-v1.0.0']);
+const allowedPortfolioVersions = new Set([
+  'PF-v0.6.0',
+  'PF-v0.7.0',
+  'PF-v0.8.0',
+  'PF-v0.9.0',
+  'PF-v1.0.0',
+  'PF-v1.0.1',
+]);
 
 const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
 const metricTerms = ['15%', '50%', '95%'];
