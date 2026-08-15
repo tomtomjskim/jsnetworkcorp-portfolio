@@ -1,6 +1,6 @@
 # Resume / Portfolio Version Map
 
-updated: 2026-06-29
+updated: 2026-08-13
 
 ## Version Families
 
@@ -20,7 +20,8 @@ updated: 2026-06-29
 | `RB-v0.3` | Commerce project evidence inspection | superseded | private details excluded |
 | `RB-v0.4` | Commerce/fulfillment project promoted to core resume axis | active private source baseline | public-safe themes only |
 | `RB-v0.5` | Public repo application layer | active | stored in `docs/resume-data/` and `content/` |
-| `CL-v0.5` | Public-safe claim bank | active | `docs/resume-data/public-claim-bank.md` |
+| `CL-v0.5` | Initial public-safe claim bank | superseded | retained in history |
+| `CL-v0.6` | Evidence-backed AI claim bank | draft | public/private evidence boundary and known limitations added |
 | `PF-v0.5.0` | Portfolio content packet | merged | sanitized project/resume content |
 | `PF-v0.5.1` | Planning and governance | merged | goal, roadmap, workflow |
 | `PF-v0.6.0` | Content model integration | merged | `content/projects/index.json`, `content/resume/index.json`, site data model |
@@ -28,6 +29,7 @@ updated: 2026-06-29
 | `PF-v0.8.0` | Resume variants | merged | role-specific public resume variants |
 | `PF-v0.9.0` | Protected interview bridge | merged | public boundary docs and templates only |
 | `PF-v1.0.0` | Application-ready portfolio release | active | final release checklist and public site content |
+| `PF-v1.0.1` | Evidence-backed AI resume content | release-candidate | PR #10 contains the CI-validated candidate; repository history is authoritative for merge state |
 | `IK-v0.1` | Protected interview material plan | next-private | must not be committed here |
 
 ## Branching Rule
