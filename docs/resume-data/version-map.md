@@ -29,7 +29,7 @@ updated: 2026-08-13
 | `PF-v0.8.0` | Resume variants | merged | role-specific public resume variants |
 | `PF-v0.9.0` | Protected interview bridge | merged | public boundary docs and templates only |
 | `PF-v1.0.0` | Application-ready portfolio release | active | final release checklist and public site content |
-| `PF-v1.0.1` | Evidence-backed AI resume content | draft | draft PR #10 published; CI run #30 passed; merge pending |
+| `PF-v1.0.1` | Evidence-backed AI resume content | release-candidate | PR #10 contains the CI-validated candidate; repository history is authoritative for merge state |
 | `IK-v0.1` | Protected interview material plan | next-private | must not be committed here |
 
 ## Branching Rule
