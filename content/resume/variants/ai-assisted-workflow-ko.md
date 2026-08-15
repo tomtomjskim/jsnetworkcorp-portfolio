@@ -27,7 +27,7 @@ PHP 기반 MES 및 커머스 운영 시스템 경험을 바탕으로 ChatGPT·Cl
 - 공개 검증 링크는 `codex-workflow-skills`와 `aiwright`만 사용합니다.
 - 개인 제품과 지식 체계는 비공개 근거이므로 공개 문구에 저장소명·경로·민감 데이터를 넣지 않습니다.
 - 795 tests는 기능 회귀 기준이며 생산성 향상률이나 live-model 품질을 증명하지 않습니다.
-- `aiwright`의 dependency·distribution 보강은 draft PR #1과 CI run #1까지 공개됐지만 merge·release 전이므로 배포 완료 claim에 사용하지 않습니다.
+- `aiwright`의 dependency·distribution 보강은 PR #1로 `main`에 squash merge됐고 CI run #1에서 검증됐습니다. package release는 미실행이므로 배포·사용 성과 claim에 사용하지 않습니다.
 
 ## Emphasis
 
