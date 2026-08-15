@@ -36,7 +36,7 @@ Backend / full-stack engineer with experience in PHP-based manufacturing systems
 | ID | Public-safe claim | Status | Evidence boundary | Known limitation |
 |---|---|---|---|---|
 | `CL-AI-001` | 모호하거나 고위험인 Codex 작업을 intake → 구현 → 독립 검토 → session closeout으로 분리한 공개 skill 6종을 설계하고 검증 계약으로 고정 | ready | [public repository](https://github.com/tomtomjskim/codex-workflow-skills), [forward-test report](https://github.com/tomtomjskim/codex-workflow-skills/blob/main/docs/forward-test-report.md) | 2026-08-05 report 기준 881 tests 중 879 pass, 외부 환경 의존 2 skip. live/paid model 품질 증거가 아님 |
-| `CL-AI-002` | TypeScript 기반 AI usage intelligence 도구에서 prompt profile·diagnosis·adaptation·drift·LLM-as-Judge를 구조화하고 54 test files, 795 tests로 기능 기준을 검증 | selective | [public repository](https://github.com/tomtomjskim/aiwright), [draft PR #1](https://github.com/tomtomjskim/aiwright/pull/1) | CI run #1은 통과했지만 `main` merge·package release 전이므로 기능 검증 claim에만 사용 |
+| `CL-AI-002` | TypeScript 기반 AI usage intelligence 도구에서 prompt profile·diagnosis·adaptation·drift·LLM-as-Judge를 구조화하고 54 test files, 795 tests로 기능 기준을 검증 | selective | [public repository](https://github.com/tomtomjskim/aiwright), [merged PR #1](https://github.com/tomtomjskim/aiwright/pull/1) | CI run #1 검증 후 `main`에 squash merge됐지만 package release·외부 사용 지표는 없으므로 기능 검증 claim에만 사용 |
 | `CL-AI-003` | 개인 제품 개발에서 AI를 기획·구현·리뷰 보조로 사용하고 E2E 88/88, 시나리오 36/36, Flutter smoke 1/1로 결과를 검증 | private-evidence | protected evidence only; public에는 제품명·비공개 저장소 링크를 싣지 않음 | 배포 전이며 외부 인증·OCR·공공 API 일부는 mock |
 | `CL-AI-004` | AI 대화·산출물을 `inbox → generated → reviewed → canonical` 신뢰 계층으로 분리하고, 출처·민감도·사람 승격 규칙으로 지식화를 통제 | private-evidence | protected evidence only; 공개 문구는 구조와 통제 원칙만 사용 | 분류는 휴리스틱이며 CI가 문서 사실성을 증명하지 않음 |
 
