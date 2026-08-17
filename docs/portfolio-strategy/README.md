@@ -21,9 +21,9 @@ A strategy version is a research snapshot. Do not rewrite old version notes when
 
 ## Current Strategy
 
-`PS-v1.0.0`
+`PS-v1.1.0`
 
-Priority:
+Priority remains:
 
 ```text
 1. Application / self-introduction text
@@ -33,7 +33,34 @@ Priority:
 5. Protected interview deep dive
 ```
 
-The canonical evidence model remains shared across all outputs.
+`PS-v1.1.0` adds evidence-ranked repository promotion and a separate public backend-reference plan. It distinguishes:
+
+```text
+verified career case
+!= public R&D/tooling repository
+!= new sanitized reference implementation
+```
+
+The three may support the same capability narrative, but they do not prove the same historical facts.
+
+## Current Core Artifacts
+
+P0 application text:
+
+- `docs/application-text/claim-blocks-v1.md`
+
+P1 GitHub portfolio:
+
+- `PORTFOLIO.md`
+- `docs/github-portfolio/repository-candidate-matrix.md`
+- `docs/github-portfolio/featured-repo-audit-2026-08-17.md`
+- `docs/github-portfolio/backend-evidence-gap-plan.md`
+
+Canonical data/review contracts:
+
+- `docs/content-system/case-study-schema.md`
+- `docs/content-system/output-contracts.md`
+- `docs/resume-data/public-claim-bank.md`
 
 ## Research Workflow
 
@@ -52,5 +79,6 @@ When proposing a new strategy version:
 - `CHANGELOG.md` — concise version differences
 - `versions/PS-v0.9.0.md` — initial multi-output evidence-first proposal
 - `versions/PS-v1.0.0.md` — application-first, GitHub-first strategy
+- `versions/PS-v1.1.0.md` — evidence-ranked repo promotion + backend public-evidence gap plan
 
 Future versions should be added rather than replacing these snapshots.
