@@ -1,6 +1,6 @@
 # AI-assisted Workflow Resume Variant — KO
 
-version: PF-v1.1.0
+version: PF-v1.0.1
 updated: 2026-08-17
 visibility: public-sanitized
 status: draft
@@ -16,7 +16,7 @@ PHP 기반 커머스·물류·MES 업무시스템을 개발하면서 LLM과 Agen
 
 ## Cover Letter Module
 
-LLM 활용 방식도 프로젝트가 커지면서 바뀌었습니다. 초기에는 코드 초안과 오류 탐색에 주로 사용했지만, Burst Express의 기능과 외부 연동이 늘어난 뒤에는 AS-IS 코드와 DB 구조, 도메인 지식, 외부 API 계약을 먼저 정리하고 Agent가 참고할 수 있는 프로젝트 규칙과 소스맵으로 남겼습니다. 백엔드·프론트 2인 개발 환경에서 같은 Skill과 규칙을 사용했고, PR 리뷰와 커밋, 기능 검수 기준도 함께 맞췄습니다.
+LLM 활용 방식도 프로젝트가 커지면서 바뀌었습니다. 초기에는 코드 초안과 오류 탐색에 주로 사용했지만, 운영 중인 커머스 플랫폼의 기능과 외부 연동이 늘어난 뒤에는 AS-IS 코드와 DB 구조, 도메인 지식, 외부 API 계약을 먼저 정리하고 Agent가 참고할 수 있는 프로젝트 규칙과 소스맵으로 남겼습니다. 백엔드·프론트 2인 개발 환경에서 같은 Skill과 규칙을 사용했고, PR 리뷰와 커밋, 기능 검수 기준도 함께 맞췄습니다.
 
 개발 과정은 요구사항 정리, 설계 검수, 구현, 코드 검수, 디버깅, Playwright E2E, 사람 승인으로 나눴습니다. Agent가 테스트를 건너뛰거나 실패·미실행 항목을 충분히 보고하지 않는 문제를 겪은 뒤에는 시나리오와 실행 결과를 Markdown으로 기록하고, 체크리스트와 실제 산출물을 확인해야 완료로 판단하도록 바꿨습니다. 반복되는 절차는 Skill, Wiki, 프로젝트 규칙으로 버전 관리했으며, 자동화로 판단하기 어려운 UI/UX와 운영 영향은 사람이 최종 확인했습니다.
 
@@ -42,7 +42,7 @@ LLM 활용 방식도 프로젝트가 커지면서 바뀌었습니다. 초기에�
 
 - [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills): 작업 intake, 독립 검토, adversarial review, 검증 기반 closeout
 - [`claude-code-guide`](https://github.com/tomtomjskim/claude-code-guide): Skill, Hook, Handoff, Failure Recovery, 프로젝트 Workflow
-- Burst Express sanitized case: 프로젝트 규칙, 소스맵, PR·커밋·검수 기준, E2E
+- 운영 커머스 플랫폼의 sanitized case: 프로젝트 규칙, 소스맵, PR·커밋·검수 기준, E2E
 - Ollama·Gemma 3 i18n case: 로컬 번역과 PHP/JSON 언어팩 반영 흐름
 
 ### Supporting
