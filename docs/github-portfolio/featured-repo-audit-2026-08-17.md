@@ -1,7 +1,7 @@
 # Featured Repository Audit — 2026-08-17
 
 Strategy: `PS-v1.1.0`
-Status: static GitHub evidence review
+Status: GitHub evidence review with current public CI checks where available
 
 ## Scope
 
@@ -16,7 +16,7 @@ The review is adversarial by default. A good README is not sufficient. Promotion
 - coherent version/release state,
 - relevance to target engineering roles.
 
-This review inspected public repository contents and committed validation contracts through GitHub. It did **not** execute local builds or tests in this pass. Any test result quoted below must already exist as committed public evidence.
+This pass inspected repository contents, committed validation contracts, and GitHub Actions state where a repository exposed a suitable workflow. It did not run an independent local checkout/build. A GitHub Actions success proves the committed workflow passed for the stated SHA; it does not prove production scale or external adoption.
 
 ## Decision Legend
 
@@ -49,6 +49,27 @@ The repository does more than describe an architecture pattern. Its committed Gi
 
 The current README also explicitly distinguishes what its recovery work demonstrates from what remains unproven, including host-level loss, PITR, replication, failover, and provider-specific production recovery.
 
+## Current CI evidence
+
+Reviewed HEAD:
+
+```text
+eece97ee59dac79d3e36f8f6c1b59e8155bf2dd8
+feat: add PostgreSQL operational recovery drill
+```
+
+GitHub Actions recorded:
+
+```text
+workflow: Validate Atlas
+run: #29
+trigger: push
+status: completed
+conclusion: success
+```
+
+This is current public CI evidence for the reviewed HEAD, not merely a README claim.
+
 ## Portfolio value
 
 Strong signals:
@@ -75,7 +96,7 @@ This is the closest current public repository to a general software/backend engi
 
 Safe:
 
-> 제품 의도에서 인터페이스 계약, 구현, 검증과 복구 지식까지 추적 가능한 구조를 실험하고, PostgreSQL 기반 durability/recovery pilot으로 failure path를 검증한 공개 engineering reference입니다.
+> 제품 의도에서 인터페이스 계약, 구현, 검증과 복구 지식까지 추적 가능한 구조를 실험하고, PostgreSQL 기반 durability/recovery pilot과 공개 CI로 failure path를 검증한 engineering reference입니다.
 
 Avoid:
 
@@ -102,6 +123,27 @@ The public forward-test report records repeatable validation and known limitatio
 - paid/live runner path not executed when its API-key prerequisite was unavailable.
 
 The report also records failure cases such as reviewer stalls and differentiates `static_only`, `not_run`, `incomplete`, and completed evidence rather than converting missing execution into a pass.
+
+## Current CI evidence
+
+Reviewed HEAD:
+
+```text
+9f4499e38368417a88c9d6aeaad7dca6268538f4
+feat(skills): Council·Session Wiki 품질 계약 강화
+```
+
+GitHub Actions recorded a repository validation run for that SHA:
+
+```text
+workflow: Validate Skills
+run: #20
+trigger: push
+status: completed
+conclusion: success
+```
+
+The same SHA also has successful Dependabot dynamic checks, but these are not used as primary portfolio validation evidence.
 
 ## Portfolio value
 
@@ -270,9 +312,9 @@ A new sanitized reference case is preferable.
 ## General backend target
 
 ```text
-1. StackForge Atlas        PRIMARY
-2. harness-kit             FEATURED / tooling
-3. Codex Workflow Skills   SUPPORTING
+1. StackForge Atlas        PRIMARY / CI VERIFIED AT REVIEWED HEAD
+2. harness-kit             FEATURED / current validation pending
+3. Codex Workflow Skills   SUPPORTING / CI VERIFIED AT REVIEWED HEAD
 4. Agent Orchestra Monitor HOLD
 ```
 
@@ -281,9 +323,9 @@ This set still lacks a strong public artifact that directly represents long-term
 ## AI-native backend/platform target
 
 ```text
-1. StackForge Atlas
-2. Codex Workflow Skills
-3. harness-kit
+1. StackForge Atlas        PRIMARY / CI VERIFIED
+2. Codex Workflow Skills   FEATURED / CI VERIFIED
+3. harness-kit             FEATURED / validation pending
 4. Agent Orchestra Monitor after promotion fixes
 ```
 
