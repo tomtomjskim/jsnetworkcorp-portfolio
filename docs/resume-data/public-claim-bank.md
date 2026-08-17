@@ -1,20 +1,22 @@
 # Public Claim Bank
 
-version: CL-v0.6
-updated: 2026-08-13
+version: CL-v0.7
+updated: 2026-08-17
 visibility: public-sanitized
 
-This file contains only claims that can be used in the public portfolio repository after redaction. Stronger wording still requires final role-scope confirmation before being used in a submitted resume.
+This file contains public-safe claim candidates after redaction and evidence-status review. A `ready` public claim is safe for the public portfolio layer, but final company submission still requires target-context and chronology checks. `selective`, `role-confirm`, `private-evidence`, and `needs verification` claims must not be silently promoted by downstream text generators.
 
 ## Positioning
 
-### Korean
+### Korean — default public-safe
 
-PHP 기반 제조 MES와 셀러형 이커머스/물류 운영 시스템 경험을 바탕으로, 도메인 모델링, 외부 API 연동, 주문/출고 데이터 정규화, 운영 안정성 개선을 다뤄 온 백엔드/풀스택 개발자.
+PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템 경험을 가진 백엔드 개발자. 운영 중인 기능을 변경할 때 AS-IS 코드와 DB 구조, 상태값, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인해 변경 범위를 산정하는 방식에 익숙합니다.
 
-### English
+### English — default public-safe
 
-Backend / full-stack engineer with experience in PHP-based manufacturing systems and seller commerce/logistics operations, focusing on domain modeling, external API integration, order/fulfillment data normalization, and operational reliability.
+Backend engineer with experience in PHP/MySQL-based manufacturing, commerce, and logistics business systems, with an operations-oriented approach to change impact across existing code, database state, permissions, administrator workflows, scheduled jobs, and external APIs.
+
+This default positioning deliberately avoids canonical-model, idempotency, security-policy, or broad architecture-ownership language while those claims remain gated.
 
 ## Public-Safe Claims
 
@@ -30,6 +32,13 @@ Backend / full-stack engineer with experience in PHP-based manufacturing systems
 | `CL-PUB-008` | dispatch log와 external system projection을 대사하여 누락, 외부 유입, 상태 차이를 식별하는 sync verification 구조를 다룸 | role-confirm | backend reliability |
 | `CL-PUB-009` | legacy PHP 환경에서 도메인 모듈화, application service, repository, 기존 class 구조의 점진적 분리 경험 보유 | selective | architecture section |
 | `CL-PUB-010` | AI-assisted workflow를 활용해 설계 문서화, 테스트 기준 정리, 변경 이력 관리를 병행 | superseded | replaced by evidence-backed AI claims below |
+| `CL-PUB-011` | 기능 변경 전 AS-IS 코드와 DB 구조, 상태값, 권한, 관리자 화면, batch/cron, 외부 API의 영향을 확인해 변경 범위를 산정하는 운영형 개발 방식을 사용 | ready | positioning / problem-solving |
+
+### CL-PUB-011 Promotion Note
+
+`CL-PUB-011` is promoted as a public-safe working-method claim because the protected source registry classifies this operating pattern among cross-source confirmed facts. The claim describes the candidate's change-impact approach; it does **not** assert ownership of every listed subsystem or that every project used every boundary identically.
+
+Detailed incident/state-mismatch examples remain draft/source-confirm until their exact historical source and role scope are confirmed.
 
 ## Evidence-Backed AI Claims
 
@@ -52,26 +61,40 @@ Backend / full-stack engineer with experience in PHP-based manufacturing systems
 
 Do not use these in public resume/portfolio content:
 
-- unverifiable improvement percentages
-- hard-to-prove maintenance rate claims
-- unfinished/non-commercial app work as a primary project
-- direct private repository names or URLs
-- private customer/project identifiers
-- internal staging configuration or secrets
-- production endpoints or private hostnames
-- raw customer, order, admin, session, payment, or log data
-- completed SaaS/platform claims unless a released product can be shown safely
-- completed live-commerce integration claims unless separately verified and sanitized
+- unverifiable improvement percentages,
+- hard-to-prove maintenance rate claims,
+- unfinished/non-commercial app work as a primary career project,
+- direct private repository names or URLs,
+- private customer/project identifiers,
+- internal staging configuration or secrets,
+- production endpoints or private hostnames,
+- raw customer, order, admin, session, payment, shipment, production, or log data,
+- completed SaaS/platform claims unless a released product can be shown safely,
+- completed live-commerce integration claims unless separately verified and sanitized,
+- selective or role-confirm claims rewritten as default ownership statements.
 
 ## Public Resume Bullet Candidates
 
+### Ready
+
 ```markdown
+- PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템을 개발·유지보수하며 생산관리, 상품·입고·재고·출고 등 운영 도메인을 다룸
 - PHP 기반 셀러형 커머스/물류 운영 시스템에서 상품, 입고, 재고, 외부출고, 대시보드 관련 기능 개선에 참여
-- 외부 주문 등록 흐름에서 파일 업로드, preview token, confirm 기반 all-or-nothing batch 처리 구조를 다룸
-- 주문 데이터를 channel/region/status 기준의 canonical model로 정규화하고, 재전송·중복 처리 안정성을 고려한 연동 구조를 검토
-- service-to-service signed API, dry-run/fail-closed gate, masked payload, PII guard 등 외부 시스템 연동의 운영 리스크 제어 요소를 다룸
-- 전송 로그와 외부 시스템 projection을 기준으로 누락, 외부 유입, 상태 차이를 식별하는 read-only sync verification 구조를 다룸
+- 외부 주문 등록 흐름에서 파일 업로드, preview, confirm 기반의 batch 처리 경계를 다룸
+- 기능 변경 전 AS-IS 코드와 DB 구조, 상태값, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인해 변경 범위를 산정
 ```
+
+### Conditional — do not submit as ownership until promoted
+
+```markdown
+- 주문 데이터를 channel/region/status 기준의 canonical model로 정규화하는 구조를 다룸
+- natural/idempotency key를 활용한 재전송·중복 처리 안정성 관점을 다룸
+- service-to-service signed API, dry-run/fail-closed gate, masked payload, PII guard 등 외부 연동 리스크 제어 요소를 다룸
+- 전송 로그와 external projection을 대사하여 상태 차이를 식별하는 sync verification 구조를 다룸
+- legacy PHP 구조를 application service/repository/domain boundary로 점진적으로 분리
+```
+
+These conditional lines are authoring candidates only. Their presence in this file does not make them submission-ready.
 
 ### AI Workflow Candidates
 
@@ -81,3 +104,18 @@ Do not use these in public resume/portfolio content:
 - 개인 제품 개발에서 AI 공동작업 결과를 E2E 88/88·시나리오 36/36·Flutter smoke 1/1로 검증하되, 배포 전·외부 API 일부 mock 상태를 함께 명시
 - AI 대화·산출물을 inbox → generated → reviewed → canonical로 분리하고, 출처·민감도·사람 승격 규칙을 적용한 Git/Markdown 지식 체계를 운영
 ```
+
+Apply the status in the AI claim table before using any of these. `selective` and `private-evidence` lines are not default public submission claims.
+
+## Downstream Rule
+
+Every downstream artifact must preserve this ordering of authority:
+
+```text
+claim bank status
+→ application text
+→ GitHub portfolio
+→ web/PDF projection
+```
+
+A polished downstream sentence never promotes its own evidence status.
