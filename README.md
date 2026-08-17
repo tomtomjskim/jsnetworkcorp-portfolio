@@ -4,22 +4,21 @@ Public-safe career portfolio, GitHub-native technical portfolio, and downstream 
 
 ## Start Here — Hiring Portfolio
 
-For a hiring-oriented overview, read:
+General backend / business-system roles:
 
 > **[`PORTFOLIO.md`](PORTFOLIO.md)**
 
-It is the primary public index for:
+Internal Tools / AX / development-automation roles:
 
-- backend positioning,
-- sanitized career case studies,
-- selected public engineering repositories,
-- evidence/claim boundaries.
+> **[`PORTFOLIO-AX.md`](PORTFOLIO-AX.md)**
 
-The website is a later visual projection of the same evidence. It must not become a separate factual source.
+The target-specific projection changes evidence selection and ordering. It does not create new factual experience.
+
+The website is a later visual projection of the same evidence and must not become a separate factual source.
 
 ## Current Delivery Priority
 
-Strategy: `PS-v1.2.0`
+Strategy: `PS-v1.3.0`
 
 ```text
 P0    application / self-introduction text
@@ -30,25 +29,43 @@ P3    optional PDF supplement
 P4    protected interview deep dive
 ```
 
-A new PHP/MySQL reference repository is currently **optional/deferred**, not a prerequisite for the portfolio.
+A new PHP/MySQL reference repository remains **optional/deferred**, not a prerequisite for the portfolio.
+
+## First Real Target Adapter
+
+The current target experiment is a public-safe Internal Tools / AX role family adapter.
+
+Recommended resume header:
+
+> **Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화**
+
+Artifacts:
+
+- `content/resume/variants/ax-internal-tools-ko.md`
+- `PORTFOLIO-AX.md`
+- `docs/targets/internal-tools-ax-requirement-evidence.md`
+- `docs/reviews/ax-internal-tools-multi-lens-review-2026-08-17.md`
+- `docs/portfolio-strategy/versions/PS-v1.3.0.md`
+
+The exact company/referral message that triggered this adapter stays in the private source layer and is not copied to this public repository.
 
 ## Content Boundary
 
 This repository remains sanitized and public.
 
-Detailed interview materials should be generated separately and served only through a protected private surface. Do not commit detailed internal specs, raw evidence, private deployment values, production endpoints, customer data, order data, admin/session/payment data, private wiki exports, private repository URLs, or raw AI transcripts to this repository.
+Detailed interview materials should be generated separately and served only through a protected private surface. Do not commit detailed internal specs, raw evidence, private deployment values, production endpoints, customer data, order data, admin/session/payment data, private wiki exports, private repository URLs, raw AI transcripts, or confidential recruiting messages to this repository.
 
 Recommended split:
 
 ```text
-GitHub / PORTFOLIO.md
+GitHub / PORTFOLIO*.md
 └─ primary public hiring/technical portfolio
 
 portfolio.jsnetworkcorp.com
 └─ restrained visual projection of public-safe evidence
 
-protected interview surface
-└─ deeper evidence generated from authorized private sources
+protected/private source
+└─ authoritative resume, internal recruiting context, deeper interview evidence
 ```
 
 ## Separately Versioned Strategy
@@ -66,12 +83,13 @@ Current history:
 - `PS-v1.0.0` — application-first / GitHub-first
 - `PS-v1.1.0` — evidence-ranked repository promotion + proposed PHP reference
 - `PS-v1.2.0` — career-case-first refinement; PHP reference deferred
+- `PS-v1.3.0` — first real target adapter for Internal Tools / AX
 
 See:
 
 - `docs/portfolio-strategy/README.md`
 - `docs/portfolio-strategy/CHANGELOG.md`
-- `docs/portfolio-strategy/versions/PS-v1.2.0.md`
+- `docs/portfolio-strategy/versions/PS-v1.3.0.md`
 
 Prior snapshots are preserved so strategy changes can be compared rather than silently overwritten.
 
@@ -86,27 +104,29 @@ Sanitized historical work/problem-solving evidence:
 - `content/projects/commerce-fulfillment-operations.md`
 - `content/projects/manufacturing-mes-business-systems.md`
 
-Detailed problem-solving narratives remain draft/source-confirm candidates until protected source authority is complete.
+Submission-safe facts are kept separate from selective/source-confirm/role-confirm deep-dive candidates.
 
 ### Public Engineering Artifacts
 
-Current public implementation/verification evidence, selected by target role:
+Current public implementation/verification evidence, selected and ordered by target role:
 
-- `stackforge-atlas` — primary current engineering artifact
-- `harness-kit` — featured with current-HEAD verification caveat
-- `codex-workflow-skills` — target-dependent featured/supporting
+- `stackforge-atlas`
+- `harness-kit`
+- `codex-workflow-skills`
+
+General backend and Internal Tools / AX roles intentionally use different ordering.
 
 Do not imply that recent public R&D/tooling is proprietary employer production work.
 
-### Application Text
+### Application Text / Resume Variants
 
-- current candidate: `docs/application-text/claim-blocks-v2-candidate.md`
-- previous baseline: `docs/application-text/claim-blocks-v1.md`
+- generic P0 candidate: `docs/application-text/claim-blocks-v2-candidate.md`
+- AX/Internal Tools target variant: `content/resume/variants/ax-internal-tools-ko.md`
 - canonical factual authority: `docs/resume-data/public-claim-bank.md`
 
 ## Evidence-First Authoring Architecture
 
-Application text, GitHub portfolio, web, PDF, and protected interview material derive from one canonical case-study model.
+Application text, GitHub portfolio, web, PDF, and protected interview material derive from one canonical evidence model.
 
 Reference set:
 
@@ -121,7 +141,7 @@ Reference set:
 - `docs/prompts/company-targeting.md`
 - `docs/prompts/multichannel-renderer.md`
 - `docs/github-portfolio/repository-candidate-matrix.md`
-- `docs/reviews/ps-v1.2-career-case-adversarial-review.md`
+- `docs/reviews/source-confirmation-triage-2026-08-17.md`
 
 Core principle:
 
@@ -129,12 +149,12 @@ Core principle:
 Evidence > Problem Solving > Impact > Architecture > Readability > Design > Animation
 ```
 
-Target-company adaptation may change selection, ordering, and vocabulary. It must not change role scope, metrics, maturity, career-vs-R&D classification, or evidence status.
+Target adaptation may change selection, ordering, headline, and equivalent vocabulary. It must not change role scope, metrics, maturity, career-vs-R&D classification, or evidence status.
 
 ## Scope
 
 - public-safe resume/application content management
-- GitHub-native `PORTFOLIO.md`
+- GitHub-native general and target-specific portfolio projections
 - career case-study authoring
 - public repository evidence/review matrix
 - target-role content projection
@@ -154,16 +174,15 @@ content/resume/
 content/releases/
 ```
 
-Private claim-to-evidence maps, internal project identifiers, raw evidence, deployment values, production endpoints, and sensitive records remain outside the public surface.
+Current public target content:
 
-Key files:
+```text
+CL-v0.7
+PF-v1.0.2
+PS-v1.3.0
+```
 
-- `docs/resume-data/README.md`
-- `docs/resume-data/changelog.md`
-- `docs/resume-data/version-map.md`
-- `docs/resume-data/public-claim-bank.md`
-- `docs/resume-data/redaction-boundary.md`
-- `docs/resume-data/protected-interview-bridge.md`
+Private claim-to-evidence maps, internal project identifiers, raw evidence, deployment values, production endpoints, confidential recruiting context, and sensitive records remain outside the public surface.
 
 ## Web Routes
 
@@ -179,7 +198,7 @@ Current implemented routes:
 /releases
 ```
 
-Target evidence-first IA additionally introduces logical `engineering`, `decisions`, and `writing` surfaces. Web implementation stays lower priority than application text, career-case confirmation, and GitHub portfolio targeting.
+Web implementation stays lower priority than application text, source confirmation, target-specific GitHub portfolio work, and selected-repository validation.
 
 See `docs/information-architecture.md`.
 
@@ -205,10 +224,9 @@ Protected interview materials remain separate.
 ## Next Validation Order
 
 ```text
-1. source-confirm detailed career case narratives
-2. test P0/P1 against a real target job description
-3. run recruiter / hiring-manager / engineer multi-lens review
-4. verify current HEAD of any repository selected for submission
-5. produce a target-specific submission projection
-6. implement web/PDF only when they add clear value
+1. merge the target adapter into an authoritative protected full resume
+2. reproduce current validation for repositories actually selected for the target
+3. prepare private referral/introduction text and interview responses
+4. use application/interview outcome to evaluate PS-v1.3 targeting quality
+5. implement web/PDF only when the target process shows clear value
 ```
