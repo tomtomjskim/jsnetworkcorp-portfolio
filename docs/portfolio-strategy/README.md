@@ -16,32 +16,43 @@ A strategy version is a research snapshot. Do not rewrite old version notes when
 ## Version Rules
 
 - **MAJOR**: output priority, core architecture, or hiring-positioning model changes materially.
-- **MINOR**: adds a new output surface, review gate, schema capability, or targeting method without invalidating the core model.
+- **MINOR**: adds or materially changes a review gate, targeting method, evidence policy, or execution priority without invalidating the core model.
 - **PATCH**: wording, examples, links, or clarifications that do not change the strategy.
 
 ## Current Strategy
 
-`PS-v1.1.0`
+`PS-v1.2.0`
 
-Priority remains:
-
-```text
-1. Application / self-introduction text
-2. GitHub portfolio
-3. Web portfolio
-4. PDF visual supplement
-5. Protected interview deep dive
-```
-
-`PS-v1.1.0` adds evidence-ranked repository promotion and a separate public backend-reference plan. It distinguishes:
+Priority:
 
 ```text
-verified career case
-!= public R&D/tooling repository
-!= new sanitized reference implementation
+P0    Application / self-introduction text
+P1    Sanitized career case studies + GitHub portfolio
+P1.5  Public repository quality / verification
+P2    Web portfolio
+P3    PDF visual supplement
+P4    Protected interview deep dive
+
+OPTIONAL
+New PHP/MySQL reference implementation
 ```
 
-The three may support the same capability narrative, but they do not prove the same historical facts.
+The main v1.2 decision is to **defer the portfolio-specific PHP reference repository** and invest first in stronger narratives around actual career evidence.
+
+Current evidence separation:
+
+```text
+sanitized career case
+= historical work/problem-solving evidence
+
+public R&D/tooling repository
+= current engineering/verification evidence
+
+new reference implementation
+= optional current-code evidence only when a real target-role gap justifies it
+```
+
+These surfaces may support the same capability narrative but do not prove the same historical facts.
 
 ## Current Core Artifacts
 
@@ -49,12 +60,18 @@ P0 application text:
 
 - `docs/application-text/claim-blocks-v1.md`
 
-P1 GitHub portfolio:
+P1 hiring-facing portfolio:
 
 - `PORTFOLIO.md`
+- `content/projects/commerce-fulfillment-operations.md`
+- `content/projects/manufacturing-mes-business-systems.md`
 - `docs/github-portfolio/repository-candidate-matrix.md`
 - `docs/github-portfolio/featured-repo-audit-2026-08-17.md`
+
+Deferred option:
+
 - `docs/github-portfolio/backend-evidence-gap-plan.md`
+- Issue #13, closed as `not_planned` until a concrete trigger appears
 
 Canonical data/review contracts:
 
@@ -79,6 +96,7 @@ When proposing a new strategy version:
 - `CHANGELOG.md` — concise version differences
 - `versions/PS-v0.9.0.md` — initial multi-output evidence-first proposal
 - `versions/PS-v1.0.0.md` — application-first, GitHub-first strategy
-- `versions/PS-v1.1.0.md` — evidence-ranked repo promotion + backend public-evidence gap plan
+- `versions/PS-v1.1.0.md` — evidence-ranked repo promotion + proposed backend reference
+- `versions/PS-v1.2.0.md` — career-case-first refinement; PHP reference deferred to optional
 
 Future versions should be added rather than replacing these snapshots.
