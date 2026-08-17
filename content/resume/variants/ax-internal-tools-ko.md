@@ -15,7 +15,7 @@ strategy: PS-v1.3.0
 
 PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템을 개발·유지보수해 왔습니다. 기능을 수정할 때 AS-IS 코드와 DB 구조·상태값, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인한 뒤 변경 범위를 산정하는 운영형 개발 방식에 익숙합니다.
 
-최근에는 프로젝트마다 반복되는 AI 개발 설정과 검수 절차를 내부 도구와 workflow로 구조화하는 공개 프로젝트를 진행하고 있습니다. AI 결과는 테스트·CI·독립 리뷰로 검증하고, 실행하지 못한 범위와 한계도 성공과 분리해 기록합니다. 백엔드 중심이지만 업무·관리자 화면과 API·데이터 흐름을 함께 이해해 필요한 도구를 한 흐름으로 완성하는 역할을 지향합니다.
+최근에는 반복되는 개발 설정과 검수 절차를 내부 도구와 workflow로 구조화하고, 결과를 테스트·CI·독립 리뷰로 검증하는 공개 engineering 프로젝트를 진행하고 있습니다. 백엔드가 주력이지만 내부도구에 필요한 관리자 화면과 API·데이터 흐름까지 연결할 수 있으며, frontend 전문 영역은 역할에 맞게 분리합니다.
 
 ## Target Fit
 
@@ -73,9 +73,12 @@ Strong signal:
 - typed configuration + validation + deterministic rendering pipeline
 - tool이 불필요한 조건과 npm 미배포 상태를 함께 문서화
 
-Current caveat:
+Current public validation:
 
-- 최종 제출 전에 현재 HEAD의 `npm ci → lint → test → build`를 다시 재현해 검증 상태를 고정해야 함
+- validation workflow가 `main`에 merge됨
+- Node.js 22 / 24 양쪽에서 dependency audit(high gate), TypeScript check, 36 tests, build, CLI smoke 성공
+- 최초 검수에서 발견한 locked dependency high-severity 이슈는 lockfile remediation 후 gate 통과
+- low-severity dev-tool advisory는 production/adoption 성과로 확대하지 않고 known limitation으로 유지
 
 ### Codex Workflow Skills — AI Workflow / Automation
 
