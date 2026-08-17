@@ -1,5 +1,29 @@
 # Portfolio Strategy Changelog
 
+## PS-v1.2.0 — 2026-08-17
+
+### Changed
+
+- Deferred the proposed `php-commerce-ops-reference` repository from required work to an optional response to a demonstrated target-role gap.
+- Closed Issue #13 as `not_planned / deferred` while preserving the design for later reuse.
+- Shifted the next investment from creating a new sample project to strengthening actual Commerce/Fulfillment and MES career case studies.
+- Defined a clearer evidence split: sanitized career cases answer historical experience questions; public repositories answer current engineering/verification questions.
+- Removed the future PHP reference repository from the primary capability narrative.
+- Kept StackForge Atlas as the primary public engineering artifact and retained target-dependent supporting repositories.
+
+### Rationale
+
+A newly created PHP reference can prove current coding skill but cannot strengthen historical production experience by itself. Building it now would add maintenance cost and may look like a job-search sample project. The portfolio already has stronger current engineering evidence; the larger weakness is that real career problem-solving is still described too generically.
+
+The v1.2 strategy therefore prioritizes authenticity and reading efficiency:
+
+```text
+real career case → concise application claim → GitHub case study
+current engineering method → verified public repository
+```
+
+Reopen the PHP reference plan only when an actual job description, code-review requirement, or repeated application feedback makes the missing public PHP implementation a material risk.
+
 ## PS-v1.1.0 — 2026-08-17
 
 ### Changed
