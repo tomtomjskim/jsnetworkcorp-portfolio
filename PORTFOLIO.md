@@ -4,15 +4,15 @@
 
 PHP/MySQL 기반의 제조 MES와 커머스·물류 업무시스템을 개발·유지보수해 온 백엔드 개발자입니다.
 
-새 기능을 빠르게 추가하는 것보다 **기존 데이터 상태, 관리자 처리, 권한, batch/cron, 외부 API와 운영 흐름이 변경으로 어떻게 영향을 받는지 파악한 뒤 수정 범위를 정하는 방식**을 중요하게 봅니다.
+기능 변경 전 **AS-IS 코드와 DB 구조, 상태값, 권한, 관리자 화면, batch/cron, 외부 API의 영향을 확인해 변경 범위를 산정하는 운영형 개발 방식**을 사용합니다.
 
-최근 공개 프로젝트에서는 같은 원칙을 architecture contract, failure path, tests, CI, adversarial review 형태로 더 명시적으로 실험하고 있습니다.
+최근 공개 프로젝트에서는 같은 방향을 architecture contract, failure path, tests, CI, adversarial review 형태로 더 명시적으로 실험하고 있습니다.
 
 이 포트폴리오는 두 종류의 evidence를 분리합니다.
 
 ```text
 Career Case Study
-= 실제 경력에서 다룬 문제와 업무 방식
+= 실제 경력에서 확인된 도메인·업무 방식
 
 Public Engineering Repository
 = 현재 공개적으로 확인 가능한 설계·구현·검증 방식
@@ -26,49 +26,68 @@ Public Engineering Repository
 
 - **Backend / Business Systems:** PHP, MySQL 기반 운영 시스템의 기능 개선과 유지보수
 - **Domains:** 제조 MES, 커머스, 물류·배송, 외부 시스템 연동
-- **Problem Solving:** 상태·데이터 흐름과 변경 영향 범위를 먼저 추적하는 방식
-- **Operations:** 관리자 화면, 권한, batch/cron, 외부 시스템 경계를 함께 고려
+- **Ready Problem-Solving Signal:** AS-IS 코드·DB 상태·권한·관리자·batch/cron·외부 API를 포함한 변경 영향 분석
 - **Current Engineering Evidence:** failure/recovery, tests, CI, agent-assisted review를 공개 repository로 검증
 
-자소서·지원서용 짧은 문장은 별도 P0 layer에서 관리합니다.
+자소서·지원서용 문장:
 
 - current candidate: [`docs/application-text/claim-blocks-v2-candidate.md`](docs/application-text/claim-blocks-v2-candidate.md)
 - previous baseline: [`docs/application-text/claim-blocks-v1.md`](docs/application-text/claim-blocks-v1.md)
+- claim authority: [`docs/resume-data/public-claim-bank.md`](docs/resume-data/public-claim-bank.md)
 
 ---
 
 # Career Case Studies
 
-> The detailed problem-solving narratives below remain **draft/source-confirm candidates**. Submission-safe facts are explicitly separated from selective or role-confirm material.
+Career cases use two layers:
+
+```text
+READY
+= current public claim bank permits submission-safe use
+
+DEEP-DIVE CANDIDATE
+= protected supporting evidence exists, but exact historical example/role still needs source-confirm
+```
 
 ## 1. Commerce & Fulfillment Operations
 
-### Problem
+### Ready Evidence
 
-커머스·물류 운영 시스템에서는 주문, 배송, 정산 또는 처리 상태가 DB·관리자·사용자 화면에서 다르게 보이거나 외부 연동 실패가 내부 흐름에 영향을 줄 수 있습니다.
+- PHP 기반 셀러형 커머스/물류 운영 시스템에서 상품, 입고, 재고, 외부출고, 대시보드 관련 기능 개선에 참여
+- 외부 주문 등록 흐름에서 upload / preview / confirm 단계와 batch 처리 경계를 다룬 경험
+- 기능 변경 전 AS-IS 코드, DB 구조/상태, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인해 변경 범위를 산정
 
-### Draft Problem-Solving Narrative
-
-Protected career synthesis supports the following investigation model, but final submission requires source/role confirmation:
+### Ready Working Model
 
 ```text
-현상
-→ 관련 DB 상태
-→ 관리자 처리 경로
-→ 사용자 표시 조건
+change request
+→ existing code
+→ database structure / state
+→ permission
+→ administrator surface
 → batch / cron
-→ 외부 API 상태
-→ 변경 시 downstream 영향
+→ external API
+→ modification scope
 ```
 
-핵심은 한 화면의 값을 바로 수정하기보다 **상태가 어디에서 갈라졌는지 확인하고 관련 처리의 영향 범위를 먼저 보는 것**입니다.
+이 방식 자체는 `CL-PUB-011 ready`입니다. 특정 프로젝트에서 모든 경계를 직접 소유했다는 의미는 아닙니다.
 
-### Public-Ready Scope
+### Deep-Dive Candidate
 
-- PHP 기반 셀러형 커머스/물류 운영 시스템의 상품, 입고, 재고, 외부출고, 대시보드 기능 개선 참여
-- 파일 기반 외부 주문 흐름에서 upload / preview / confirm 단계와 batch 처리 경계를 다룬 경험
+Protected supporting material includes a more specific state-mismatch investigation narrative:
 
-canonical model, idempotency, signed API, reconciliation 등의 구체적 설계 ownership은 role-confirm 상태이므로 현재 제출 문구로 승격하지 않습니다.
+```text
+symptom
+→ related state
+→ administrator processing
+→ display condition
+→ batch / external boundary
+→ downstream effect
+```
+
+이 구체 사례는 source-confirm 전까지 제출용 역사 사실로 승격하지 않습니다.
+
+canonical model, idempotency, signed API, PII/security policy, reconciliation ownership도 현재 role-confirm입니다.
 
 **Deep dive:** [`content/projects/commerce-fulfillment-operations.md`](content/projects/commerce-fulfillment-operations.md)
 
@@ -76,31 +95,28 @@ canonical model, idempotency, signed API, reconciliation 등의 구체적 설계
 
 ## 2. Manufacturing MES & Business Systems
 
-### Problem
-
-제조 현장의 요구는 단순히 “화면 하나 변경”으로 끝나지 않습니다. 실제 작업 순서, 조회 기준, 상태, 통계 기준, 권한과 현장 환경을 시스템 조건으로 바꿔야 할 수 있습니다.
-
-### Draft Problem-Solving Narrative
-
-Protected career synthesis supports the following decomposition model, but detailed examples remain source-confirm material:
-
-```text
-현장 요청
-→ 실제 업무 순서
-→ 입력 순서
-→ 조회 조건
-→ 상태 변경
-→ 통계/집계 기준
-→ 권한
-→ 화면 + DB 변경
-```
-
-현장 장애 역시 애플리케이션/데이터와 PC·네트워크·프린터·계정/권한 등 환경 계층을 구분해 보는 방식이 중요한 후보 narrative입니다.
-
-### Public-Ready Scope
+### Ready Evidence
 
 - PHP 기반 MES 및 업무시스템 개발·유지보수
 - 제조 생산관리 도메인을 다룬 경험
+- 확인된 변경 영향 분석 방식(`CL-PUB-011`)을 업무시스템 변경에 적용하는 포지셔닝
+
+### Deep-Dive Candidate
+
+Protected supporting material includes a more detailed requirement-decomposition model:
+
+```text
+field request
+→ actual work sequence
+→ input order
+→ query condition
+→ state
+→ statistics / reporting
+→ permission
+→ screen + DB scope
+```
+
+또한 애플리케이션/데이터 문제와 PC·네트워크·프린터·계정/권한 등 환경 계층을 구분하는 지원 경험이 후보 evidence로 남아 있습니다.
 
 ### Selective / Source-Confirm
 
@@ -109,7 +125,7 @@ Protected career synthesis supports the following decomposition model, but detai
 - 도입·교육·원격지원 chronology
 - 고객사 수와 개발 리드 범위
 
-선택적 항목은 canonical claim/source가 승격되기 전까지 제출 headline으로 사용하지 않습니다.
+이 항목들은 claim/source가 승격되기 전까지 제출 headline으로 사용하지 않습니다.
 
 **Deep dive:** [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
 
@@ -119,7 +135,7 @@ Protected career synthesis supports the following decomposition model, but detai
 
 AI 사용량 자체를 경력의 중심으로 두지 않습니다.
 
-요구사항 정리, 코드/SQL 검토, 테스트 시나리오와 문서화에 LLM을 사용하되 실제 코드, 데이터 구조, 권한, 공식 문서, 테스트 결과를 기준으로 다시 검증하는 방식을 지향합니다.
+요구사항 정리, 코드/SQL 검토, 테스트와 문서화 보조에 LLM을 활용하되 실제 코드, 데이터 구조와 검증 결과를 기준으로 다시 판단하는 방식으로 사용합니다.
 
 **Case:** [`content/projects/ai-assisted-development-workflow.md`](content/projects/ai-assisted-development-workflow.md)
 
@@ -127,9 +143,7 @@ AI 사용량 자체를 경력의 중심으로 두지 않습니다.
 
 # Selected Public Engineering Repositories
 
-아래는 회사 경력과 별개의 **공개 engineering artifacts**입니다.
-
-Repository promotion is evidence-ranked, not technology-name-ranked.
+아래는 회사 경력과 별개의 **공개 engineering artifacts**입니다. Repository promotion is evidence-ranked, not technology-name-ranked.
 
 Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs/github-portfolio/featured-repo-audit-2026-08-17.md)
 
@@ -145,7 +159,7 @@ Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs
 - PostgreSQL durability pilot
 - operational recovery drill
 - reviewed HEAD의 `Validate Atlas` GitHub Actions success
-- PITR, host loss, replication, failover 등 아직 증명하지 않은 범위를 README에서 명시
+- PITR, host loss, replication, failover 등 아직 증명하지 않은 범위를 명시
 
 **Why it matters**  
 현재 공개 repository 중 backend/system engineering 사고와 failure-path 검증을 가장 균형 있게 보여줍니다.
@@ -165,10 +179,10 @@ Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs
 - resolver → loader → validator → merger → renderer → writer pipeline
 - Zod validation
 - Vitest unit-test structure
-- abstraction이 불필요한 조건과 npm 미배포 상태까지 README에서 명시
+- abstraction이 불필요한 조건과 npm 미배포 상태를 README에 명시
 
 **Current gate**  
-최종 제출 전 현재 HEAD의 `npm ci → lint → test → build`를 재현해 검증 상태를 고정해야 합니다. 과거 coverage 수치는 재검증 전 사용하지 않습니다.
+최종 제출 전 현재 HEAD의 `npm ci → lint → test → build`를 재현해 상태를 고정해야 합니다. 과거 coverage 수치는 재검증 전 사용하지 않습니다.
 
 **Repository:** https://github.com/tomtomjskim/harness-kit
 
@@ -177,12 +191,12 @@ Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs
 ## 3. Codex Workflow Skills — TARGET-DEPENDENT
 
 **Problem**  
-복잡한 agent 작업은 scope drift, 약한 검증, stale context, review 누락으로 실패할 수 있습니다.
+복잡한 agent 작업은 scope drift, 약한 검증, stale context와 review 누락으로 실패할 수 있습니다.
 
 **Evidence**
 
-- intake / bounded council / adversarial review / session closeout을 분리한 workflow contracts
-- 공개 forward-test report에서 failure와 `not_run`을 pass로 승격하지 않는 검증 규칙
+- intake / bounded council / adversarial review / session closeout workflow contracts
+- 공개 forward-test report가 failure와 `not_run`을 pass로 승격하지 않음
 - reviewed HEAD의 `Validate Skills` GitHub Actions success
 
 **Portfolio use**
@@ -212,27 +226,28 @@ Matrix: [`docs/github-portfolio/repository-candidate-matrix.md`](docs/github-por
 | Capability | Historical career evidence | Current public engineering evidence |
 |---|---|---|
 | Backend / domain reasoning | Commerce, MES | StackForge Atlas |
-| State / data-flow analysis | career case candidates after source confirmation | StackForge pilots |
-| Reliability / failure thinking | batch/operational boundaries where public-ready | StackForge recovery drill |
-| Legacy change safety | MES selective claim after source confirmation | harness-kit configuration pipeline |
-| External integration | commerce/logistics domain experience | contract/failure patterns in public references |
+| Change-impact analysis | `CL-PUB-011 ready` | StackForge contract/evidence model |
+| State / data-flow deep dive | specific historical examples source-confirm | StackForge pilots |
+| Reliability / failure thinking | batch boundary ready; deeper historical cases gated | StackForge recovery drill |
+| Legacy change safety | MES legacy improvement selective | harness-kit configuration pipeline |
+| External integration | commerce/logistics domain experience | public reference contracts/failure patterns |
 | AI-assisted engineering | supporting work method | Codex Workflow Skills, harness-kit |
 
-이 표는 숙련도 점수가 아니라 **어떤 종류의 evidence가 어떤 질문에 답하는지**를 보여줍니다.
+이 표는 숙련도 점수가 아니라 **어떤 evidence가 어떤 질문에 답하는지**를 보여줍니다.
 
 ---
 
 # Working Principles
 
+Ready career positioning:
+
 ```text
-상태를 바꾸기 전에 영향 범위를 본다.
-실패 경로를 정상 경로와 같이 본다.
-운영 문제와 환경 문제를 분리한다.
-기존 시스템은 rewrite보다 안전한 변화가 먼저일 수 있다.
-AI가 만든 결과도 검증되지 않으면 evidence가 아니다.
+변경하기 전에 기존 코드와 데이터/운영 영향 범위를 확인한다.
 ```
 
-이 원칙은 portfolio positioning입니다. 특정 회사에서 모든 패턴을 동일하게 구현했다는 의미가 아닙니다.
+Broader principles such as explicit failure-path review, environment-layer troubleshooting, and incremental legacy improvement are kept in the relevant evidence status rather than generalized into universal historical claims.
+
+Public engineering repositories can separately demonstrate stronger current validation practices such as tests, CI, recovery drills, and adversarial review.
 
 ---
 
@@ -247,7 +262,7 @@ AI가 만든 결과도 검증되지 않으면 evidence가 아니다.
 - 공개 권한이 없는 내부 기술자료,
 - source-confirm이 끝나지 않은 강한 ownership/metric claim.
 
-공개 Case Study는 실제 문제를 **일반화한 설명**이며 production architecture dump가 아닙니다.
+공개 Case Study는 실제 문제를 일반화한 설명이며 production architecture dump가 아닙니다.
 
 ---
 
@@ -268,5 +283,6 @@ P4    Protected interview evidence
 
 - [`docs/portfolio-strategy/versions/PS-v1.2.0.md`](docs/portfolio-strategy/versions/PS-v1.2.0.md)
 - [`docs/portfolio-strategy/CHANGELOG.md`](docs/portfolio-strategy/CHANGELOG.md)
+- [`docs/reviews/ps-v1.2-career-case-adversarial-review.md`](docs/reviews/ps-v1.2-career-case-adversarial-review.md)
 
 웹사이트는 새로운 사실을 만드는 별도 포트폴리오가 아니라, 이 evidence를 더 빠르게 탐색하도록 시각화하는 후속 surface입니다.
