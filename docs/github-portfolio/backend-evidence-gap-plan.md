@@ -1,81 +1,111 @@
-# Backend Evidence Gap Plan
+# Backend Evidence Gap Plan — Deferred Option
 
-Strategy: `PS-v1.1.0`
+Strategy: `PS-v1.2.0`
 Updated: 2026-08-17
-Status: proposed implementation plan
+Status: **deferred / optional**
+Tracking: Issue #13 closed as `not_planned`
 
-## Problem
+## Current Decision
 
-The candidate's long-term career positioning is backend/business-system engineering around PHP, manufacturing MES, commerce, logistics, data flow, and operational maintenance.
+Do **not** build a new PHP/MySQL portfolio repository now.
 
-The strongest current public repositories instead emphasize recent AI-agent/tooling and engineering-process experiments.
+The original problem is real: the candidate's long-term career is strongly associated with PHP/MySQL business systems, commerce/logistics operations, MES, and maintenance, while the strongest current public GitHub repositories emphasize newer engineering methodology and AI/tooling work.
 
-This creates a representation mismatch:
+However, a newly created sample repository is not the highest-value fix.
 
 ```text
-actual career depth
-PHP / business systems / operations / commerce / maintenance
+historical career evidence
+should be strengthened by
+actual career case studies
 
-public GitHub signal
-AI tooling / agent workflow / engineering methodology
+current engineering capability
+can be shown by
+verified public repositories
 ```
 
-The solution is **not** to exaggerate a weak historical public repository.
+A new PHP reference implementation remains useful only if a concrete target role exposes a missing-code-evidence problem.
 
-`StoreShoppingMall-PHP` currently exposes only a small utility collection and cannot support a full backend-project narrative without inventing context.
+## Preferred Resolution Now
 
-## Decision
+1. strengthen `content/projects/commerce-fulfillment-operations.md`,
+2. strengthen `content/projects/manufacturing-mes-business-systems.md`,
+3. keep application text concise and role-safe,
+4. keep `stackforge-atlas` as the primary current engineering artifact,
+5. use other public tooling repositories only when relevant to the target role,
+6. keep web/PDF downstream.
 
-Create a new, explicitly sanitized **reference implementation** that demonstrates backend problem-solving patterns relevant to the candidate's experience without copying proprietary source code or claiming that the reference repository is production code.
+## Why the Reference Repository Was Deferred
 
-Recommended working repository name:
+### Weak return on historical evidence
+
+A 2026 reference implementation can demonstrate current coding judgment. It cannot by itself prove what happened in proprietary production systems years earlier.
+
+### Risk of portfolio dilution
+
+A deliberately built job-search sample may receive more visual attention than the real career cases and make a senior/experienced profile look more junior or tutorial-oriented.
+
+### Existing current-engineering evidence
+
+The public repository set already contains implementation, tests, CI, failure handling, explicit limitations, and architecture evidence. The bigger portfolio weakness is the generic wording of real career experience.
+
+### Maintenance cost
+
+A separate repository needs code, tests, CI, dependencies, updates, security review, and README maintenance. That cost is justified only when the hiring funnel actually needs it.
+
+---
+
+# Reopen Conditions
+
+Reopen this plan when at least one condition is true:
+
+- a target PHP/Laravel/MySQL role explicitly requests recent code samples,
+- public GitHub code is a major screening criterion,
+- repeated application/review feedback identifies missing backend implementation evidence,
+- an interviewer needs a public codebase for discussion before a technical interview,
+- the implementation can target a specific role gap rather than exist as generic portfolio filler.
+
+If none applies, keep this plan deferred.
+
+---
+
+# Preserved Optional Reference Design
+
+If reopened later, the repository should remain a **new generalized reference implementation**, never a reconstruction of proprietary source.
+
+Recommended working name:
 
 ```text
 php-commerce-ops-reference
 ```
 
-Alternative names:
-
-```text
-commerce-ops-reference
-php-backend-operations-lab
-backend-ops-casebook
-```
-
-Use the direct descriptive name unless a broader multi-language lab is intentionally desired later.
-
----
-
-# Positioning Boundary
+## Positioning Boundary
 
 The repository must say clearly:
 
 > This is a public reference implementation built from generalized backend and commerce-operation patterns. It is not a copy of proprietary production code and does not expose private customer, order, infrastructure, or company data.
 
-It may prove:
+It may demonstrate:
 
-- current engineering capability,
-- ability to model operational state,
-- database/transaction reasoning,
+- current PHP/MySQL engineering capability,
+- state and transaction reasoning,
 - testing discipline,
-- documentation quality,
-- safe external-integration boundaries.
+- external-integration failure handling,
+- documentation and CI quality.
 
-It may **not** prove by itself:
+It must not be used to claim:
 
 - that the exact architecture existed in a previous employer system,
-- that the candidate personally owned all analogous production components,
-- production scale,
-- production SLA,
-- historical performance improvements.
+- historical ownership of analogous production components,
+- production scale or SLA,
+- unsupported historical performance improvements.
 
 Career claims remain governed by the canonical claim bank.
 
 ---
 
-# Recommended Case
+# Optional Case Scope
 
-Build one compact commerce operations backend around two related workflows rather than a generic CRUD shopping mall.
+Build one compact operations backend around two workflows rather than generic shopping-mall CRUD.
 
 ## Flow A — Batch order intake
 
@@ -89,14 +119,14 @@ upload
 → result
 ```
 
-Questions the implementation should answer:
+The implementation should answer:
 
-- What can fail before confirmation?
-- How is a preview tied to the confirmed payload?
-- Is confirmation all-or-nothing or partial?
-- How are duplicates detected?
-- What remains after a failed transaction?
-- Which fields are safe to log?
+- what can fail before confirmation,
+- how preview binds to confirmed data,
+- whether confirmation is all-or-nothing,
+- how duplicates are handled,
+- what remains after rollback,
+- which fields are safe to log.
 
 ## Flow B — External dispatch and reconciliation
 
@@ -107,111 +137,34 @@ order ready
    ├─ accepted
    ├─ rejected
    └─ unknown
-→ local status
+→ local state
 → read-only reconciliation
-→ operator decision when required
+→ manual decision when required
 ```
 
-Questions:
+The implementation should answer:
 
-- What happens when the external result is unknown?
-- How are retries bounded?
-- What key prevents duplicate effects?
-- How are local and external states compared without unsafe writes?
-- Which mismatches require manual resolution?
-
-These flows expose more backend judgment than catalog/product CRUD.
+- how unknown outcomes are represented,
+- how retries are bounded,
+- what prevents duplicate effects,
+- how internal/external states are compared safely,
+- which mismatches require manual review.
 
 ---
 
-# Minimum Architecture
+# Optional Minimum Evidence
 
-```text
-src/
-├─ Domain/
-│  ├─ Order/
-│  └─ Dispatch/
-├─ Application/
-│  ├─ PreviewOrderBatch
-│  ├─ ConfirmOrderBatch
-│  ├─ DispatchOrder
-│  └─ ReconcileDispatch
-├─ Infrastructure/
-│  ├─ Persistence/
-│  ├─ ExternalGateway/
-│  └─ Logging/
-└─ Http/
+A future implementation is worth featuring only if it includes all of the following.
 
-migrations/
-tests/
-docs/
-├─ problem.md
-├─ architecture.md
-├─ state-machine.md
-├─ failure-matrix.md
-├─ security-boundary.md
-├─ verification.md
-└─ decisions/
-```
+### State model
 
-Exact framework choice is secondary. The portfolio signal should come from the domain/transaction/failure contracts rather than framework ceremony.
+Explicit batch and dispatch states with invalid transitions tested.
 
----
+### Failure matrix
 
-# Data Model Scope
+At minimum:
 
-Keep the model intentionally small.
-
-Candidate entities:
-
-```text
-order_batches
-orders
-dispatch_attempts
-external_receipts
-reconciliation_findings
-```
-
-Recommended invariants:
-
-- stable batch/request identity,
-- explicit batch lifecycle,
-- unique business/idempotency boundary where justified,
-- append-only or traceable dispatch attempts,
-- explicit `unknown` external outcome,
-- reconciliation does not silently mutate external state,
-- sample data contains no real PII.
-
-Do not add coupon, payment, product recommendation, membership, review, or admin CMS features merely to make the repository look larger.
-
----
-
-# Required Engineering Evidence
-
-## 1. State model
-
-Provide a state diagram for batch intake and dispatch.
-
-Example conceptual states:
-
-```text
-BATCH
-parsed → previewed → confirmed
-                  ↘ rejected
-
-DISPATCH
-ready → sending → accepted
-                ↘ rejected
-                ↘ unknown → reconciled/manual-review
-```
-
-The actual state names should follow implementation contracts.
-
-## 2. Failure matrix
-
-At minimum cover:
-
-- invalid row,
+- invalid input,
 - duplicate request,
 - database failure,
 - external timeout,
@@ -219,146 +172,48 @@ At minimum cover:
 - retry after unknown response,
 - reconciliation mismatch.
 
-## 3. Tests
+### Database evidence
 
-Required test categories:
+Small MySQL schema/migrations, transaction rollback behavior, uniqueness boundaries, and safe sample data.
+
+### Tests
 
 ```text
 unit
 - state transitions
-- parser/validator
-- idempotency rule
+- parsing/validation
+- duplicate/idempotency rule
 
 integration
 - transaction rollback
 - unique constraint behavior
 - repository queries
 
-contract/fake gateway
+fake gateway
 - accepted
 - rejected
 - timeout/unknown
 
 workflow
-- preview does not persist final orders
+- preview does not final-persist
 - confirm persists once
-- duplicate confirmation does not create duplicate effect
-- reconcile reports mismatches without unsafe external mutation
+- duplicate confirm creates no duplicate effect
+- reconciliation reports rather than silently mutates
 ```
 
-## 4. Static/quality checks
+### Public verification
 
-Provide one root command that runs the repository's relevant checks.
+One root validation command and GitHub Actions CI. README text such as “tests pass” is insufficient without a reproducible surface.
 
-Conceptually:
+### Explicit limitations
 
-```text
-install
-→ static analysis
-→ tests
-→ migration check
-```
-
-## 5. CI
-
-A reviewer should be able to see the same checks run in GitHub Actions.
-
-Do not rely only on manually written `tests passed` text in README.
+No production-scale, HA, SLA, or historical-ownership implication.
 
 ---
 
-# README Contract
+# Preserved Implementation Sequence
 
-Recommended first-screen structure:
-
-```text
-Project title
-One-sentence problem
-Why this exists
-What this reference proves / does not prove
-Architecture diagram
-Two workflow summaries
-Verification command
-Current limitations
-```
-
-Then:
-
-```text
-Problem
-Constraints
-Domain/state model
-Architecture
-Decision records
-Failure handling
-Verification
-Security/redaction boundary
-Trade-offs
-Run locally
-Repository map
-```
-
-The README should be shorter than the documentation set. Link deep details rather than duplicating them.
-
----
-
-# Decision Records to Include
-
-Only create ADRs for real choices in the reference implementation.
-
-Candidate decisions:
-
-1. all-or-nothing vs partial batch confirmation,
-2. preview token/payload binding strategy,
-3. idempotency boundary,
-4. handling external `unknown` outcomes,
-5. reconciliation as read-only detection vs automatic mutation,
-6. PII/sample-data logging boundary.
-
-Each decision must include rejected alternatives and accepted downside.
-
----
-
-# Portfolio Integration
-
-When complete, use the repository differently from production career cases.
-
-## Career text
-
-```text
-I handled commerce/operations workflows in production systems.
-```
-
-Only canonical verified career claims may be used.
-
-## GitHub reference
-
-```text
-Here is a public reference implementation showing how I currently model a similar class of batch/integration failure problems without exposing proprietary source.
-```
-
-This distinction increases credibility.
-
----
-
-# Promotion Gate
-
-The new repository becomes `FEATURED` only when all are true:
-
-- public/private boundary is explicit,
-- clean setup is reproducible,
-- tests pass from a root command,
-- CI is green,
-- failure cases are implemented, not just documented,
-- README includes limitations,
-- no copied proprietary schema/source/data is present,
-- repository does not imply historical production ownership.
-
-Until then it remains `BUILDING` and should not be linked in submitted materials.
-
----
-
-# Implementation Sequence
+If the plan is reopened:
 
 ```text
 B0. create clean public repository
@@ -366,28 +221,29 @@ B1. write problem + non-goals + redaction boundary
 B2. define state model and failure matrix
 B3. define schema/migrations
 B4. implement batch preview/confirm
-B5. add transaction/idempotency tests
-B6. implement fake external dispatch gateway
+B5. add transaction/duplicate tests
+B6. implement fake external gateway
 B7. implement unknown outcome + reconciliation
 B8. add integration/workflow tests
 B9. add static checks + GitHub Actions
 B10. write concise evidence-first README
 B11. adversarial security/claim review
-B12. promote into PORTFOLIO.md
+B12. promote only after evidence gates pass
 ```
 
-Do not start with UI. A minimal HTTP surface or CLI fixture is enough until backend contracts are stable.
+Do not start with UI.
 
-## Success criterion
+## Promotion Gate
 
-The repository should make a backend interviewer able to ask concrete questions about:
+Even after reopening, do not feature the repository until:
 
-- transaction boundaries,
-- uniqueness/idempotency,
-- external failure,
-- state transitions,
-- reconciliation,
-- tests,
-- operational trade-offs.
+- setup is reproducible,
+- CI is green,
+- failure paths are executable and tested,
+- privacy/redaction review passes,
+- README states the reference/production distinction,
+- target-role value is higher than the maintenance cost.
 
-If the repository mainly demonstrates page rendering or generic CRUD, it has failed its portfolio purpose.
+## Current Outcome
+
+For `PS-v1.2.0`, this document is retained as a **research option**, not an active implementation task.
