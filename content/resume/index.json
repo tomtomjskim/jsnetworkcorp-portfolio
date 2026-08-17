@@ -24,6 +24,16 @@
       "redactionLevel": "PUBLIC_SAFE"
     },
     {
+      "id": "backend-ai-assisted-ko",
+      "title": "AI-assisted Backend Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "backend-ai-assisted",
+      "status": "draft",
+      "contentPath": "content/resume/variants/backend-ai-assisted-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
       "id": "fullstack-ko",
       "title": "Full-stack Resume Variant — KO",
       "language": "ko",
