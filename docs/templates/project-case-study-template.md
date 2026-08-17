@@ -1,12 +1,14 @@
 # Project Case Study Template
 
 Status: reusable template
+Strategy: PS-v1.0.0
 
-> Copy this template for a new public-safe case. Delete sections that cannot be supported. Do not fill gaps with guesses.
+> Copy this template for a new public-safe case. Delete unsupported sections rather than filling gaps with guesses.
 
 ## 1. Summary
 
 - **Title:**
+- **Classification:** career / public-rnd / portfolio-meta
 - **One-line problem:**
 - **Role:**
 - **Period:**
@@ -85,12 +87,12 @@ What concrete engineering or operational problem existed?
 
 ## 8. Options Considered
 
-| Option | Benefit | Cost / Risk | Evidence it was considered |
+| Option | Benefit | Cost / Risk | Consideration |
 |---|---|---|---|
-| A | | | |
-| B | | | |
+| A | | | actual / retrospective |
+| B | | | actual / retrospective |
 
-If alternatives are only retrospective analysis, label them as retrospective and do not imply they were considered during implementation.
+If alternatives are retrospective analysis, label them as such.
 
 ## 9. Decision
 
@@ -146,7 +148,21 @@ Do not add technology names solely for keyword density.
 
 If the source cannot be verified, remove the number.
 
-## 13. Architecture / Process Visuals
+## 13. Public Repository Relationship
+
+For career cases, a related public repository may be supporting methodology/R&D rather than direct production evidence.
+
+| Repository | Relationship | Feature status | Reason to open |
+|---|---|---|---|
+| owner/repo | direct-career-evidence / supporting-rnd / methodology | featured / supporting / hold | |
+
+- **Direct URL:**
+- **Claims safe to reuse from README:**
+- **Claims requiring audit:**
+
+Do not imply `supporting-rnd` is the production implementation.
+
+## 14. Architecture / Process Visuals
 
 ### Visual A — System boundary
 
@@ -162,7 +178,7 @@ If the source cannot be verified, remove the number.
 - **Required source data:**
 - **Status:**
 
-## 14. Retrospective
+## 15. Retrospective
 
 ### What worked
 
@@ -180,7 +196,7 @@ If the source cannot be verified, remove the number.
 
 - 
 
-## 15. Evidence
+## 16. Evidence
 
 ### Public
 
@@ -192,58 +208,72 @@ If the source cannot be verified, remove the number.
 
 Do not place protected evidence itself in this public repository.
 
-## 16. Output Projection Notes
+## 17. Output Projection Notes
 
-### Resume
+### P0 — Application / Self-Introduction
 
 - strongest one-line claim:
 - optional second claim:
-
-### Cover Letter / Application
-
-- target requirements this case can support:
+- target requirements supported:
 - strongest narrative angle:
 
-### PDF
+### P1 — GitHub Portfolio
 
-- use / do not use:
-- preferred visual:
-- recommended page count:
+- include as career case: yes / no
+- related featured repository:
+- public R&D separation note:
+- repository reason-to-open:
+- direct URL:
 
-### Web
+### P2 — Web
 
 - 15-second scan content:
 - 2-minute review content:
 - deep-dive content:
+- preferred visual:
 
-## 17. Targeting
+### P3 — PDF
 
-| Target profile | Priority | Why |
-|---|---|---|
-| backend-commerce | | |
-| platform-reliability | | |
-| ai-native-backend | | |
+- needed for likely targets: yes / optional / no
+- recommended page count:
+- preferred visual:
 
-## 18. Redaction Review
+### P4 — Protected Interview
+
+- deeper evidence required:
+- unresolved role-confirm items:
+- likely technical questions:
+
+## 18. Targeting
+
+| Target profile | Priority | Why | GitHub evidence priority |
+|---|---|---|---|
+| backend-commerce | | | |
+| platform-reliability | | | |
+| ai-native-backend | | | |
+
+## 19. Redaction Review
 
 - [ ] no credentials
 - [ ] no production endpoint or internal hostname
 - [ ] no customer/order/admin/session/payment data
 - [ ] no private repository URL
 - [ ] private service/company identifiers generalized where required
-- [ ] prototype/proposal clearly distinguished from implemented work
+- [ ] prototype/proposal/R&D clearly distinguished from production work
 - [ ] personal ownership is not overstated
 - [ ] metrics have a source
+- [ ] public repository relationship is accurately classified
 
-## 19. Promotion Gate
+## 20. Promotion Gate
 
-A case can be promoted to `selected` only if:
+A career case can be promoted to `selected` only if:
 
 - [ ] problem is concrete
 - [ ] responsibility is explicit
-- [ ] at least one meaningful constraint is documented
+- [ ] meaningful constraints are documented
 - [ ] implementation or decision is supported
 - [ ] verification exists
 - [ ] impact wording is defensible
-- [ ] public evidence or a protected evidence pointer exists where appropriate
+- [ ] public evidence or protected pointer exists where appropriate
+- [ ] career vs public R&D boundary is clear
 - [ ] adversarial review has no unresolved blocker
