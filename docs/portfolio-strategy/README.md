@@ -58,7 +58,8 @@ These surfaces may support the same capability narrative but do not prove the sa
 
 P0 application text:
 
-- `docs/application-text/claim-blocks-v1.md`
+- current candidate: `docs/application-text/claim-blocks-v2-candidate.md`
+- previous baseline: `docs/application-text/claim-blocks-v1.md`
 
 P1 hiring-facing portfolio:
 
