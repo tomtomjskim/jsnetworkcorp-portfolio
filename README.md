@@ -26,9 +26,31 @@ See:
 - `docs/interview-materials-architecture.md`
 - `docs/interview-kit-pipeline.md`
 - `docs/remote-deploy-runbook.md`
-- `deploy/README.md`
 - `docs/resume-data/application-ready-checklist.md`
 - `docs/resume-data/final-handoff.md`
+
+## Evidence-First Authoring Architecture
+
+Portfolio, resume/application text, visual PDF, and protected interview material should be derived from one canonical case-study model rather than maintained as separate factual narratives.
+
+Reference set:
+
+- `docs/portfolio-reference-architecture.md` — five portfolio views and canonical flow
+- `docs/content-system/case-study-schema.md` — project/claim/evidence SSOT schema
+- `docs/content-system/output-contracts.md` — resume, application text, PDF, web, and interview projection rules
+- `docs/templates/project-case-study-template.md` — reusable case-study authoring template
+- `docs/templates/decision-record-template.md` — reusable engineering decision template
+- `docs/prompts/portfolio-master-orchestrator.md` — source-to-portfolio master prompt
+- `docs/prompts/company-targeting.md` — job-description targeting prompt
+- `docs/prompts/multichannel-renderer.md` — text/PDF/web rendering prompt
+
+Core principle:
+
+```text
+Evidence > Problem Solving > Impact > Architecture > Readability > Design > Animation
+```
+
+The same verified facts may be reordered or summarized for a target company, but role scope, metrics, implementation maturity, and evidence status must not change between outputs.
 
 ## Scope
 
@@ -42,6 +64,8 @@ See:
 - CI and static deployment guidance
 - protected interview-surface deployment guidance
 - public-safe resume/project content management
+- evidence-first case studies and engineering decision records
+- target-role content projection for resume, PDF, and web surfaces
 
 ## Resume Data Versioning
 
@@ -72,6 +96,8 @@ Key files:
 
 ## Routes
 
+Current implemented routes:
+
 ```text
 /
 /projects
@@ -81,6 +107,8 @@ Key files:
 /resume
 /releases
 ```
+
+Target evidence-first IA additionally introduces logical `engineering`, `decisions`, and `writing` surfaces. See `docs/information-architecture.md`; route implementation should follow after existing project data is normalized into the canonical schema.
 
 ## Commands
 
@@ -111,4 +139,5 @@ PF-v0.7.0: public-safe project pages
 PF-v0.8.0: role-specific resume variants
 PF-v0.9.0: protected interview bridge
 PF-v1.0.0: application-ready public portfolio/resume content architecture
+PF-vNext: evidence-first canonical case schema + multi-output renderer
 ```
