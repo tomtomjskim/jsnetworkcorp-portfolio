@@ -37,7 +37,7 @@ Backend / full-stack engineer with experience in PHP-based manufacturing systems
 |---|---|---|---|---|
 | `CL-AI-001` | 모호하거나 고위험인 작업을 intake, 구현, 독립 검토, 검증 기반 closeout으로 분리한 공개 Codex Skill을 설계·버전 관리 | ready | [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills) | 테스트 통과는 live model 품질·생산성 향상률·조직 채택을 증명하지 않음 |
 | `CL-AI-002` | Skill, Hook, Handoff, Failure Recovery를 포함한 Claude Code 프로젝트 Workflow와 적용 가이드를 공개 저장소로 관리 | selective | [`claude-code-guide`](https://github.com/tomtomjskim/claude-code-guide) | 저장소 전체 기능을 모든 회사 프로젝트에 적용했다고 주장하지 않음 |
-| `CL-AI-003` | 2인 개발 환경에서 프로젝트 규칙·소스맵·PR 리뷰·커밋·기능 검수 기준을 공통으로 사용 | private-evidence | Burst Express protected source; public에는 sanitized case만 사용 | 신규 인력 온보딩·대규모 팀 확산·전사 AX 근거는 없음 |
+| `CL-AI-003` | 2인 개발 환경에서 프로젝트 규칙·소스맵·PR 리뷰·커밋·기능 검수 기준을 공통으로 사용 | private-evidence | protected commerce project source; public에는 sanitized case만 사용 | 신규 인력 온보딩·대규모 팀 확산·전사 AX 근거는 없음 |
 | `CL-AI-004` | 요구사항 정리, 설계, 구현, 코드 검수, 디버깅, Playwright E2E, 사람 승인을 단계별 Workflow로 운용 | private-evidence | protected project rules and E2E artifacts | 실행 상태 상세와 private 경로는 공개하지 않음 |
 | `CL-AI-005` | Agent의 test skip·fail·미실행 보고 누락을 경험한 뒤 시나리오·결과 문서와 사람 확인을 완료 조건에 추가 | private-evidence | protected Markdown result docs and user interview | 전체 CI 강제 또는 모든 Agent 실행을 보장한다는 의미가 아님 |
 | `CL-AI-006` | Ollama·Gemma 3 기반 로컬 번역 도구를 내부 PC에 구성해 한·영·일·중 언어팩 생성과 PHP/JSON 반영 업무에 적용 | private-evidence | public에는 i18n 결과 구조와 synthetic diagram만 사용 | GPU 없는 3B 환경의 속도·품질 한계, 사람 검수 필요, 정량 시간·정확도 없음 |
