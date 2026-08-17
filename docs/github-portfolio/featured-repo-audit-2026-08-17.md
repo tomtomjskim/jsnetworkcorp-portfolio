@@ -1,32 +1,33 @@
 # Featured Repository Audit — 2026-08-17
 
-Strategy: `PS-v1.1.0`
-Status: GitHub evidence review with current public CI checks where available
+Strategy: `PS-v1.3.0`
+Status: GitHub evidence review with current public CI checks
 
 ## Scope
 
-This review checks whether current public repositories are strong enough to appear in a hiring-facing GitHub portfolio.
+This review decides whether public repositories are strong enough to appear in hiring-facing portfolio projections.
 
-The review is adversarial by default. A good README is not sufficient. Promotion requires some combination of:
+Promotion is adversarial. A polished README is insufficient. Review considers:
 
-- clear problem definition,
+- problem clarity,
 - non-trivial implementation,
-- verification surface,
+- reproducible verification,
+- dependency/security state where relevant,
 - explicit limitations,
-- coherent version/release state,
-- relevance to target engineering roles.
+- target-role relevance,
+- separation from historical employer experience.
 
-This pass inspected repository contents, committed validation contracts, and GitHub Actions state where a repository exposed a suitable workflow. It did not run an independent local checkout/build. A GitHub Actions success proves the committed workflow passed for the stated SHA; it does not prove production scale or external adoption.
+A GitHub Actions success proves the committed workflow passed for the stated SHA. It does **not** prove production scale, external adoption, business impact, or historical employer ownership.
 
 ## Decision Legend
 
 | Decision | Meaning |
 |---|---|
-| `PRIMARY` | safe to lead the public engineering section after final link check |
-| `FEATURED` | strong enough for the main 3–5 repository set |
-| `SUPPORTING` | useful evidence, but should not lead the portfolio |
-| `HOLD` | material evidence/documentation defect must be fixed first |
-| `EXCLUDE` | low portfolio value or unacceptable risk |
+| `PRIMARY` | can lead a target portfolio |
+| `FEATURED` | suitable for the main 3-repository set |
+| `SUPPORTING` | useful but should not lead |
+| `HOLD` | material evidence/documentation defect remains |
+| `EXCLUDE` | current portfolio value is too low or risk too high |
 
 ---
 
@@ -34,195 +35,153 @@ This pass inspected repository contents, committed validation contracts, and Git
 
 Repository: https://github.com/tomtomjskim/stackforge-atlas
 
-Decision: **PRIMARY**
+Decision: **PRIMARY for general backend / system engineering**
 
-## Strong evidence
+## Evidence
 
-The repository does more than describe an architecture pattern. Its committed GitHub Actions workflow validates:
+- intent → interface → implementation → evidence → evolution structure
+- runnable Node pilot
+- PostgreSQL durability pilot
+- operational recovery drill
+- explicit distinction between demonstrated recovery and unproven PITR/host loss/replication/failover
 
-- structured Atlas artifacts,
-- pilot metadata and regressions,
-- runnable Node pilot type-check/tests,
-- PostgreSQL durability pilot with a PostgreSQL service,
-- an operational recovery drill,
-- recovery evidence artifact creation.
-
-The current README also explicitly distinguishes what its recovery work demonstrates from what remains unproven, including host-level loss, PITR, replication, failover, and provider-specific production recovery.
-
-## Current CI evidence
-
-Reviewed HEAD:
+Reviewed CI evidence:
 
 ```text
-eece97ee59dac79d3e36f8f6c1b59e8155bf2dd8
-feat: add PostgreSQL operational recovery drill
-```
-
-GitHub Actions recorded:
-
-```text
+HEAD: eece97ee59dac79d3e36f8f6c1b59e8155bf2dd8
 workflow: Validate Atlas
 run: #29
-trigger: push
-status: completed
 conclusion: success
 ```
 
-This is current public CI evidence for the reviewed HEAD, not merely a README claim.
-
 ## Portfolio value
 
-Strong signals:
-
 ```text
-product/problem framing
-→ interface contract
+problem framing
+→ contract
 → implementation
 → database durability
-→ failure/recovery
+→ failure / recovery
 → validation evidence
-→ stated limitations
+→ limitations
 ```
 
-This is the closest current public repository to a general software/backend engineering case rather than an AI-tool-only artifact.
+## Risks / limits
 
-## Risks
+- recent reference work; not long-running adoption
+- controlled pilots; not production-scale evidence
+- recovery drill is not HA/PITR/failover proof
 
-- very recent repository history; do not imply long-running adoption,
-- pilots are controlled reference implementations, not proof of production scale,
-- operational recovery evidence must not be described as HA/PITR/failover proof.
+Safe wording:
 
-## Portfolio wording
-
-Safe:
-
-> 제품 의도에서 인터페이스 계약, 구현, 검증과 복구 지식까지 추적 가능한 구조를 실험하고, PostgreSQL 기반 durability/recovery pilot과 공개 CI로 failure path를 검증한 engineering reference입니다.
-
-Avoid:
-
-- production-grade recovery platform,
-- high availability proven,
-- enterprise scale,
-- production failover implementation.
+> 제품 의도에서 interface, 구현, 검증과 recovery evidence까지 연결하고 failure path를 공개 CI로 검증하는 software-engineering reference.
 
 ---
 
-# 2. Codex Workflow Skills
-
-Repository: https://github.com/tomtomjskim/codex-workflow-skills
-
-Decision: **FEATURED for AI-native/platform roles; SUPPORTING for general backend roles**
-
-## Strong evidence
-
-The public forward-test report records repeatable validation and known limitations. The 2026-08-05 quality-hardening snapshot reports:
-
-- 881 repository tests discovered,
-- 879 passed,
-- 2 external shared-agent audits skipped because the external root was not configured,
-- paid/live runner path not executed when its API-key prerequisite was unavailable.
-
-The report also records failure cases such as reviewer stalls and differentiates `static_only`, `not_run`, `incomplete`, and completed evidence rather than converting missing execution into a pass.
-
-## Current CI evidence
-
-Reviewed HEAD:
-
-```text
-9f4499e38368417a88c9d6aeaad7dca6268538f4
-feat(skills): Council·Session Wiki 품질 계약 강화
-```
-
-GitHub Actions recorded a repository validation run for that SHA:
-
-```text
-workflow: Validate Skills
-run: #20
-trigger: push
-status: completed
-conclusion: success
-```
-
-The same SHA also has successful Dependabot dynamic checks, but these are not used as primary portfolio validation evidence.
-
-## Portfolio value
-
-This repository is strong evidence for:
-
-- workflow contracts,
-- safety/approval boundaries,
-- adversarial review,
-- deterministic validation,
-- failure accounting,
-- plugin/skill packaging.
-
-## Risks
-
-- tightly coupled to Codex/agent workflow concepts,
-- synthetic and repository-owned validation is not production adoption,
-- too much emphasis can distort the candidate profile from backend engineer to AI tooling specialist.
-
-## Portfolio rule
-
-For a normal backend application, include this after a backend-oriented artifact.
-
-For an AI-native backend/platform role, it can move into the top 3.
-
----
-
-# 3. harness-kit
+# 2. harness-kit
 
 Repository: https://github.com/tomtomjskim/harness-kit
 
-Decision: **FEATURED with verification caveat**
+Decision: **FEATURED; PRIMARY for Internal Tools / AX target**
 
-## Strong evidence
+## Problem / Implementation
 
-The repository has:
+Repeated Claude/agent configuration across projects is modeled as configuration-as-code rather than manually copied project files.
 
-- a TypeScript CLI/package structure,
-- resolver/loader/validator/merger/renderer/writer pipeline,
-- Zod schema validation,
-- Vitest unit-test structure,
-- explicit test and TypeScript-check scripts,
-- clear documentation of trade-offs and when the abstraction is unnecessary.
+Implementation evidence includes:
 
-The committed unit-test directory currently includes dedicated merger, renderer, and type tests.
+- TypeScript CLI/package structure
+- resolver → loader → validator → merger → renderer → writer pipeline
+- Zod validation
+- dedicated merger / renderer / type tests
+- explicit trade-offs and documentation of when the abstraction is unnecessary
 
-## Evidence weakness
+## Adversarial Validation History
 
-No GitHub Actions workflow was visible at repository root during this review.
+The first validation attempt passed lint/tests/build but **was not accepted** because dependency inspection still reported high-severity findings.
 
-The changelog states 36 tests and an average coverage figure, but this audit does not independently reproduce those numbers. Do not surface the coverage percentage in the portfolio until a reproducible coverage command or CI artifact confirms it.
+A hard audit gate was added. The locked dependency graph was remediated within the repository's declared dependency ranges, including updated locked versions for affected YAML/brace expansion paths. The temporary remediation workflow was then removed.
 
-The package version remains `0.1.0`, and the README correctly notes that npm publication is not yet complete.
+Merged validation commit:
+
+```text
+c35136f562723f9c9af3945536ce3123c6f9bfc2
+ci: add security-gated current-head validation
+```
+
+Merged `main` workflow:
+
+```text
+Node.js 22 and 24
+npm ci
+npm audit --audit-level=high
+npm run lint
+npm test        # 36 tests
+npm run build
+node dist/cli.js --help
+```
+
+All steps passed on both Node versions.
 
 ## Portfolio value
 
-Strong design signal:
-
 ```text
-duplicated per-project AI configuration
-→ configuration-as-code model
+repeated developer configuration
+→ configuration-as-code
 → typed module contracts
-→ deterministic merge/render pipeline
-→ atomic output
+→ deterministic merge/render
+→ security-gated CI
 ```
 
-This is a useful systems/tooling case because the abstraction has explicit boundaries and acknowledges when direct editing is simpler.
+This directly supports Internal Tools / Developer Productivity / AX roles.
 
-## Required next check
+## Residual limits
 
-Before final submission:
+- package version remains early-stage and npm adoption is not claimed
+- a low-severity dev-tool advisory may still be reported; it is below the high gate and remains a known limitation
+- CI is current implementation evidence, not proof of production adoption or productivity percentage
+- do not cite the historical coverage percentage unless separately reproduced
+
+---
+
+# 3. Codex Workflow Skills
+
+Repository: https://github.com/tomtomjskim/codex-workflow-skills
+
+Decision: **FEATURED for AI-native/platform; SUPPORTING for general backend**
+
+## Evidence
+
+Public forward-test evidence reports:
+
+- 881 repository tests discovered
+- 879 passed
+- 2 external-environment audits skipped
+- unavailable or unexecuted paths represented as `skip`, `not_run`, `static_only`, or `incomplete` rather than converted to pass
+
+Reviewed CI:
 
 ```text
-npm ci
-npm run lint
-npm test
-npm run build
+HEAD: 9f4499e38368417a88c9d6aeaad7dca6268538f4
+workflow: Validate Skills
+run: #20
+conclusion: success
 ```
 
-Record the exact current result rather than relying on README/changelog history.
+## Portfolio value
+
+- workflow contracts
+- review / approval boundaries
+- adversarial review
+- deterministic validation
+- failure accounting
+- reusable skill packaging
+
+## Risks / limits
+
+- agent-workflow concepts are role-specific
+- repository-owned/synthetic validation is not production adoption
+- overuse in a normal backend portfolio can distort candidate identity
 
 ---
 
@@ -232,48 +191,28 @@ Repository: https://github.com/tomtomjskim/agent-orchestra-monitor
 
 Decision: **HOLD as featured; SUPPORTING conceptually**
 
-## Strong evidence
-
-The architecture is easy to understand:
+Strength:
 
 ```text
-Claude task output
-→ read-only file observer
+agent task output
+→ read-only observer
 → Express/API + SSE
 → React dashboard
 → SQLite history / workflow visualization
 ```
 
-The README also does a good job distinguishing the tool from an MCP server or orchestrator. That is a useful responsibility-boundary signal.
+Material defects:
 
-## Material defects
+- no obvious root reproducible test contract in inspected package entry points
+- release surfaces disagree: docs/changelog `1.8.0` vs root package `1.0.0`
 
-### A. No visible test contract
+Promotion conditions:
 
-The root package exposes development/build/start scripts but no test or lint script. The inspected server workspace also exposes build/dev/start only.
-
-That does not prove the repository has no tests anywhere, but the current entry points do not give a reviewer an obvious reproducible verification path.
-
-### B. Version drift
-
-Current public surfaces disagree:
-
-- README/changelog communicate release `1.8.0`,
-- root package version is `1.0.0`.
-
-This reduces confidence in release hygiene.
-
-### C. Portfolio consequence
-
-Do not currently describe this as a verified reliability/observability implementation. It is better presented as a supporting full-stack/tooling prototype until version and verification contracts are repaired.
-
-## Promotion conditions
-
-1. align version source of truth,
+1. align release version source,
 2. add root verification command,
-3. add at least critical parser/history/API tests,
-4. add CI or another publicly reproducible validation surface,
-5. verify README screenshots/current feature list against the current build.
+3. add critical parser/history/API tests,
+4. expose CI,
+5. verify screenshots/features against current build.
 
 ---
 
@@ -281,73 +220,71 @@ Do not currently describe this as a verified reliability/observability implement
 
 Repository: https://github.com/tomtomjskim/StoreShoppingMall-PHP
 
-Decision: **EXCLUDE from featured portfolio in current form**
+Decision: **EXCLUDE in current form**
 
-## Findings
+Current public contents are a minimal README and small utility collection. They do not expose enough project-level evidence for business problem, DB model, request/response flow, tests, migration or reproducible setup.
 
-The public repository currently contains a minimal README and a small `util/` collection rather than a reviewable application or backend case.
+README expansion alone would overstate the evidence.
 
-Observed contents include utility PHP/JS snippets such as directory/file helpers and category-related utilities. There is no public project-level contract showing:
-
-- business problem,
-- database model,
-- request/response flow,
-- test strategy,
-- migration path,
-- reproducible setup,
-- representative backend architecture.
-
-## Decision
-
-README expansion alone would risk turning a few historical snippets into a stronger project story than the code supports.
-
-Do not promote this repository merely because `PHP/MySQL` matches the career positioning.
-
-A new sanitized reference case is preferable.
+A standalone PHP sample repository is **not required** under the current strategy. Historical PHP depth is better represented through sanitized career cases unless a future target explicitly requires recent public PHP code.
 
 ---
 
-# Final Ranking
+# Target Rankings
 
-## General backend target
-
-```text
-1. StackForge Atlas        PRIMARY / CI VERIFIED AT REVIEWED HEAD
-2. harness-kit             FEATURED / current validation pending
-3. Codex Workflow Skills   SUPPORTING / CI VERIFIED AT REVIEWED HEAD
-4. Agent Orchestra Monitor HOLD
-```
-
-This set still lacks a strong public artifact that directly represents long-term PHP/MySQL business-system experience.
-
-## AI-native backend/platform target
+## General backend
 
 ```text
 1. StackForge Atlas        PRIMARY / CI VERIFIED
-2. Codex Workflow Skills   FEATURED / CI VERIFIED
-3. harness-kit             FEATURED / validation pending
-4. Agent Orchestra Monitor after promotion fixes
+2. harness-kit             FEATURED / SECURITY-GATED CI VERIFIED
+3. Codex Workflow Skills   SUPPORTING / CI VERIFIED
 ```
+
+## Internal Tools / AX
+
+```text
+1. harness-kit             PRIMARY FOR TARGET / SECURITY-GATED CI VERIFIED
+2. Codex Workflow Skills   FEATURED / CI VERIFIED
+3. StackForge Atlas        ENGINEERING GUARDRAIL / CI VERIFIED
+```
+
+## AI-native backend / platform
+
+```text
+1. StackForge Atlas or Codex Workflow Skills based on JD
+2. Codex Workflow Skills or StackForge Atlas
+3. harness-kit
+```
+
+Agent Orchestra Monitor remains HOLD until its own promotion conditions are resolved.
 
 ---
 
-# Main Portfolio Gap
+# Portfolio Boundary
 
-The strongest public repositories currently demonstrate recent engineering methodology and AI/tooling work better than the candidate's long-term PHP/MySQL career depth.
+The public engineering repositories answer:
 
-This is a portfolio representation problem, not a reason to inflate old repositories.
+> How does the candidate currently design, implement, validate and document engineering work?
 
-Resolution is defined in:
+They do not replace the historical career record.
 
-- `docs/github-portfolio/backend-evidence-gap-plan.md`
+The long-term PHP/MySQL/MES/commerce experience remains represented by sanitized career cases and the claim bank.
 
-## Review conclusion
+Do not:
 
-Current public portfolio should lead with:
+- call public R&D previous-employer production source,
+- claim production adoption from CI,
+- claim productivity percentages without baseline evidence,
+- use recent repository activity to hide chronology.
 
-1. sanitized career cases,
-2. StackForge Atlas as the strongest public engineering proof,
-3. target-dependent tooling repositories,
-4. explicit limitations.
+## Review Conclusion
 
-Do not let repository recency replace career chronology or domain experience.
+The current public set is now strong enough to support three distinct questions:
+
+```text
+Backend/system engineering  → StackForge Atlas
+Internal tooling            → harness-kit
+AI workflow / review        → Codex Workflow Skills
+```
+
+Target applications should select and reorder these; they should not display the entire GitHub inventory.
