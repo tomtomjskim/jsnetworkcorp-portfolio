@@ -26,8 +26,8 @@ Public Engineering Repository
 
 - **Backend / Business Systems:** PHP, MySQL 기반 운영 시스템의 기능 개선과 유지보수
 - **Domains:** 제조 MES, 커머스, 물류·배송, 외부 시스템 연동
-- **Problem Solving:** 상태·데이터 흐름과 변경 영향 범위를 먼저 추적
-- **Operations:** 관리자 화면, 권한, batch/cron, 외부 API 실패까지 함께 검토
+- **Problem Solving:** 상태·데이터 흐름과 변경 영향 범위를 먼저 추적하는 방식
+- **Operations:** 관리자 화면, 권한, batch/cron, 외부 시스템 경계를 함께 고려
 - **Current Engineering Evidence:** failure/recovery, tests, CI, agent-assisted review를 공개 repository로 검증
 
 자소서·지원서용 짧은 문장은 별도 P0 layer에서 관리합니다.
@@ -39,13 +39,17 @@ Public Engineering Repository
 
 # Career Case Studies
 
+> The detailed problem-solving narratives below remain **draft/source-confirm candidates**. Submission-safe facts are explicitly separated from selective or role-confirm material.
+
 ## 1. Commerce & Fulfillment Operations
 
 ### Problem
 
 커머스·물류 운영 시스템에서는 주문, 배송, 정산 또는 처리 상태가 DB·관리자·사용자 화면에서 다르게 보이거나 외부 연동 실패가 내부 흐름에 영향을 줄 수 있습니다.
 
-### How I Approach It
+### Draft Problem-Solving Narrative
+
+Protected career synthesis supports the following investigation model, but final submission requires source/role confirmation:
 
 ```text
 현상
@@ -57,9 +61,7 @@ Public Engineering Repository
 → 변경 시 downstream 영향
 ```
 
-한 화면의 값을 바로 수정하기보다 **상태가 어디에서 갈라졌는지**를 먼저 찾고, 관련 처리에 미치는 영향을 확인하는 방식으로 접근합니다.
-
-기능 변경 후에도 정상 경로만 보지 않고 권한, 실패 응답, 반복 실행, 상태 전이와 관련 관리자 기능을 함께 검토하는 편입니다.
+핵심은 한 화면의 값을 바로 수정하기보다 **상태가 어디에서 갈라졌는지 확인하고 관련 처리의 영향 범위를 먼저 보는 것**입니다.
 
 ### Public-Ready Scope
 
@@ -76,9 +78,11 @@ canonical model, idempotency, signed API, reconciliation 등의 구체적 설계
 
 ### Problem
 
-제조 현장의 요구는 단순히 “화면 하나 변경”으로 끝나지 않습니다. 실제 작업 순서, 조회 기준, 상태, 통계 기준, 권한과 현장 환경을 시스템 조건으로 바꿔야 합니다.
+제조 현장의 요구는 단순히 “화면 하나 변경”으로 끝나지 않습니다. 실제 작업 순서, 조회 기준, 상태, 통계 기준, 권한과 현장 환경을 시스템 조건으로 바꿔야 할 수 있습니다.
 
-### How I Approach It
+### Draft Problem-Solving Narrative
+
+Protected career synthesis supports the following decomposition model, but detailed examples remain source-confirm material:
 
 ```text
 현장 요청
@@ -91,17 +95,21 @@ canonical model, idempotency, signed API, reconciliation 등의 구체적 설계
 → 화면 + DB 변경
 ```
 
-도입 후 문제가 발생하면 애플리케이션과 데이터만 보지 않고 PC, 네트워크, 프린터·라벨, 계정/권한 등 어느 계층에서 문제가 발생했는지 분리합니다.
-
-장기간 운영되는 PHP 업무시스템은 전면 재작성보다 기존 동작과 데이터 관계를 파악한 뒤 변경 범위를 작게 가져가고 구조를 점진적으로 정리하는 쪽을 선호합니다.
+현장 장애 역시 애플리케이션/데이터와 PC·네트워크·프린터·계정/권한 등 환경 계층을 구분해 보는 방식이 중요한 후보 narrative입니다.
 
 ### Public-Ready Scope
 
 - PHP 기반 MES 및 업무시스템 개발·유지보수
-- 생산관리 도메인의 기능 변경, 오류 수정, 데이터 처리 요청
-- legacy PHP 구조의 점진적 모듈/가독성 개선
+- 제조 생산관리 도메인을 다룬 경험
 
-고객사 수, 개발 리드 범위와 구체적 프로젝트 chronology는 protected source 확인 전 공개 headline으로 사용하지 않습니다.
+### Selective / Source-Confirm
+
+- legacy PHP 구조의 점진적 모듈/가독성 개선
+- 상세 현장 요구사항 분해 사례
+- 도입·교육·원격지원 chronology
+- 고객사 수와 개발 리드 범위
+
+선택적 항목은 canonical claim/source가 승격되기 전까지 제출 headline으로 사용하지 않습니다.
 
 **Deep dive:** [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
 
@@ -111,7 +119,7 @@ canonical model, idempotency, signed API, reconciliation 등의 구체적 설계
 
 AI 사용량 자체를 경력의 중심으로 두지 않습니다.
 
-요구사항 정리, 코드/SQL 검토, 테스트 시나리오와 문서화에 LLM을 사용하되 실제 코드, 데이터 구조, 권한, 공식 문서, 테스트 결과를 기준으로 다시 검증하는 방식을 사용합니다.
+요구사항 정리, 코드/SQL 검토, 테스트 시나리오와 문서화에 LLM을 사용하되 실제 코드, 데이터 구조, 권한, 공식 문서, 테스트 결과를 기준으로 다시 검증하는 방식을 지향합니다.
 
 **Case:** [`content/projects/ai-assisted-development-workflow.md`](content/projects/ai-assisted-development-workflow.md)
 
@@ -204,10 +212,10 @@ Matrix: [`docs/github-portfolio/repository-candidate-matrix.md`](docs/github-por
 | Capability | Historical career evidence | Current public engineering evidence |
 |---|---|---|
 | Backend / domain reasoning | Commerce, MES | StackForge Atlas |
-| State / data-flow analysis | commerce state investigation, MES workflow conditions | StackForge pilots |
-| Reliability / failure thinking | batch/operational impact analysis | StackForge recovery drill |
-| Legacy change safety | PHP business-system impact analysis | harness-kit configuration pipeline |
-| External integration | commerce/logistics operations | contract/failure patterns in public references |
+| State / data-flow analysis | career case candidates after source confirmation | StackForge pilots |
+| Reliability / failure thinking | batch/operational boundaries where public-ready | StackForge recovery drill |
+| Legacy change safety | MES selective claim after source confirmation | harness-kit configuration pipeline |
+| External integration | commerce/logistics domain experience | contract/failure patterns in public references |
 | AI-assisted engineering | supporting work method | Codex Workflow Skills, harness-kit |
 
 이 표는 숙련도 점수가 아니라 **어떤 종류의 evidence가 어떤 질문에 답하는지**를 보여줍니다.
@@ -223,6 +231,8 @@ Matrix: [`docs/github-portfolio/repository-candidate-matrix.md`](docs/github-por
 기존 시스템은 rewrite보다 안전한 변화가 먼저일 수 있다.
 AI가 만든 결과도 검증되지 않으면 evidence가 아니다.
 ```
+
+이 원칙은 portfolio positioning입니다. 특정 회사에서 모든 패턴을 동일하게 구현했다는 의미가 아닙니다.
 
 ---
 
