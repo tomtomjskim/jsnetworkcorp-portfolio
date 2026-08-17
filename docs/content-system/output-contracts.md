@@ -1,319 +1,297 @@
 # Portfolio Multi-Output Contracts
 
 Status: reference
+Strategy: PS-v1.0.0
 Updated: 2026-08-17
 
 ## Objective
 
-Generate resume text, cover-letter text, a visual PDF portfolio, a web portfolio, and protected interview material from the same canonical case-study records.
+Generate multiple hiring artifacts from the same canonical case-study records without creating factual forks.
 
-The outputs may differ in selection, length, vocabulary, and visual density. They must not diverge on factual scope, personal responsibility, metrics, implementation maturity, or verification status.
+Delivery priority:
+
+```text
+P0  Application / self-introduction text
+P1  GitHub portfolio
+P2  Web portfolio
+P3  PDF visual supplement
+P4  Protected interview material
+```
+
+Outputs may differ in selection, length, vocabulary, and visual density. They must not diverge on factual scope, personal responsibility, metrics, technologies, implementation maturity, or verification status.
 
 ## Output Matrix
 
-| Output | Primary reader | Read time | Primary job | Detail level |
-|---|---|---:|---|---|
-| Resume | recruiter / hiring manager | 30–90 sec | establish fit | compressed |
-| Cover letter / application text | recruiter / manager | 1–3 min | connect experience to role | narrative |
-| PDF portfolio | hiring manager / interviewer | 3–8 min | create visual technical overview | selective |
-| Web portfolio | engineer / interviewer | variable | provide evidence and deep dive | layered |
-| Protected interview kit | interviewer / candidate | 10+ min | support technical verification | deep |
+| Priority | Output | Primary reader | Primary job | Detail |
+|---|---|---|---|---|
+| P0 | application / self-introduction text | recruiter / hiring manager | establish fit quickly | concise |
+| P1 | GitHub portfolio | hiring manager / engineer | show technical evidence and public work | layered Markdown + repositories |
+| P2 | web portfolio | engineer / interviewer | improve navigation and visual comprehension | visual/layered |
+| P3 | PDF supplement | recruiter / interviewer | optional compact visual briefing | selective |
+| P4 | protected interview kit | interviewer / candidate | support deep verification | deep/private |
 
-## 1. Resume Projection
+## P0 — Application / Self-Introduction Text
 
-### Structure
+This is the first artifact to optimize.
 
-```text
-Positioning
-Experience
-Selected impact bullets
-Selected projects
-Core engineering capabilities
-Public links
-```
-
-### Bullet Contract
-
-Each bullet should contain as much of this chain as can be supported without becoming unreadable:
+### Resume / application bullet
 
 ```text
-problem/context → personal action/judgment → verified effect
+problem or context → personal action/judgment → verified effect
 ```
 
 Rules:
 
-- prefer 1–2 strong bullets per major case,
+- 1–2 strong claims per major case,
+- one core idea per bullet/paragraph,
 - avoid technology-name padding,
-- retain domain terms when they demonstrate relevant experience,
-- do not repeat the same achievement in three sections,
-- metrics require a verified source,
-- use conservative role verbs when ownership is not confirmed.
+- retain domain terms when relevant to the role,
+- use conservative verbs when ownership is not confirmed,
+- numerical claims require a traceable source,
+- do not repeat the same achievement across several sections.
 
-## 2. Cover-Letter / Application Text Projection
-
-This output is prose, not a technical specification.
-
-Recommended paragraph unit:
+### Cover-letter / self-introduction paragraph
 
 ```text
-Target-company requirement
-→ directly relevant past problem
-→ decision/action taken
-→ result or lesson
-→ transfer to target role
+target requirement
+→ relevant past problem
+→ action / engineering judgment
+→ verified result or lesson
+→ relevance to target role
 ```
 
 Selection rules:
 
-- choose 2–3 experiences that cover the job's highest-value requirements,
-- explain why the experience matters rather than listing the full stack,
-- use exact evidence-backed responsibility language,
-- mention trade-offs only when they demonstrate judgment relevant to the target role,
-- exclude weak cases merely because their technology keywords match.
+- use 2–3 experiences that cover the job's highest-value requirements,
+- explain why the experience matters,
+- mention trade-offs only when they demonstrate relevant judgment,
+- link to GitHub evidence only when the repository strengthens the claim,
+- do not turn the text into a shortened README.
 
-## 3. PDF Portfolio Projection
+## P1 — GitHub Portfolio
 
-The PDF is a visual briefing document. It should not be a screenshot of the website or a long-form README exported to PDF.
+GitHub is the default technical portfolio surface.
 
-### Recommended 8–12 Page Blueprint
+### Portfolio Index Contract
 
-```text
-01 Cover
-02 Positioning + engineering profile
-03 Career / domain map
-04 Selected impact and capability map
-05–06 Case Study A
-07–08 Case Study B
-09 Case Study C or cross-project engineering dossier
-10 Decision / reliability / architecture highlights
-11 AI-assisted engineering and validation workflow (when relevant)
-12 Links / contact / evidence index
-```
-
-For a shorter version, compress to 6–8 pages and use only 2–3 cases.
-
-### Case Spread
-
-A two-page case spread may use:
+A submission-ready `PORTFOLIO.md` or profile portfolio README should contain:
 
 ```text
-Left page
-- problem
-- context / constraints
-- responsibility
-- architecture or flow diagram
-
-Right page
-- decision / implementation
-- verification
-- impact
-- evidence links / QR
+Positioning
+Career Case Studies
+Selected Public Engineering Repositories
+Engineering Capability Map
+Problem-Solving / Verification Pipeline
+AI-Assisted Engineering Validation
+Supporting Repository Index
+Resume / optional Web links
 ```
 
-### Visual Priority
+### Featured Repository Contract
 
-Prefer:
-
-1. system boundary diagram,
-2. state / sequence flow,
-3. before-after process comparison,
-4. verified performance chart,
-5. sanitized screen/wireframe,
-6. compact decision matrix.
-
-Avoid:
-
-- decorative charts without data,
-- excessive technology logos,
-- tiny code screenshots,
-- full-page screenshots with unreadable UI,
-- confidential production captures.
-
-### PDF Design System
-
-Use a restrained visual system:
-
-- strong typographic hierarchy,
-- generous whitespace,
-- one consistent grid,
-- compact labels for status / role / technology,
-- diagrams with readable captions,
-- minimal animation-dependent concepts,
-- print-safe contrast,
-- no critical information conveyed only by color.
-
-## 4. Web Portfolio Projection
-
-### Public Route Contract
+Feature 3–5 repositories. Each card contains:
 
 ```text
-/
-/projects
-/projects/[slug]
-/engineering
-/engineering/[capability]
-/decisions
-/decisions/[slug]
-/ai-agents
-/screens
-/writing
-/resume
-/releases
+repository + one-line value proposition
+Problem
+Approach
+Why it is worth opening (max 3 points)
+Verification
+Current limitation / maturity
+Direct repository URL
 ```
 
-### Home Page Contract
+### Career / R&D Separation
 
-The home page should answer, without opening another page:
+- sanitized production/professional experience belongs under Career Case Studies,
+- public personal tooling/research belongs under Public Engineering Artifacts,
+- do not imply the latter is production career experience unless verified.
 
-1. What kind of engineer is this?
-2. Which domains and systems have they worked on?
-3. What are the strongest engineering signals?
-4. Which 3–5 cases should I open?
-5. Where can I verify public work?
+### Repository Promotion Gate
+
+A repository can be featured only when:
+
+- problem definition is clear,
+- README claims match observable implementation/evidence,
+- architecture or core mechanism is understandable,
+- maturity and limitations are explicit,
+- validation/test/build path is available where appropriate,
+- repository is safe to advertise publicly,
+- it materially supports target positioning.
+
+A public repository that fails this gate is SUPPORTING, HOLD, or EXCLUDE.
+
+## P2 — Web Portfolio
+
+The website is a visual/navigation renderer for existing evidence, not a new factual narrative.
+
+### Home Page
+
+Must answer:
+
+1. what kind of engineer,
+2. which domains/systems,
+3. strongest career engineering signals,
+4. which cases/repositories to open,
+5. where public evidence can be inspected.
 
 Recommended sections:
 
 ```text
-Hero / Positioning
+Positioning
 Selected Impact
 Experience Snapshot
-Selected Case Studies
+Selected Cases
+Featured GitHub Repositories
 Engineering Capability Map
-Public Work / GitHub
 Resume CTA
 ```
 
-### Case Page Contract
+### Case Page Layers
 
 #### 15-second scan
 
-- title
-- one-line problem
-- role
-- maturity
-- capability tags
-- strongest verified impact
+- title,
+- one-line problem,
+- role,
+- maturity,
+- capabilities,
+- strongest verified effect.
 
 #### 2-minute review
 
-- context
-- constraints
-- approach
-- architecture visual
-- key decision
-- verification
-- impact
+- context,
+- constraints,
+- approach,
+- architecture/process visual,
+- key decision,
+- verification,
+- impact.
 
 #### deep dive
 
-- investigation
-- alternatives
-- implementation details
-- operational boundaries
-- failure modes
-- retrospective
-- public evidence
+- investigation,
+- alternatives/trade-offs,
+- implementation,
+- operational boundaries/failure modes,
+- retrospective,
+- evidence links.
 
-## 5. Engineering Dossier Projection
+### Design Direction
 
-Instead of duplicating project text, aggregate canonical fields across cases.
+Prefer restrained editorial design, typography, whitespace, architecture/state/sequence diagrams, and direct repository links.
 
-Example `Database` page:
+Avoid skill bars, logo walls, decorative metrics, and expensive motion/3D that does not increase technical comprehension.
 
-```text
-Positioning statement
-Relevant cases
-Schema/data-model decisions
-Query/performance investigations
-Consistency / idempotency patterns
-Operational lessons
-Evidence links
-```
+## P3 — PDF Visual Supplement
 
-Example `Reliability` page:
+PDF is optional and target-dependent. It is not required before P0/P1 are strong.
+
+Recommended 6–10 pages:
 
 ```text
-Failure modes encountered
-Retry / idempotency / batch semantics
-Observability / verification
-Deployment safety
-Incident learning
-Relevant decisions and cases
+01 Cover / positioning
+02 Career/domain map
+03 Capability + selected impact
+04–05 Case A
+06–07 Case B
+08 Public GitHub engineering artifacts
+09 Decision / reliability highlight
+10 Links / evidence index
 ```
 
-## 6. Company-Targeted Projection
+Use only visuals with a communication purpose:
 
-A target profile is a selection/weighting layer.
+1. system boundary,
+2. state/sequence flow,
+3. before/after process,
+4. verified metric chart,
+5. decision matrix,
+6. sanitized wireframe.
+
+If underlying numeric data is unavailable, do not create a chart.
+
+## P4 — Protected Interview Material
+
+Potential private/protected content:
+
+- deeper claim-to-evidence mapping,
+- authorized code excerpts,
+- detailed troubleshooting chronology,
+- sanitized internal architecture discussion,
+- technical Q&A,
+- unresolved role-confirm items.
+
+This layer is not part of the public static export or GitHub portfolio.
+
+## Engineering Dossier Projection
+
+Do not duplicate project prose. Re-index canonical case fields by capability.
+
+Example capability axes:
+
+- backend/domain engineering,
+- database/data modeling,
+- performance,
+- reliability/operations,
+- security/safety boundaries,
+- infrastructure/delivery,
+- external integration,
+- AI-assisted engineering.
+
+## Company-Targeted Projection
+
+A target profile changes selection/weighting only.
 
 Example:
 
 ```yaml
 target_id: company-role-2026
 role: Backend Engineer
-priorities:
-  backend-engineering: 5
-  database: 5
-  reliability: 4
-  cloud: 3
-  ai-assisted-engineering: 2
-preferred_cases:
+priority_capabilities:
+  backend-engineering: high
+  database: high
+  reliability: high
+  cloud: medium
+  ai-assisted-engineering: low
+application_case_order:
   - commerce-operations
-  - database-performance
-resume_order:
-  - database
-  - commerce
-  - reliability
+  - manufacturing-systems
+github_featured_repositories:
+  - stackforge-atlas
+  - harness-kit
 web_home_order:
   - commerce-operations
-  - database-performance
-  - ai-assisted-workflow
-pdf_case_limit: 3
+  - stackforge-atlas
+pdf_case_limit: 2
 ```
 
-Allowed transformations:
+Allowed:
 
-- reorder cases,
-- select relevant bullets,
-- use job-description vocabulary when semantically equivalent,
-- shorten or expand explanation,
-- emphasize a verified capability.
+- reorder cases/repositories,
+- select relevant claims,
+- use semantically equivalent job-description terms,
+- shorten/expand explanation.
 
-Forbidden transformations:
+Forbidden:
 
-- add a technology that was not used,
+- add unused technology,
 - upgrade responsibility,
-- invent metrics,
-- imply production use for a prototype,
-- hide a material limitation that changes the meaning of a claim.
-
-## 7. Protected Interview Projection
-
-The protected layer may contain deeper evidence unavailable publicly, subject to confidentiality and security rules.
-
-Potential content:
-
-- sanitized-but-detailed architecture discussion,
-- claim-to-evidence mapping,
-- deeper technical Q&A,
-- design trade-offs,
-- troubleshooting chronology,
-- code excerpts that are safe and authorized,
-- private evidence references where permitted.
-
-This layer is not generated into the public static export.
+- invent metrics/scale,
+- imply production use for prototypes/R&D,
+- hide a limitation that materially changes a claim.
 
 ## Cross-Output Consistency Gate
 
-Before publishing or submitting a bundle, compare all active outputs on:
-
 | Check | Required |
 |---|---|
-| project dates/scopes agree | yes |
+| dates/scopes agree | yes |
 | role verbs agree | yes |
 | technology claims agree | yes |
-| metrics agree with verified source | yes |
-| prototype/implemented status agrees | yes |
+| metrics have verified sources | yes |
+| implementation/prototype status agrees | yes |
+| career vs R&D classification agrees | yes |
 | public/private boundary respected | yes |
-| target adaptation changed emphasis only | yes |
+| target adaptation changes emphasis only | yes |
 
-A mismatch is treated as a content defect, not a cosmetic issue.
+A mismatch is a content defect, not a cosmetic issue.
