@@ -15,11 +15,16 @@ Manufacturing MES and business systems covering production, process, quality, in
 
 - PHP-based MES/business-system development and maintenance,
 - manufacturing production-management domain work,
-- functional changes, defect correction, and backend data-processing requests,
-- gradual legacy-structure/readability improvement.
+- functional changes, defect correction, and backend data-processing requests.
+
+**Selective scope**
+
+- gradual legacy-structure/readability improvement is useful supporting context, but remains a selective claim rather than a default headline claim.
 
 **Engineering signal**  
-The strongest signal is the ability to convert a field request into explicit **input order, query condition, state, permission, and reporting/statistics rules**, then carry the change through rollout and support without confusing application defects with local environment problems.
+The strongest draft signal is the ability to convert a field request into explicit **input order, query condition, state, permission, and reporting/statistics rules**, then carry the change through rollout and support without confusing application defects with local environment problems.
+
+The detailed problem-solving narrative below is a **source-supported candidate** and must remain draft until the protected career source is confirmed. It does not promote the canonical public claim bank by itself.
 
 This page excludes customer/factory identifiers, production records, private screenshots, support tickets, internal URLs, credentials, and unverifiable metrics.
 
@@ -81,7 +86,7 @@ This reframes “feature work” into a contract between the shop-floor workflow
 
 ## Verification Loop
 
-A change is not complete at code merge. The operational feedback loop can include:
+A change is not complete at code merge. The draft operational feedback loop can include:
 
 ```text
 implementation
@@ -95,11 +100,11 @@ implementation
 → next improvement
 ```
 
-The public portfolio treats rollout/support as part of requirements feedback, not as a separate non-engineering activity.
+The public portfolio treats rollout/support as a possible requirements-feedback source, not as proof of a particular rollout scale.
 
 ### Evidence status
 
-The public claim bank supports MES/business-system development and maintenance. More detailed chronology, leadership scope, customer count, and representative rollout examples remain protected/source-confirm material rather than public headline claims.
+The public claim bank supports MES/business-system development and maintenance. Detailed chronology, leadership scope, customer count, and representative rollout examples remain protected/source-confirm material rather than public headline claims.
 
 ---
 
@@ -122,7 +127,7 @@ Changing application code before locating the failing layer can create a second 
 
 ## Working Approach
 
-The support pattern is to separate:
+The draft support pattern separates:
 
 1. reproducible application behavior,
 2. data/state conditions,
@@ -134,7 +139,7 @@ Only after the issue is localized should the response become code change, data c
 
 ## Portfolio Value
 
-This experience demonstrates operational troubleshooting and system-boundary thinking that is directly transferable to backend/on-call work even when the original environment was manufacturing rather than cloud-native SaaS.
+If source-confirmed, this demonstrates operational troubleshooting and system-boundary thinking transferable to backend/on-call work even when the original environment was manufacturing rather than cloud-native SaaS.
 
 ---
 
@@ -142,7 +147,7 @@ This experience demonstrates operational troubleshooting and system-boundary thi
 
 Long-running PHP business systems cannot always be rewritten around an ideal architecture.
 
-A safer improvement path is:
+A safer improvement model is:
 
 ```text
 understand existing behavior
@@ -153,19 +158,28 @@ understand existing behavior
 → improve readability/module boundary where justified
 ```
 
-The goal is not to claim a complete modernization. It is to show the ability to make an old system easier to change without turning the refactor itself into the main operational risk.
+This is a **selective framing**, not a claim of complete modernization or architecture ownership.
 
 ---
 
-# Public-Ready Case Evidence
+# Claim Status
 
-Current public-safe claims include:
+## Ready
+
+Current public claim bank supports:
 
 - PHP 기반 MES 및 업무시스템 개발·유지보수 경험 보유
-- 제조 생산관리 도메인에서 운영 이슈, 기능 개선, 오류 수정, 데이터 처리 요청을 다룸
-- legacy PHP 업무시스템의 구조 개선, 모듈 정리, 가독성 개선 경험 보유
+- 제조 생산관리 도메인을 다룸
 
-These should remain the default submitted claims until the protected career source is fully confirmed.
+## Selective / source-confirm before stronger use
+
+- legacy PHP 구조 개선, 모듈 정리, 가독성 개선
+- detailed field-request decomposition examples
+- rollout / training / remote-support chronology
+- leadership/team allocation scope
+- customer/factory count
+
+The selective group should not be presented as default submitted evidence until source authority and role scope are confirmed.
 
 ---
 
@@ -176,9 +190,11 @@ These should remain the default submitted claims until the protected career sour
 | manufacturing workflow | screen/data behavior must match real process order |
 | relational business data | changes require understanding state and data relationships |
 | customer/on-premise environment | deployment/support context can differ by environment |
-| printing/device/network dependencies | reported failures must be localized before coding |
-| legacy PHP structure | incremental impact analysis is safer than rewrite-by-default |
+| printing/device/network dependencies | reported failures may require layer-by-layer localization |
+| legacy PHP structure | incremental impact analysis can be safer than rewrite-by-default |
 | private production data | examples must be generalized for public documentation |
+
+These constraints describe the case context; they do not imply every customer environment had the same topology or device set.
 
 ---
 
@@ -197,13 +213,13 @@ Potential protected interview evidence may cover rollout scope, task coordinatio
 
 ---
 
-# What This Case Demonstrates
+# What This Case Can Demonstrate After Source Confirmation
 
 - translating ambiguous operational requests into explicit system rules,
-- PHP/relational-data maintenance in a business-critical domain,
+- PHP/relational-data maintenance in a business domain,
 - state and data-flow reasoning,
 - deployment/support feedback as an engineering input,
-- troubleshooting across software and customer environment boundaries,
+- troubleshooting across software and customer-environment boundaries,
 - gradual legacy improvement rather than rewrite-first thinking.
 
 # What This Case Does Not Claim
@@ -218,7 +234,7 @@ Potential protected interview evidence may cover rollout scope, task coordinatio
 
 # Interview Deep-Dive Prompts
 
-A technical interviewer should be able to ask:
+After source confirmation, a technical interviewer should be able to ask:
 
 1. How do you turn a field request into concrete DB and screen conditions?
 2. Which production states are most dangerous to change without tracing downstream effects?
@@ -247,6 +263,6 @@ Do not publish:
 Before submission-ready promotion:
 
 1. confirm detailed problem examples against the authoritative career source,
-2. keep leadership/customer-count claims outside public text until separately verified,
+2. keep selective/leadership/customer-count claims outside public headline text until verified,
 3. review against a real manufacturing/backend job description,
 4. ensure the final public version reads as backend problem-solving rather than an operations-support checklist.
