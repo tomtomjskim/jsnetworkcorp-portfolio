@@ -12,6 +12,7 @@ const allowedPortfolioVersions = new Set([
   'PF-v0.9.0',
   'PF-v1.0.0',
   'PF-v1.0.1',
+  'PF-v1.0.2',
 ]);
 
 const privateTerms = ['tomtomjskim/burstexpress', 'Burst' + 'Express', 'Fr' + 'ecto', 'my' + 'kitchen'];
