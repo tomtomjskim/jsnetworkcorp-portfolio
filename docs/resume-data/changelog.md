@@ -2,6 +2,30 @@
 
 This changelog tracks the public-safe resume data model. Detailed raw evidence and private analysis remain outside this public repository.
 
+## 2026-08-17 / CL-v0.7 / PF-v1.0.2
+
+### Changed
+
+- Hardened the public claim bank so default positioning no longer mixes role-confirm architecture language into ready claims.
+- Added `CL-PUB-011` as a ready working-method claim: before changing a function, inspect AS-IS code, DB structure/state, permissions, administrator surfaces, batch/cron, and external API impact to define the modification scope.
+- Added the first real target resume adapter: `ax-internal-tools-ko`.
+- Changed the target headline to `Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화` while preserving backend as the primary career identity.
+- Added target-specific public evidence ordering for Internal Tools / AX roles.
+- Separated default ready claims from selective/source-confirm/role-confirm extensions in target application text.
+
+### Review
+
+- Recruiter / hiring-manager / future-teammate review was applied to the AX target adapter.
+- The header was retained.
+- The summary was revised to state repeated developer friction before AI/process terminology and to frame frontend as workflow/admin UI breadth rather than specialist depth.
+- The target adapter passed the positioning review, but remains a draft because the authoritative full protected resume chronology is still source-gapped.
+
+### Boundary
+
+- Company/internal-referral details stay outside the public repository.
+- Public R&D/tooling is current engineering evidence and is not represented as previous-employer production work.
+- `AI Engineer`, production AX-platform ownership, model-training/RAG/inference specialization, unsupported productivity metrics, and gated architecture ownership are not added.
+
 ## 2026-08-13 / CL-v0.6 / PF-v1.0.1
 
 ### Changed
