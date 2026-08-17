@@ -1,28 +1,37 @@
 # Canonical Case Study Schema
 
 Status: reference
+Strategy: PS-v1.0.0
 Updated: 2026-08-17
 
 ## Purpose
 
-This schema is the SSOT contract for project narratives. Resume bullets, cover-letter paragraphs, web case studies, PDF pages, and interview material must be projections of this record rather than independently rewritten factual sources.
+This is the SSOT contract for career/project narratives. Application text, GitHub portfolio, web, PDF, and protected interview material must be projections of these records rather than independent factual sources.
 
 ## Claim Status
 
-Every material claim should use one of these states:
-
 - `verified`: supported by a public-safe source or explicitly confirmed work history.
-- `derived`: a conservative summary derived from verified facts; source chain must be known.
-- `role-confirm`: technically plausible and present in project context, but personal ownership is not yet confirmed.
+- `derived`: conservative summary derived from verified facts; source chain is known.
+- `role-confirm`: project/system context is plausible but personal ownership is not yet confirmed.
 - `unverified`: must not appear in application outputs.
-- `proposal`: architecture, redesign, or future direction; never present as completed work.
+- `proposal`: redesign/future direction; never present as completed work.
 
 ## Visibility
 
-- `public`: safe for the public portfolio.
-- `public-sanitized`: publish only after redaction/generalization.
-- `protected`: interview-only/private surface.
-- `private`: source/evidence pointer only; never render publicly.
+- `public`: safe to publish.
+- `public-sanitized`: publish after generalization/redaction.
+- `protected`: interview/private surface only.
+- `private`: evidence/source pointer only; never render publicly.
+
+## Work Classification
+
+Every case or repository connection must declare one:
+
+- `career`: professional/production experience.
+- `public-rnd`: public personal research/tooling/experiment.
+- `portfolio-meta`: portfolio/governance artifact.
+
+Do not infer that `public-rnd` is `career` evidence.
 
 ## Canonical Record Template
 
@@ -31,6 +40,7 @@ id: project-slug
 version: PF-vNext
 status: draft
 visibility: public-sanitized
+classification: career
 maturity: implemented # implemented | partial | prototype | planned | archived
 
 identity:
@@ -58,7 +68,7 @@ context:
   business_context: |
     What the service/system needed to accomplish.
   system_context: |
-    Public-safe description of the system boundary.
+    Public-safe system boundary.
   starting_state: |
     Existing condition before the work.
 
@@ -68,13 +78,13 @@ problem:
   symptoms:
     - "Observed symptom or operational friction"
   why_it_mattered:
-    - "User / operator / system consequence"
+    - "User/operator/system consequence"
 
 constraints:
   technical:
     - "Runtime, legacy, data, compatibility, availability constraint"
   operational:
-    - "Deployment, support, data migration, business-hours constraint"
+    - "Deployment, support, migration, business-hours constraint"
   security:
     - "PII, credential, write-boundary, network constraint"
   organizational:
@@ -82,15 +92,15 @@ constraints:
 
 responsibility:
   scope: |
-    Exact personal responsibility without inflating team work into ownership.
+    Exact personal responsibility without inflating team work.
   owned:
-    - claim: "What was personally owned"
+    - claim: "Personally owned work"
       status: verified
   contributed:
-    - claim: "What was contributed to"
+    - claim: "Contributed work"
       status: verified
   excluded:
-    - "What should not be implied as ownership"
+    - "What must not be implied as ownership"
 
 investigation:
   signals:
@@ -112,16 +122,18 @@ decisions:
       - option: "A"
         upside: "..."
         downside: "..."
+        consideration: actual # actual | retrospective
       - option: "B"
         upside: "..."
         downside: "..."
+        consideration: actual
     selected: "A"
     rationale: |
-      Why the option fit the actual constraints.
+      Why this option fit the constraints.
     accepted_tradeoffs:
       - "Downside knowingly accepted"
     verification: |
-      How the decision was validated.
+      How the choice was validated.
     reconsider_when:
       - "Condition that would change the decision"
     status: verified
@@ -145,7 +157,7 @@ verification:
       description: "What was verified"
       status: verified
     - type: operational-check
-      description: "How rollout/runtime behavior was checked"
+      description: "How runtime/rollout behavior was checked"
       status: verified
   failure_modes_checked:
     - "Duplicate processing"
@@ -153,7 +165,7 @@ verification:
 
 impact:
   qualitative:
-    - claim: "Operational or engineering impact"
+    - claim: "Operational or engineering effect"
       status: verified
   quantitative:
     - metric: "latency_p95"
@@ -162,7 +174,7 @@ impact:
       unit: ms
       source: null
       status: unverified
-  note: "If a metric source is unavailable, remove the number and keep only a verified qualitative outcome."
+  note: "No source => no number in final output."
 
 retrospective:
   worked:
@@ -187,6 +199,18 @@ evidence:
       label: "Pointer only; details outside public repo"
       visibility: protected
 
+public_repositories:
+  - repository: "owner/repo"
+    relationship: supporting-rnd # direct-career-evidence | supporting-rnd | methodology | unrelated
+    url: "https://github.com/owner/repo"
+    feature_status: supporting # featured | supporting | hold | exclude
+    reason_to_open: |
+      Why this repository strengthens the portfolio.
+    verified_strengths:
+      - "Observable repository strength"
+    claim_risks:
+      - "README/implementation claim needing review"
+
 visuals:
   architecture:
     - id: architecture-overview
@@ -205,19 +229,25 @@ visuals:
       purpose: "Show verified change without invented metrics"
 
 output_hints:
-  resume:
+  application:
     priority: high
     max_bullets: 2
-  cover_letter:
-    themes:
+    narrative_themes:
       - problem-solving
       - reliability
+  github:
+    career_case_priority: high
+    repository_links:
+      - "owner/repo"
+    public_rnd_separation_required: true
   web:
+    priority: medium
     reading_layers:
       - scan
       - review
       - deep-dive
   pdf:
+    priority: optional
     preferred_visuals:
       - architecture-overview
       - before-after
@@ -233,6 +263,11 @@ targeting:
       - reliability
       - failure modes
       - deployment safety
+  repository_priority:
+    backend-commerce:
+      - owner/backend-repo
+    ai-native-backend:
+      - owner/agent-tooling
   exclusions:
     - "Unsupported framework/version claim"
 
@@ -248,59 +283,61 @@ redaction:
       public: "commerce operations platform"
 ```
 
-## Minimum Viable Case
+## Minimum Viable Career Case
 
-A case is not ready for portfolio promotion unless it has:
+A career case is not ready for P0/P1 promotion unless it has:
 
 1. a concrete problem,
 2. explicit personal responsibility,
 3. at least one meaningful constraint,
-4. an implementation or decision actually performed,
+4. an implementation/decision actually performed,
 5. a verification method,
-6. a supported impact statement,
+6. supported impact wording,
 7. redaction review.
 
-Architecture diagrams and metrics improve a case, but they cannot compensate for missing responsibility or verification.
+## Public Repository Promotion
+
+A public repository is not promoted to FEATURED by this schema alone.
+
+Require:
+
+- clear problem statement,
+- observable implementation matching description,
+- maturity/limitation disclosure,
+- validation/build/test path when appropriate,
+- no sensitive exposure,
+- relevance to the candidate's target positioning.
+
+README marketing language that exceeds evidence must be narrowed before portfolio reuse.
 
 ## Derived Output Rules
 
-### Resume
+### P0 Application Text
 
-Use only:
+Use concise `problem + action/judgment + verified effect`. Optimize for reading speed.
 
-```text
-problem + action + verified effect
-```
+### P1 GitHub
 
-Keep implementation details only when they help distinguish the engineering capability.
+Use career cases plus 3–5 selected public repositories. Keep professional experience and public R&D explicitly separated. Include direct repository URLs and a reason to open each one.
 
-### Cover Letter
+### P2 Web
 
-Use:
+Preserve layered depth and visually render the same canonical facts. Link back to direct GitHub evidence.
 
-```text
-target requirement
-→ relevant context
-→ engineering judgment/action
-→ verified outcome
-→ why it transfers to the target role
-```
+### P3 PDF
 
-Do not turn the cover letter into a shortened project README.
+Generate only when useful for the target application. Keep 2–4 strongest cases and evidence-backed visuals.
 
-### Website
+### P4 Interview
 
-Preserve the full reading layers and evidence links. Lead with the problem and impact, not the technology list.
-
-### PDF
-
-Select only 3–5 strongest cases. Prefer diagrams, decisions, and before/after flows. Keep dense implementation details for the web/protected interview surface.
+Use deeper protected evidence and unresolved role-confirm items outside public GitHub/static deployment.
 
 ## Anti-Fabrication Rules
 
-- Never infer a personal ownership claim from repository existence alone.
+- Never infer personal ownership from repository existence.
 - Never convert `participated` into `designed`, `led`, or `owned` without evidence.
-- Never invent numerical impact to improve storytelling.
-- Never invent alternatives after the fact unless the choice was genuinely considered or is clearly labeled retrospective analysis.
-- Never present a proposal/prototype as production implementation.
-- When evidence conflicts, choose the narrower claim and flag the conflict for review.
+- Never invent numerical impact.
+- Never invent historical alternatives; label retrospective comparison explicitly.
+- Never present proposal/prototype/R&D as production implementation.
+- Never treat a public AI/tool repository as career production evidence without verification.
+- When evidence conflicts, choose the narrower claim and flag the conflict.
