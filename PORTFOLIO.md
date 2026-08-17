@@ -32,7 +32,8 @@ Public Engineering Repository
 
 자소서·지원서용 짧은 문장은 별도 P0 layer에서 관리합니다.
 
-- [`docs/application-text/claim-blocks-v1.md`](docs/application-text/claim-blocks-v1.md)
+- current candidate: [`docs/application-text/claim-blocks-v2-candidate.md`](docs/application-text/claim-blocks-v2-candidate.md)
+- previous baseline: [`docs/application-text/claim-blocks-v1.md`](docs/application-text/claim-blocks-v1.md)
 
 ---
 
