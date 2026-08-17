@@ -8,7 +8,7 @@ PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템을 개발·유�
 
 기능을 수정할 때 AS-IS 코드와 DB 구조·상태값, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인한 뒤 변경 범위를 산정하는 운영형 개발 방식에 익숙합니다.
 
-최근에는 반복되는 개발 업무와 프로젝트 설정을 내부 도구와 workflow로 구조화하고, AI-assisted 결과를 test·CI·독립 리뷰·사람 승인으로 검증하는 공개 engineering 프로젝트를 진행하고 있습니다.
+최근에는 반복되는 개발 설정과 검수 절차를 내부 도구와 workflow로 구조화하고, 결과를 test·CI·독립 리뷰로 검증하는 공개 engineering 프로젝트를 진행하고 있습니다.
 
 이 문서는 특정 회사나 내부 추천 정보를 포함하지 않는 **Internal Tools / AX 역할용 공개 projection**입니다.
 
@@ -24,7 +24,7 @@ PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템을 개발·유�
 | Admin / operational surfaces | commerce/MES career cases + change-impact method |
 | API / data-flow reasoning | career working method + StackForge interface contracts |
 | Web breadth | workflow/admin UI와 backend/data flow를 함께 고려하는 범위 |
-| Verification discipline | tests, CI, failure accounting, adversarial review |
+| Verification discipline | tests, CI, dependency audit, failure accounting, adversarial review |
 
 The positioning is **backend-centered**. It does not claim ML/model-training specialization or frontend-specialist depth.
 
@@ -107,18 +107,31 @@ Resolver
 - project-specific values를 parameterized module로 분리
 - abstraction이 과한 조건과 npm 미배포 상태도 README에 명시
 
-### Current caveat
+### Public Verification — merged main
 
-최종 제출에서 current test state를 직접 언급하려면 현재 HEAD의:
+검증 PR에서 단순 test pass만 보고 승격하지 않고 dependency 상태까지 적대적으로 확인했습니다.
+
+첫 검수에서는 lint/test/build가 통과했지만 locked dependency에 high-severity 항목이 남아 있어 promotion을 보류했습니다. lockfile을 기존 dependency range 안에서 remediation한 뒤 security gate를 추가했고, 최종적으로 `main`에 squash merge했습니다.
+
+Merged main validation:
 
 ```text
+Node.js 22 / 24
 npm ci
+npm audit --audit-level=high
 npm run lint
-npm test
+npm test          # 36 tests
 npm run build
+node dist/cli.js --help
 ```
 
-결과를 다시 고정해야 합니다.
+위 단계가 양쪽 Node 버전에서 모두 성공했습니다.
+
+Known limitation:
+
+- npm publication/adoption 성과는 아직 증명하지 않음
+- low-severity dev-tool advisory는 high gate와 분리해 known limitation으로 유지
+- CI 성공은 production adoption 또는 생산성 향상률을 의미하지 않음
 
 ---
 
@@ -265,7 +278,7 @@ Operational judgment  → CL-PUB-011
 
 ```text
 1. This page
-2. harness-kit README
+2. harness-kit README + merged validation workflow
 3. Codex Workflow Skills README + forward-test report
 4. StackForge Atlas README / recovery evidence
 5. Career case deep dives
