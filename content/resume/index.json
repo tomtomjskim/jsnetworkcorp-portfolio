@@ -1,6 +1,6 @@
 {
-  "version": "PF-v1.0.1",
-  "updated": "2026-08-13",
+  "version": "PF-v1.1.0",
+  "updated": "2026-08-17",
   "visibility": "public-sanitized",
   "resumes": [
     {
@@ -20,6 +20,16 @@
       "targetRole": "backend",
       "status": "draft",
       "contentPath": "content/resume/variants/backend-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "backend-ai-assisted-ko",
+      "title": "AI-assisted Backend Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "backend-ai-assisted",
+      "status": "draft",
+      "contentPath": "content/resume/variants/backend-ai-assisted-ko.md",
       "claimBank": "docs/resume-data/public-claim-bank.md",
       "redactionLevel": "PUBLIC_SAFE"
     },
