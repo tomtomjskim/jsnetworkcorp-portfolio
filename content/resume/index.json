@@ -1,6 +1,6 @@
 {
-  "version": "PF-v1.0.1",
-  "updated": "2026-08-13",
+  "version": "PF-v1.0.2",
+  "updated": "2026-08-17",
   "visibility": "public-sanitized",
   "resumes": [
     {
@@ -60,6 +60,16 @@
       "targetRole": "ai-assisted-workflow",
       "status": "draft",
       "contentPath": "content/resume/variants/ai-assisted-workflow-ko.md",
+      "claimBank": "docs/resume-data/public-claim-bank.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "id": "ax-internal-tools-ko",
+      "title": "AX / Internal Tools Resume Variant — KO",
+      "language": "ko",
+      "targetRole": "ax-internal-tools",
+      "status": "draft",
+      "contentPath": "content/resume/variants/ax-internal-tools-ko.md",
       "claimBank": "docs/resume-data/public-claim-bank.md",
       "redactionLevel": "PUBLIC_SAFE"
     },
