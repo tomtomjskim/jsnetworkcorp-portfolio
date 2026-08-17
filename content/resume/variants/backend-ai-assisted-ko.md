@@ -1,6 +1,6 @@
 # AI-assisted Backend Resume Variant — KO
 
-version: PF-v1.1.0
+version: PF-v1.0.1
 updated: 2026-08-17
 visibility: public-sanitized
 status: draft
@@ -16,7 +16,7 @@ PHP 기반 커머스·물류·MES 업무시스템을 개발해 왔습니다. LLM
 
 ## Cover Letter Module
 
-운영 중인 PHP 프로젝트에서는 LLM을 코드 생성보다 기존 구조와 변경 영향을 확인하는 보조 수단으로 사용하고 있습니다. Burst Express의 AS-IS 코드·DB 구조와 외부 API 문서를 분석하고, 보안상 누락과 반복 오류, 공통화 대상을 점검해 프로젝트 소스맵과 기능 문서, 개발 규칙으로 정리했습니다. 이 기준은 백엔드·프론트 2인 개발 환경의 PR 리뷰와 커밋, 기능 검수에 실제로 사용하고 있습니다.
+운영 중인 PHP 프로젝트에서는 LLM을 코드 생성보다 기존 구조와 변경 영향을 확인하는 보조 수단으로 사용하고 있습니다. 커머스 플랫폼의 AS-IS 코드·DB 구조와 외부 API 문서를 분석하고, 보안상 누락과 반복 오류, 공통화 대상을 점검해 프로젝트 소스맵과 기능 문서, 개발 규칙으로 정리했습니다. 이 기준은 백엔드·프론트 2인 개발 환경의 PR 리뷰와 커밋, 기능 검수에 실제로 사용하고 있습니다.
 
 기능은 요구사항 정리부터 설계, 구현, 코드 검수, 디버깅, Playwright E2E까지 단계별로 진행합니다. 자동화 결과가 테스트 실행과 성공을 항상 보장하지 않는다는 점을 확인한 뒤 시나리오와 결과를 Markdown으로 남기고 실제 실행 결과를 확인하도록 보완했습니다. 다국어 언어팩에는 Ollama와 Gemma 3 기반 로컬 번역 도구를 적용해 반복 번역과 파일 변환 작업을 줄였으며, 최종 코드와 업무 정책, 화면 흐름은 직접 검수했습니다.
 
@@ -35,7 +35,7 @@ Primary:
 
 - [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills)
 - [`claude-code-guide`](https://github.com/tomtomjskim/claude-code-guide)
-- Burst Express의 공개 가능한 문제·결정·검증 설명
+- 운영 커머스 플랫폼의 공개 가능한 문제·결정·검증 설명
 - Ollama·Gemma 3 언어팩 작업의 일반화된 구조와 결과물
 
 Supporting:
