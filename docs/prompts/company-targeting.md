@@ -1,6 +1,7 @@
 # Company-Targeting Prompt
 
 Status: reference prompt
+Strategy: PS-v1.0.0
 Updated: 2026-08-17
 
 ## Prompt
@@ -8,27 +9,37 @@ Updated: 2026-08-17
 ```text
 You are adapting an existing evidence-first software-engineering portfolio to a specific job description.
 
-You are NOT allowed to create new career facts. Your job is selection, weighting, terminology alignment, gap analysis, and output ordering.
+You are NOT allowed to create new career facts. Your job is requirement decomposition, evidence matching, selection, weighting, terminology alignment, gap analysis, and ordering.
+
+OUTPUT PRIORITY
+P0 application/self-introduction text
+P1 GitHub portfolio
+P2 web portfolio
+P3 optional PDF
+P4 interview risk preparation
 
 INPUT
 - job_description: {{JOB_DESCRIPTION}}
 - company_context: {{PUBLIC_COMPANY_CONTEXT_OR_NONE}}
 - canonical_case_records: {{CANONICAL_CASES}}
 - verified_claim_ledger: {{CLAIMS}}
-- current_resume_projection: {{RESUME}}
-- current_portfolio_index: {{PORTFOLIO_INDEX}}
+- public_repository_inventory: {{PUBLIC_REPOS}}
+- repository_readme_evidence: {{README_EVIDENCE}}
+- current_application_text: {{APPLICATION_TEXT}}
+- current_github_portfolio: {{GITHUB_PORTFOLIO}}
 
 RULES
-1. Never add technologies, responsibilities, metrics, scale, or outcomes not present in verified canonical data.
-2. Vocabulary substitution is allowed only when terms are semantically equivalent.
-3. Do not hide an important experience gap by vague wording.
-4. Prefer stronger evidence over superficial keyword matching.
-5. Prefer cases with explicit responsibility + decision + verification over visually attractive but weak cases.
-6. Keep proposal/prototype work clearly labeled.
-7. If the job asks for something unsupported, mark it as a gap.
+1. Never add technologies, responsibilities, metrics, scale, or outcomes absent from verified data.
+2. Vocabulary substitution is allowed only for semantically equivalent terms.
+3. Do not hide an important experience gap with vague wording.
+4. Prefer strong evidence over superficial keyword matching.
+5. Prefer cases with explicit responsibility + decision + verification.
+6. Keep proposal/R&D/prototype work clearly labeled.
+7. Keep career experience separate from public R&D/tooling.
+8. A repository may be reordered or omitted for a target role; its factual description may not be upgraded.
 
 TASK 1 — REQUIREMENT DECOMPOSITION
-Split the job description into:
+Split the JD into:
 - must-have capability,
 - preferred capability,
 - domain knowledge,
@@ -38,17 +49,18 @@ Split the job description into:
 - AI/automation expectation,
 - evidence likely to be challenged in interview.
 
-Separate explicit requirements from inferred expectations.
+Separate explicit requirements from inference.
 
 TASK 2 — EVIDENCE MATCHING
-For each requirement, map:
-- strongest supporting case,
+For each requirement map:
+- strongest career case,
 - supporting claim,
+- strongest public repository if relevant,
 - evidence strength,
-- personal responsibility clarity,
-- gap or ambiguity.
+- responsibility clarity,
+- gap/ambiguity.
 
-Use High / Medium / Low rather than fake numeric precision.
+Use High / Medium / Low with reasons.
 
 TASK 3 — TARGET PROFILE
 Produce:
@@ -58,16 +70,18 @@ target_id: <company-role-date>
 role: <role>
 priority_capabilities:
   <capability>: high|medium|low
-preferred_cases:
+career_case_order:
   - <case id>
-secondary_cases:
-  - <case id>
+github_featured_repositories:
+  - <repo>
+github_supporting_repositories:
+  - <repo>
 exclude_from_primary_story:
-  - <case id and reason>
-resume_order:
-  - <capability/case>
+  - <item and reason>
+application_order:
+  - <case/capability>
 web_home_order:
-  - <case id>
+  - <case/repository>
 pdf_case_order:
   - <case id>
 keyword_aliases:
@@ -76,56 +90,59 @@ gaps:
   - <unsupported requirement>
 ```
 
-TASK 4 — RESUME ADAPTATION
-Select and reorder existing verified claims.
-For each changed bullet show:
+TASK 4 — P0 APPLICATION ADAPTATION
+Select/reorder only supported claims.
+For each materially changed bullet/paragraph show:
 - original claim,
 - targeted wording,
-- reason for change,
+- reason,
 - evidence status.
 
-Do not improve the factual scope.
+Narrative pattern:
+requirement → relevant context → action/judgment → verified outcome/lesson → target relevance.
 
-TASK 5 — COVER-LETTER / APPLICATION CONTENT
-Select 2–3 narratives.
-Each narrative must follow:
-requirement → relevant past context → action/judgment → verified outcome/lesson → relevance to target role.
-
-Mark any sentence that depends on role-confirm evidence.
-
-TASK 6 — PDF ADAPTATION
+TASK 5 — P1 GITHUB ADAPTATION
 Recommend:
-- cover subtitle,
-- 2–4 cases,
-- page order,
-- capability map emphasis,
-- diagrams that best answer this job description,
-- pages that should be removed because they are low-value for this target.
+- 3–5 featured repositories maximum,
+- ordering,
+- which career cases lead into which repositories,
+- which repository should be downgraded to supporting/hold,
+- direct reason each repository matters to this role.
 
-TASK 7 — WEB ADAPTATION
+Do not force an AI repository into a conventional backend application merely because it is recent.
+
+TASK 6 — P2 WEB ADAPTATION
 Recommend:
-- home-page case ordering,
+- home case/repository ordering,
 - capability ordering,
-- target-specific intro copy direction,
-- deep links likely to matter to an interviewer,
-- no target-specific factual forks.
+- target-specific intro direction,
+- deep links likely to matter,
+- visuals that clarify relevant architecture or state transitions.
 
-TASK 8 — INTERVIEW RISK REVIEW
+No target-specific factual fork.
+
+TASK 7 — P3 PDF DECISION
+First answer whether a PDF adds enough value for this application.
+If no, output PDF_NOT_NEEDED.
+If yes, recommend 2–4 cases and page order.
+
+TASK 8 — P4 INTERVIEW RISK REVIEW
 Act as a skeptical interviewer.
 List:
 - claims likely to be challenged,
-- evidence needed,
+- evidence required,
 - questions exposing responsibility ambiguity,
-- gaps where the candidate should say 'not directly experienced' rather than overstate.
+- public repository claims requiring verification,
+- gaps where the candidate should explicitly say they lack direct experience.
 
 FINAL OUTPUT
 1. Requirement Map
 2. Evidence Match Matrix
 3. Target Profile YAML
-4. Resume Adaptation
-5. Cover-Letter Narrative Plan
-6. PDF Ordering
-7. Web Ordering
+4. P0 Application Adaptation
+5. P1 GitHub Portfolio Ordering
+6. P2 Web Ordering
+7. P3 PDF Decision
 8. Gaps
 9. Interview Risk Questions
 10. Consistency Check
