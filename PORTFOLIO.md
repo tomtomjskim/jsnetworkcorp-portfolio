@@ -1,6 +1,6 @@
 # Backend Engineering Portfolio
 
-> Strategy `PS-v1.2.0` · public-sanitized draft · 2026-08-17
+> Strategy `PS-v1.3.0` · general-backend public-sanitized projection · 2026-08-17
 
 PHP/MySQL 기반의 제조 MES와 커머스·물류 업무시스템을 개발·유지보수해 온 백엔드 개발자입니다.
 
@@ -27,7 +27,7 @@ Public Engineering Repository
 - **Backend / Business Systems:** PHP, MySQL 기반 운영 시스템의 기능 개선과 유지보수
 - **Domains:** 제조 MES, 커머스, 물류·배송, 외부 시스템 연동
 - **Ready Problem-Solving Signal:** AS-IS 코드·DB 상태·권한·관리자·batch/cron·외부 API를 포함한 변경 영향 분석
-- **Current Engineering Evidence:** failure/recovery, tests, CI, agent-assisted review를 공개 repository로 검증
+- **Current Engineering Evidence:** failure/recovery, tests, CI, dependency audit, agent-assisted review를 공개 repository로 검증
 
 자소서·지원서용 문장:
 
@@ -46,7 +46,7 @@ READY
 = current public claim bank permits submission-safe use
 
 DEEP-DIVE CANDIDATE
-= protected supporting evidence exists, but exact historical example/role still needs source-confirm
+= protected supporting evidence exists, but exact historical example/role still needs public-promotion review
 ```
 
 ## 1. Commerce & Fulfillment Operations
@@ -85,9 +85,9 @@ symptom
 → downstream effect
 ```
 
-이 구체 사례는 source-confirm 전까지 제출용 역사 사실로 승격하지 않습니다.
+구체 사례를 공개 포트폴리오의 확정 역사 사실로 쓸 때는 claim bank/public-redaction review를 먼저 거칩니다.
 
-canonical model, idempotency, signed API, PII/security policy, reconciliation ownership도 현재 role-confirm입니다.
+canonical model, idempotency, signed API, PII/security policy, reconciliation ownership도 현재 public claim bank에서는 role-confirm입니다.
 
 **Deep dive:** [`content/projects/commerce-fulfillment-operations.md`](content/projects/commerce-fulfillment-operations.md)
 
@@ -118,14 +118,14 @@ field request
 
 또한 애플리케이션/데이터 문제와 PC·네트워크·프린터·계정/권한 등 환경 계층을 구분하는 지원 경험이 후보 evidence로 남아 있습니다.
 
-### Selective / Source-Confirm
+### Selective / Public-Promotion Review
 
 - legacy PHP 구조의 점진적 모듈/가독성 개선
 - 상세 현장 요구사항 분해 사례
 - 도입·교육·원격지원 chronology
 - 고객사 수와 개발 리드 범위
 
-이 항목들은 claim/source가 승격되기 전까지 제출 headline으로 사용하지 않습니다.
+Protected source에서는 근거가 확보되어 있어도 공개본에는 별도 공개 범위 검토 후 반영합니다.
 
 **Deep dive:** [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
 
@@ -168,7 +168,7 @@ Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs
 
 ---
 
-## 2. harness-kit — FEATURED, verification caveat
+## 2. harness-kit — FEATURED / CURRENT CI VERIFIED
 
 **Problem**  
 여러 프로젝트의 agent configuration을 수동 복제하면 설정 중복과 drift가 발생합니다.
@@ -178,11 +178,30 @@ Detailed audit: [`docs/github-portfolio/featured-repo-audit-2026-08-17.md`](docs
 - typed module/config structure
 - resolver → loader → validator → merger → renderer → writer pipeline
 - Zod validation
-- Vitest unit-test structure
+- dedicated merger / renderer / type tests
 - abstraction이 불필요한 조건과 npm 미배포 상태를 README에 명시
 
-**Current gate**  
-최종 제출 전 현재 HEAD의 `npm ci → lint → test → build`를 재현해 상태를 고정해야 합니다. 과거 coverage 수치는 재검증 전 사용하지 않습니다.
+**Merged-main validation**
+
+첫 lint/test/build 검수에서 dependency high-severity 항목이 남아 있는 것을 발견해 승격을 보류했고, lockfile remediation과 audit gate를 추가한 뒤 `main`에 병합했습니다.
+
+```text
+Node.js 22 / 24
+npm ci
+npm audit --audit-level=high
+npm run lint
+npm test        # 36 tests
+npm run build
+node dist/cli.js --help
+```
+
+양쪽 Node 버전에서 모두 성공했습니다.
+
+Known limits:
+
+- npm publication/adoption은 증명하지 않음
+- low-severity dev-tool advisory는 known limitation으로 유지
+- CI success를 production adoption이나 productivity percentage로 확대하지 않음
 
 **Repository:** https://github.com/tomtomjskim/harness-kit
 
@@ -227,27 +246,13 @@ Matrix: [`docs/github-portfolio/repository-candidate-matrix.md`](docs/github-por
 |---|---|---|
 | Backend / domain reasoning | Commerce, MES | StackForge Atlas |
 | Change-impact analysis | `CL-PUB-011 ready` | StackForge contract/evidence model |
-| State / data-flow deep dive | specific historical examples source-confirm | StackForge pilots |
-| Reliability / failure thinking | batch boundary ready; deeper historical cases gated | StackForge recovery drill |
-| Legacy change safety | MES legacy improvement selective | harness-kit configuration pipeline |
+| State / data-flow deep dive | protected evidence; public promotion separately reviewed | StackForge pilots |
+| Reliability / failure thinking | batch boundary ready; deeper historical cases gated publicly | StackForge recovery drill |
+| Legacy change safety | protected evidence; public use selective | harness-kit configuration pipeline |
 | External integration | commerce/logistics domain experience | public reference contracts/failure patterns |
 | AI-assisted engineering | supporting work method | Codex Workflow Skills, harness-kit |
 
 이 표는 숙련도 점수가 아니라 **어떤 evidence가 어떤 질문에 답하는지**를 보여줍니다.
-
----
-
-# Working Principles
-
-Ready career positioning:
-
-```text
-변경하기 전에 기존 코드와 데이터/운영 영향 범위를 확인한다.
-```
-
-Broader principles such as explicit failure-path review, environment-layer troubleshooting, and incremental legacy improvement are kept in the relevant evidence status rather than generalized into universal historical claims.
-
-Public engineering repositories can separately demonstrate stronger current validation practices such as tests, CI, recovery drills, and adversarial review.
 
 ---
 
@@ -260,7 +265,7 @@ Public engineering repositories can separately demonstrate stronger current vali
 - internal endpoint / hostname / credential,
 - raw production log와 screenshot,
 - 공개 권한이 없는 내부 기술자료,
-- source-confirm이 끝나지 않은 강한 ownership/metric claim.
+- 공개 검토가 끝나지 않은 강한 ownership/metric claim.
 
 공개 Case Study는 실제 문제를 일반화한 설명이며 production architecture dump가 아닙니다.
 
@@ -281,8 +286,9 @@ P4    Protected interview evidence
 
 새 PHP/MySQL reference repository는 필수 작업이 아니라, 실제 채용공고나 피드백에서 public-code gap이 확인될 때만 다시 검토합니다.
 
-- [`docs/portfolio-strategy/versions/PS-v1.2.0.md`](docs/portfolio-strategy/versions/PS-v1.2.0.md)
+- [`docs/portfolio-strategy/versions/PS-v1.3.0.md`](docs/portfolio-strategy/versions/PS-v1.3.0.md)
 - [`docs/portfolio-strategy/CHANGELOG.md`](docs/portfolio-strategy/CHANGELOG.md)
-- [`docs/reviews/ps-v1.2-career-case-adversarial-review.md`](docs/reviews/ps-v1.2-career-case-adversarial-review.md)
+
+Internal Tools / AX 역할에는 별도 [`PORTFOLIO-AX.md`](PORTFOLIO-AX.md) projection을 사용합니다.
 
 웹사이트는 새로운 사실을 만드는 별도 포트폴리오가 아니라, 이 evidence를 더 빠르게 탐색하도록 시각화하는 후속 surface입니다.
