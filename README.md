@@ -1,24 +1,36 @@
 # JSNetworkCorp Portfolio
 
-Public-safe career portfolio, GitHub-native technical portfolio, and Next.js visual portfolio scaffold.
+Public-safe career portfolio, GitHub-native technical portfolio, and downstream Next.js visual surface.
+
+## Start Here — Hiring Portfolio
+
+For a hiring-oriented overview, read:
+
+> **[`PORTFOLIO.md`](PORTFOLIO.md)**
+
+It is the primary public index for:
+
+- backend positioning,
+- sanitized career case studies,
+- selected public engineering repositories,
+- evidence/claim boundaries.
+
+The website is a later visual projection of the same evidence. It must not become a separate factual source.
 
 ## Current Delivery Priority
 
-Strategy: `PS-v1.0.0`
+Strategy: `PS-v1.2.0`
 
 ```text
-1. Application / self-introduction text
-2. GitHub portfolio
-3. Web portfolio
-4. PDF visual supplement
-5. Protected interview deep dive
+P0    application / self-introduction text
+P1    career case studies + GitHub portfolio
+P1.5  public repository quality / verification
+P2    web visual projection
+P3    optional PDF supplement
+P4    protected interview deep dive
 ```
 
-Start with the GitHub-native portfolio:
-
-- [`PORTFOLIO.md`](PORTFOLIO.md)
-
-The website is a later visual projection of the same evidence. It must not become a separate factual source.
+A new PHP/MySQL reference repository is currently **optional/deferred**, not a prerequisite for the portfolio.
 
 ## Content Boundary
 
@@ -30,13 +42,13 @@ Recommended split:
 
 ```text
 GitHub / PORTFOLIO.md
-└─ primary public technical portfolio and direct repository evidence
+└─ primary public hiring/technical portfolio
 
 portfolio.jsnetworkcorp.com
-└─ restrained visual projection of public-safe portfolio data
+└─ restrained visual projection of public-safe evidence
 
-interview.jsnetworkcorp.com or protected server path
-└─ detailed interview kit from private source or server-only generated artifacts
+protected interview surface
+└─ deeper evidence generated from authorized private sources
 ```
 
 ## Separately Versioned Strategy
@@ -48,14 +60,49 @@ PF-* = public portfolio content / implementation milestone
 PS-* = portfolio strategy / output priority / review policy
 ```
 
+Current history:
+
+- `PS-v0.9.0` — parallel multi-output evidence-first proposal
+- `PS-v1.0.0` — application-first / GitHub-first
+- `PS-v1.1.0` — evidence-ranked repository promotion + proposed PHP reference
+- `PS-v1.2.0` — career-case-first refinement; PHP reference deferred
+
 See:
 
 - `docs/portfolio-strategy/README.md`
 - `docs/portfolio-strategy/CHANGELOG.md`
-- `docs/portfolio-strategy/versions/PS-v0.9.0.md`
-- `docs/portfolio-strategy/versions/PS-v1.0.0.md`
+- `docs/portfolio-strategy/versions/PS-v1.2.0.md`
 
-Prior strategy snapshots are preserved so future changes can be compared rather than silently overwritten.
+Prior snapshots are preserved so strategy changes can be compared rather than silently overwritten.
+
+## Evidence Model
+
+The portfolio separates evidence by what it can actually prove.
+
+### Career Case Studies
+
+Sanitized historical work/problem-solving evidence:
+
+- `content/projects/commerce-fulfillment-operations.md`
+- `content/projects/manufacturing-mes-business-systems.md`
+
+Detailed problem-solving narratives remain draft/source-confirm candidates until protected source authority is complete.
+
+### Public Engineering Artifacts
+
+Current public implementation/verification evidence, selected by target role:
+
+- `stackforge-atlas` — primary current engineering artifact
+- `harness-kit` — featured with current-HEAD verification caveat
+- `codex-workflow-skills` — target-dependent featured/supporting
+
+Do not imply that recent public R&D/tooling is proprietary employer production work.
+
+### Application Text
+
+- current candidate: `docs/application-text/claim-blocks-v2-candidate.md`
+- previous baseline: `docs/application-text/claim-blocks-v1.md`
+- canonical factual authority: `docs/resume-data/public-claim-bank.md`
 
 ## Evidence-First Authoring Architecture
 
@@ -63,17 +110,18 @@ Application text, GitHub portfolio, web, PDF, and protected interview material d
 
 Reference set:
 
-- `docs/portfolio-reference-architecture.md` — priority model, five portfolio views, canonical flow
-- `docs/content-system/case-study-schema.md` — project/claim/evidence SSOT schema
-- `docs/content-system/output-contracts.md` — P0–P4 output contracts
-- `docs/templates/project-case-study-template.md` — reusable case-study template
-- `docs/templates/decision-record-template.md` — engineering decision template
-- `docs/templates/github-portfolio-template.md` — GitHub-native portfolio template
-- `docs/prompts/portfolio-master-orchestrator.md` — source-to-portfolio master prompt
-- `docs/prompts/github-portfolio-builder.md` — public repository triage and GitHub portfolio prompt
-- `docs/prompts/company-targeting.md` — job-description targeting prompt
-- `docs/prompts/multichannel-renderer.md` — application/GitHub/web/PDF renderer prompt
-- `docs/github-portfolio/repository-candidate-matrix.md` — reviewed public repository candidates
+- `docs/portfolio-reference-architecture.md`
+- `docs/content-system/case-study-schema.md`
+- `docs/content-system/output-contracts.md`
+- `docs/templates/project-case-study-template.md`
+- `docs/templates/decision-record-template.md`
+- `docs/templates/github-portfolio-template.md`
+- `docs/prompts/portfolio-master-orchestrator.md`
+- `docs/prompts/github-portfolio-builder.md`
+- `docs/prompts/company-targeting.md`
+- `docs/prompts/multichannel-renderer.md`
+- `docs/github-portfolio/repository-candidate-matrix.md`
+- `docs/reviews/ps-v1.2-career-case-adversarial-review.md`
 
 Core principle:
 
@@ -81,27 +129,17 @@ Core principle:
 Evidence > Problem Solving > Impact > Architecture > Readability > Design > Animation
 ```
 
-The same verified facts may be reordered or summarized for a target company, but role scope, metrics, implementation maturity, career-vs-R&D classification, and evidence status must not change between outputs.
-
-## Career / Public R&D Boundary
-
-The GitHub portfolio keeps these separate:
-
-- **Career Case Studies** — sanitized professional/production experience.
-- **Public Engineering Artifacts** — public repositories that demonstrate tools, experiments, engineering practices, or reusable systems.
-
-Do not imply that a recent public AI/tooling repository is a production career project unless that relationship is verified.
+Target-company adaptation may change selection, ordering, and vocabulary. It must not change role scope, metrics, maturity, career-vs-R&D classification, or evidence status.
 
 ## Scope
 
 - public-safe resume/application content management
 - GitHub-native `PORTFOLIO.md`
+- career case-study authoring
 - public repository evidence/review matrix
-- evidence-first case studies and engineering decision records
 - target-role content projection
 - Next.js App Router / React + TypeScript visual surface
 - project explorer and screen/wireframe gallery
-- AI agents / LLM workflow portfolio section
 - static export target for `portfolio.jsnetworkcorp.com`
 - protected interview-surface guidance
 
@@ -116,7 +154,7 @@ content/resume/
 content/releases/
 ```
 
-The current repository already keeps private claim-to-evidence maps, internal project identifiers, raw evidence, deployment values, production endpoints, and sensitive data outside the public surface.
+Private claim-to-evidence maps, internal project identifiers, raw evidence, deployment values, production endpoints, and sensitive records remain outside the public surface.
 
 Key files:
 
@@ -126,8 +164,6 @@ Key files:
 - `docs/resume-data/public-claim-bank.md`
 - `docs/resume-data/redaction-boundary.md`
 - `docs/resume-data/protected-interview-bridge.md`
-- `content/projects/index.json`
-- `content/resume/index.json`
 
 ## Web Routes
 
@@ -143,7 +179,7 @@ Current implemented routes:
 /releases
 ```
 
-Target evidence-first IA additionally introduces logical `engineering`, `decisions`, and `writing` surfaces. Web implementation is lower priority than application text and GitHub portfolio normalization.
+Target evidence-first IA additionally introduces logical `engineering`, `decisions`, and `writing` surfaces. Web implementation stays lower priority than application text, career-case confirmation, and GitHub portfolio targeting.
 
 See `docs/information-architecture.md`.
 
@@ -164,15 +200,15 @@ Public web deployment remains a static export:
 GitHub Actions -> npm ci -> npm run build -> out/ -> rsync -> nginx static root
 ```
 
-The deploy workflow must target only the public static root. Protected interview materials remain separate.
+Protected interview materials remain separate.
 
-## Next Implementation Order
+## Next Validation Order
 
 ```text
-1. normalize application/self-introduction claim blocks
-2. audit and strengthen public repository READMEs
-3. finalize submission-ready PORTFOLIO.md
-4. add target-company repository/case ordering
-5. render restrained web UI from the same canonical data
-6. produce PDF only when an application benefits from it
+1. source-confirm detailed career case narratives
+2. test P0/P1 against a real target job description
+3. run recruiter / hiring-manager / engineer multi-lens review
+4. verify current HEAD of any repository selected for submission
+5. produce a target-specific submission projection
+6. implement web/PDF only when they add clear value
 ```
