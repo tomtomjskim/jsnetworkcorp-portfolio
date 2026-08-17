@@ -1,5 +1,36 @@
 # Portfolio Strategy Changelog
 
+## PS-v1.3.0 — 2026-08-17
+
+### Changed
+
+- Added the first real target-role adapter for a backend-centered Internal Tools / AX / development-automation role family.
+- Kept the recommended header as `Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화` after independent recruiter, hiring-manager, and future-teammate review.
+- Added `content/resume/variants/ax-internal-tools-ko.md` and registered it as a public-safe target resume variant.
+- Added `PORTFOLIO-AX.md` as a target-specific GitHub portfolio projection without exposing company/internal-referral details.
+- Added a requirement-to-evidence matrix for internal tools, backoffice, API, web breadth, AI workflow, and development/operations automation.
+- Changed public repository order for this target to `harness-kit → codex-workflow-skills → stackforge-atlas` while keeping general-backend ordering unchanged.
+- Tightened the target summary after adversarial review: repeated friction/problem now appears before AI/process terminology; frontend is framed as admin/workflow UI breadth rather than specialist positioning.
+- Preserved a source-gap gate: the public target adapter is not a standalone final resume until merged into an authoritative protected chronology.
+
+### Rationale
+
+The first real application target confirms the value of the company-targeted portfolio model proposed earlier: stronger matching comes from **selecting and reordering existing evidence**, not from inventing company-specific experience.
+
+For this target family, Internal Tools and AX are primary requirements, so recent public tooling should become easier to discover without replacing the candidate's long-term PHP/MySQL business-system identity.
+
+The target adapter therefore uses this reading order:
+
+```text
+backend/business-system career
+→ internal tooling
+→ AI-assisted workflow / automation
+→ API/admin/web breadth
+→ public engineering verification
+```
+
+The exact referral and company context stay private; only generalized role requirements enter the public repository.
+
 ## PS-v1.2.0 — 2026-08-17
 
 ### Changed
