@@ -4,7 +4,8 @@ const localLlmFlow = [
   '한국어 key/value',
   'Python + Ollama / Gemma 3',
   'EN / JA / ZH 번역 초안',
-  'PHP / JSON 변환',
+  'PHP 언어팩 생성',
+  'JSON 변환',
   'Human validation'
 ];
 
@@ -44,7 +45,7 @@ export default function AxCasesPage() {
             <h2>01. Local LLM i18n Workflow</h2>
             <p>
               언어별 번역기를 실행하고 결과를 복사해 코드에 입력하던 반복 작업을 내부망 로컬 LLM과 별도 변환 프로그램으로 나눴습니다.
-              자연어 번역은 LLM이 맡고, PHP/JSON 파일 변환은 결정론적인 프로그램이 처리하도록 책임을 분리했습니다.
+              자연어 번역은 LLM이 맡고, PHP 언어팩 생성과 JSON 변환은 입력·출력이 명확한 별도 프로그램이 처리하도록 책임을 분리했습니다.
             </p>
             <div className="screenEvidence" aria-label="Local LLM i18n workflow">
               <div className="screenEvidenceHeader">
