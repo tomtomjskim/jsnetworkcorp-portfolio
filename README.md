@@ -14,7 +14,7 @@
 
 > **[`PORTFOLIO-AX.md`](PORTFOLIO-AX.md)**
 
-`PORTFOLIO-AX.md`는 `PS-v1.4.0`부터 **visual case-study index**로 동작합니다.
+`PORTFOLIO-AX.md`는 `PS-v1.4.0`부터 **visual case-study index**로 동작하며, `PS-v1.4.1`에서 GitHub 본문 폭에 맞도록 main-page diagrams를 압축했습니다.
 
 ---
 
@@ -30,7 +30,7 @@
 
 ---
 
-# Current Portfolio Strategy — `PS-v1.4.0`
+# Current Portfolio Strategy — `PS-v1.4.1`
 
 AX/Internal Tools portfolio는 네 Case를 중심으로 구성합니다.
 
@@ -60,6 +60,18 @@ Case 04는 추상적인 `AI를 잘 활용한다`는 설명보다 실제 반복 �
 
 생산성 %, 번역 정확도 %, 비용 절감률은 측정하지 않았으므로 주장하지 않습니다.
 
+### Visual QA rule
+
+Main portfolio는 스캔성을 위해 **Case당 compact primary diagram 1개**만 사용합니다. 상세 state, troubleshooting, validation flow는 deep dive에 유지합니다.
+
+```text
+main page
+→ 3–5 node compact model
+
+deep dive
+→ full technical flow
+```
+
 Deep dives:
 
 - [`docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md`](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
@@ -79,8 +91,6 @@ Problem
 → Limitation
 → Evidence
 ```
-
-GitHub-native Mermaid diagrams are used for architecture, state, decision and verification flows where they improve comprehension.
 
 ---
 
@@ -141,11 +151,12 @@ PS-v1.1.0  evidence-ranked repositories
 PS-v1.2.0  career-case-first; PHP sample deferred
 PS-v1.3.0  first real AX target adapter
 PS-v1.4.0  portfolio/resume boundary + visual case studies
+PS-v1.4.1  main-page visual QA / compact diagrams
 ```
 
 Current strategy:
 
-- [`docs/portfolio-strategy/versions/PS-v1.4.0.md`](docs/portfolio-strategy/versions/PS-v1.4.0.md)
+- [`docs/portfolio-strategy/versions/PS-v1.4.1.md`](docs/portfolio-strategy/versions/PS-v1.4.1.md)
 - [`docs/portfolio-strategy/CHANGELOG.md`](docs/portfolio-strategy/CHANGELOG.md)
 
 Previous AX portfolio is preserved for direct comparison:
