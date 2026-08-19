@@ -6,9 +6,12 @@
 
 - Corrected an artifact-boundary defect: the AX portfolio had become too similar to an expanded text resume even though the target positioning itself was valid.
 - Redefined `PORTFOLIO-AX.md` as a **case-study-first visual evidence index**.
-- Added four dedicated deep dives: developer internal tooling, commerce change-impact analysis, MES requirement modeling, and AI-assisted verification.
+- Added four dedicated deep dives: developer internal tooling, commerce change-impact analysis, MES requirement modeling, and practical AI automation/verification.
+- Promoted the existing sanitized **Local LLM i18n workflow** as Case 04's primary practical AX evidence instead of letting abstract agent/workflow projects lead the AI story.
+- Case 04 now demonstrates explicit responsibility separation: Local LLM for natural-language translation drafts, deterministic code for PHP/JSON conversion, and human validation under CPU/small-model constraints.
+- Kept `codex-workflow-skills`, `stackforge-atlas`, and `harness-kit` as supporting public engineering/verification evidence rather than pretending those R&D repositories are employer production AX work.
 - Added GitHub-native Mermaid architecture/state/decision/verification diagrams where they explain actual system boundaries.
-- Added a formal portfolio gate requiring `Problem → Constraints → Decision → Visual Model → Implementation Boundary → Verification → Limitation → Evidence`.
+- Added a formal portfolio gate requiring `Problem → Constraints → Decision → Visual Model → Implementation Boundary → Verification/Actual Use → Limitation → Evidence`.
 - Removed chronology and exhaustive technology enumeration from the main AX portfolio narrative.
 - Preserved the exact PS-v1.3.0 AX portfolio as a text-heavy baseline for future comparison.
 - Defined future PDF/web outputs as projections of case studies rather than re-rendered resume text.
@@ -24,6 +27,15 @@ portfolio    → how the engineer thinks, decides, implements and verifies
 ```
 
 PS-v1.3.0 solved target relevance but did not enforce that distinction strongly enough. PS-v1.4.0 treats the portfolio as a technical evidence index and uses progressive disclosure: the main page can be scanned quickly, while each case has its own inspectable deep dive.
+
+For AX targets, another lesson was added:
+
+```text
+actual useful automation
+> AI tool-name familiarity
+```
+
+The Local LLM i18n case is therefore shown before abstract workflow tooling. It records repeated real use but deliberately does not invent productivity, translation-accuracy, cost-saving, or organization-adoption metrics.
 
 ## PS-v1.3.0 — 2026-08-17
 
