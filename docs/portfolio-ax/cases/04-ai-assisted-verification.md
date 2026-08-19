@@ -2,9 +2,9 @@
 
 > **Question:** AI를 개발 workflow에 넣되, 완료 판단과 책임을 어떻게 통제할 것인가?
 >
-> Evidence type: public repositories + workflow validation + sanitized operating pattern
+> Evidence type: public repositories + workflow validation + sanitized operating pattern + practical local-LLM automation
 
-[Workflow case](../../../content/projects/ai-assisted-development-workflow.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
+[Workflow case](../../../content/projects/ai-assisted-development-workflow.md) · [Local LLM i18n](../../../content/projects/local-llm-i18n-workflow.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
 
 ---
 
@@ -166,7 +166,52 @@ sequenceDiagram
 
 ---
 
-## 7. Public Engineering Evidence
+## 7. Practical Automation — Local LLM i18n
+
+Workflow 원칙을 실제 반복 업무에 적용한 사례가 다국어 언어팩 작업입니다.
+
+기존에는 한국어 UI 문장을 언어별 번역기에 넣고, 결과를 복사해 코드에 입력한 뒤 PHP/JSON 언어팩으로 반영하는 작업을 반복했습니다. 이 과정에서 **자연어 번역과 결정론적으로 처리할 수 있는 파일 변환을 분리**했습니다.
+
+```mermaid
+flowchart LR
+    K[한국어 key/value] --> PY[내부망 Python server]
+    PY --> L[Ollama / Gemma 3]
+    L --> TR[EN / JA / ZH 번역 초안]
+    TR --> CV[별도 language-pack program]
+    CV --> PHP[PHP language pack]
+    PHP --> JSON[JSON 변환]
+    JSON --> H[Human validation]
+```
+
+### Why this boundary
+
+- **LLM:** 자연어 번역처럼 규칙만으로 해결하기 어려운 부분
+- **일반 프로그램:** key/value 구조, PHP 파일 생성, JSON 변환처럼 입력·출력이 명확한 부분
+- **사람:** 소형 모델의 오역과 화면 맥락을 최종 확인하는 부분
+
+실행 환경은 전용 GPU가 없는 내부 PC였고 모델도 소형 Gemma 3 계열이었습니다. 문장 단위 처리에 시간이 걸리고 일부 번역은 다시 확인해야 했기 때문에 완전 자동화를 목표로 하지 않았습니다.
+
+그럼에도 프론트 개발자가 실제 언어팩 업무에 반복 사용했고, 언어별 번역기 실행·복사·코드 입력을 계속 반복하던 작업을 **번역 초안 생성과 다른 개발 작업을 병행할 수 있는 흐름**으로 변경했습니다.
+
+### What this example proves
+
+- AI를 넣을 부분과 일반 코드로 처리할 부분을 분리한 판단
+- 제한된 내부 환경에서 로컬 모델을 실제 반복 업무에 적용한 경험
+- 모델 한계를 감안해 human validation을 유지한 운영 방식
+
+### What it does not prove
+
+- 번역 정확도 수치
+- 생산성 향상률
+- 완전 자동 번역
+- 조직 전체 표준 도구화
+- 대형 GPU inference 환경 운영
+
+Detailed sanitized case: [`Local LLM i18n Workflow`](../../../content/projects/local-llm-i18n-workflow.md)
+
+---
+
+## 8. Public Engineering Evidence
 
 ### Codex Workflow Skills
 
@@ -214,17 +259,18 @@ Repository: https://github.com/tomtomjskim/harness-kit
 
 ---
 
-## 8. What This Case Demonstrates
+## 9. What This Case Demonstrates
 
 - AI를 일반 automation과 구분하는 판단 기준
 - model output과 completion evidence를 분리하는 방식
 - static/test/CI/independent review/human acceptance 경계
 - skip / not_run / failure를 숨기지 않는 검증 discipline
 - 프로젝트 context를 재사용 가능한 규칙·문서·skill로 구조화하는 방법
+- 로컬 LLM과 deterministic program을 실제 업무 특성에 맞게 조합하는 방식
 
 ---
 
-## 9. What It Does Not Prove
+## 10. What It Does Not Prove
 
 - company-wide AX platform 운영
 - production RAG / model serving ownership
@@ -234,15 +280,18 @@ Repository: https://github.com/tomtomjskim/harness-kit
 
 ---
 
-## 10. Evidence
+## 11. Evidence
 
 - Sanitized career workflow: [`content/projects/ai-assisted-development-workflow.md`](../../../content/projects/ai-assisted-development-workflow.md)
+- Local LLM practical automation: [`content/projects/local-llm-i18n-workflow.md`](../../../content/projects/local-llm-i18n-workflow.md)
 - Codex Workflow Skills: https://github.com/tomtomjskim/codex-workflow-skills
 - StackForge Atlas: https://github.com/tomtomjskim/stackforge-atlas
 - harness-kit: https://github.com/tomtomjskim/harness-kit
 
-### Interview hook
+### Interview hooks
 
 > Agent가 “완료했다”고 했을 때 무엇을 확인해야 실제 완료라고 판단합니까?
 
-이 질문에 답하기 위한 Case입니다.
+> 로컬 LLM 번역에서 왜 파일 생성·변환까지 LLM에 맡기지 않았습니까?
+
+두 질문이 이 Case의 핵심입니다.
