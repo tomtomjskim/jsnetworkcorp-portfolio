@@ -1,6 +1,6 @@
 # Backend / Internal Tools / AX Portfolio
 
-> `PS-v1.4.0` · **Case-study-first GitHub Portfolio** · 2026-08-19
+> `PS-v1.4.1` · **Case-study-first GitHub Portfolio** · 2026-08-19
 
 ## Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화
 
@@ -16,15 +16,11 @@
 
 ```mermaid
 flowchart TD
-    ME[Backend-centered Engineer] --> C1[Case 01<br/>Developer Internal Tooling]
+    ME[Backend-centered Engineer]
+    ME --> C1[Case 01<br/>Developer Internal Tooling]
     ME --> C2[Case 02<br/>Commerce Change Impact]
     ME --> C3[Case 03<br/>MES Requirement Modeling]
     ME --> C4[Case 04<br/>Practical AI Automation]
-
-    C1 --> S1[Configuration-as-Code<br/>Validation / CI]
-    C2 --> S2[State / Data Flow<br/>Blast Radius]
-    C3 --> S3[Business Rules<br/>Operational Troubleshooting]
-    C4 --> S4[Local LLM + Deterministic Code<br/>Human Validation]
 ```
 
 | Case | 문제 | 핵심 판단 | 확인 가능한 증거 |
@@ -41,14 +37,12 @@ flowchart TD
 ## 반복 설정을 언제 도구로 바꿀 것인가?
 
 ```mermaid
-flowchart LR
-    B[복사되는 프로젝트 설정] --> D[중복 / Drift]
-    D --> DEC{반복 변경이<br/>실제 비용인가?}
-    DEC -->|No| DIRECT[직접 편집 유지]
-    DEC -->|Yes| MOD[Typed Modules]
-    MOD --> VAL[Validation]
-    VAL --> GEN[Deterministic Generation]
-    GEN --> CI[Audit / Test / Build / Smoke]
+flowchart TD
+    A[Repeated project config] --> D{Drift cost repeats?}
+    D -->|Low| E[Keep direct editing]
+    D -->|Yes| M[Typed Modules]
+    M --> V[Validate + Generate]
+    V --> C[Audit / Test / Build / Smoke]
 ```
 
 **Decision**  
@@ -68,13 +62,9 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    R[Change Request] --> C[AS-IS Code]
-    C --> DB[DB State]
-    DB --> P[Permission]
-    P --> A[Admin]
-    A --> B[Batch / Cron]
-    B --> X[External API]
-    X --> S[Bounded Change Scope]
+    R[Change Request] --> A[AS-IS Code + DB State]
+    A --> B[Permission / Admin / Batch / External API]
+    B --> S[Bounded Change Scope]
 ```
 
 **Decision**  
@@ -95,12 +85,8 @@ flowchart LR
 ```mermaid
 flowchart LR
     F[현장 요구] --> W[실제 작업순서]
-    W --> I[입력 순서]
-    I --> Q[조회 조건]
-    Q --> S[상태 규칙]
-    S --> R[통계 / Report]
-    R --> P[권한]
-    P --> B[Screen + DB Scope]
+    W --> C[Input / Query / State / Report / Permission]
+    C --> B[Screen + DB Scope]
 ```
 
 **Decision**  
@@ -120,12 +106,9 @@ application/data 문제와 permission·network·printer/device·operator environ
 
 ```mermaid
 flowchart LR
-    K[한국어 key/value] --> PY[Internal Python Server]
-    PY --> L[Ollama / Gemma 3]
-    L --> TR[EN / JA / ZH Draft]
-    TR --> CV[Deterministic Converter]
-    CV --> PHP[PHP / JSON Language Pack]
-    PHP --> H[Human Validation]
+    K[한국어 key/value] --> L[Local LLM Translation Draft]
+    L --> D[Deterministic PHP / JSON Conversion]
+    D --> H[Human Validation]
 ```
 
 **Decision**  
@@ -151,14 +134,12 @@ Model response != Completion evidence
 
 ```mermaid
 flowchart LR
-    O[Observe real workflow] --> B[Find boundary]
-    B --> D[Choose smallest useful change]
+    O[Observe Workflow] --> B[Find Boundary]
+    B --> D[Smallest Useful Change]
     D --> I[Implement]
-    I --> V[Verify evidence]
-    V --> F{Failure / Limit?}
-    F -->|Yes| R[Revise contract / scope]
-    R --> I
-    F -->|No| H[Human acceptance / operational use]
+    I --> V[Verify Evidence]
+    V -->|Closed| H[Human Acceptance / Operational Use]
+    V -->|Failure / Limit| D
 ```
 
 공통적으로 보여주는 역량은 특정 framework 이름보다 다음입니다.
@@ -204,6 +185,6 @@ Public career cases는 비식별화한 문제 해결 모델이고, 공개 R&D re
 1. **Internal Tools:** 이 페이지 → [Case 01](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
 2. **Practical AX / AI Automation:** [Case 04](docs/portfolio-ax/cases/04-ai-assisted-verification.md) → [Local LLM i18n](content/projects/local-llm-i18n-workflow.md)
 3. **Backend / Operations:** [General Backend Portfolio](PORTFOLIO.md) → [Case 02](docs/portfolio-ax/cases/02-commerce-change-impact.md) → [Case 03](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
-4. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → current `PS-v1.4.0`
+4. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → `PS-v1.4.0` case-study redesign → current `PS-v1.4.1` visual-QA patch
 
 **Resume는 경력과 사실을 요약하고, 이 포트폴리오는 그 사실 뒤의 문제 해결 방식을 증명합니다.**
