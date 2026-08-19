@@ -23,6 +23,8 @@ Portfolio
 
 PS-v1.4.0 therefore separates those outputs structurally rather than relying on wording alone.
 
+A second refinement came from reviewing the AX evidence itself: an actual Local LLM i18n workflow is stronger target evidence than describing only abstract AI-agent workflow contracts. Practical work evidence therefore leads Case 04, while public workflow repositories remain supporting verification evidence.
+
 ---
 
 ## Core Decision
@@ -44,13 +46,24 @@ Problem
 
 Chronology, contact information, education and exhaustive stack lists remain resume material.
 
+For AX cases, evidence priority is:
+
+```text
+actual repeated work automation
+→ bounded architecture decision
+→ validation / human boundary
+→ reusable public engineering evidence
+```
+
+This prevents recent public agent/tool repositories from crowding out a stronger real-work automation example.
+
 ---
 
 ## Selected Case Set
 
 The AX/Internal Tools view uses four cases with different evidence types.
 
-### Case 01 — harness-kit
+### Case 01 — harness-kit: Developer Internal Tooling
 
 Question:
 
@@ -85,18 +98,35 @@ Evidence:
 - sanitized career case,
 - source-bounded requirement/troubleshooting models.
 
-### Case 04 — AI-assisted Verification
+### Case 04 — Practical AI Automation: Local LLM + Verification Boundary
 
 Question:
 
-> How is AI used without turning model output into completion evidence?
+> Which parts of a repetitive task should use AI, deterministic code, or human validation?
 
-Evidence:
+Primary evidence:
 
-- sanitized career workflow,
+- actual sanitized Local LLM i18n workflow,
+- internal Python server + Ollama/Gemma 3 small model for EN/JA/ZH translation drafts,
+- deterministic PHP/JSON language-pack generation,
+- CPU/no-dedicated-GPU constraint,
+- human validation retained,
+- repeated practical use by a frontend developer.
+
+Supporting verification evidence:
+
+- AI-assisted Development Workflow,
 - Codex Workflow Skills,
 - StackForge Atlas,
-- harness-kit verification discipline.
+- harness-kit validation discipline.
+
+Explicitly not claimed:
+
+- productivity percentage,
+- translation-accuracy percentage,
+- cost reduction,
+- organization-wide platform adoption,
+- model-training or GPU-serving expertise.
 
 ---
 
@@ -119,8 +149,11 @@ Every diagram must answer a question such as:
 - where is the boundary?
 - what state changes?
 - what does the developer inspect first?
+- which work belongs to AI versus deterministic code?
 - where can failure occur?
 - what evidence closes the loop?
+
+The main index should use one primary diagram per case. Secondary diagrams belong in deep dives.
 
 ---
 
@@ -141,13 +174,17 @@ A case **passes** only when it includes:
 3. explicit decision or trade-off,
 4. visual model,
 5. implementation boundary,
-6. verification/evidence,
+6. verification/evidence or bounded actual-use evidence,
 7. limitation / unproven scope,
 8. evidence link.
 
 The main portfolio also fails if a reviewer cannot answer within roughly one minute:
 
 > “What kinds of problems does this engineer solve, and which case should I open next?”
+
+For AX-target evidence, another failure condition is:
+
+> public AI/tooling repositories are more prominent than a stronger real-work automation case.
 
 ---
 
@@ -157,10 +194,10 @@ The main portfolio also fails if a reviewer cannot answer within roughly one min
 PORTFOLIO-AX.md
 │
 ├── 30-second portfolio map
-├── Case 01 summary ──> docs/portfolio-ax/cases/01-*.md
-├── Case 02 summary ──> docs/portfolio-ax/cases/02-*.md
-├── Case 03 summary ──> docs/portfolio-ax/cases/03-*.md
-├── Case 04 summary ──> docs/portfolio-ax/cases/04-*.md
+├── Case 01 summary ──> developer internal tooling
+├── Case 02 summary ──> commerce change impact
+├── Case 03 summary ──> MES requirement modeling
+├── Case 04 summary ──> practical Local LLM automation + verification boundary
 ├── cross-case engineering model
 ├── public repository evidence index
 └── evidence / redaction boundaries
@@ -203,9 +240,14 @@ Expected form:
 ```text
 cover / positioning
 → case map
-→ 1–2 pages per selected case
-→ evidence links / QR or URL
+→ Case 01 Internal Tooling
+→ Case 04 Practical Local LLM Automation
+→ Case 02 Commerce Change Impact
+→ Case 03 MES Requirement Modeling
+→ evidence / repository links
 ```
+
+A 6–8 page PDF is a downstream visual projection, not the canonical evidence source.
 
 ### Web
 
@@ -231,6 +273,8 @@ PS-v1.4.0 fails if:
 - sanitized career models imply unsupported architecture ownership,
 - repository links replace the explanation instead of supporting it,
 - verification numbers are detached from their scope and limitations,
+- measured and unmeasured outcomes are mixed,
+- the practical Local LLM case is inflated into model-training/platform expertise,
 - the main page becomes so long that the four cases cannot be scanned quickly.
 
 ---
@@ -240,11 +284,16 @@ PS-v1.4.0 fails if:
 1. run repository content validation/build,
 2. inspect GitHub Markdown/Mermaid rendering for broken links and diagram syntax,
 3. review the main page through recruiter / hiring-manager / engineer lenses,
-4. record whether each reviewer can identify the four cases and their evidence type without reading the resume,
-5. only after the GitHub version stabilizes, consider a 6–8 page visual PDF projection.
+4. verify that the practical Local LLM workflow is distinguishable from public R&D repositories,
+5. record whether each reviewer can identify the four cases and their evidence type without reading the resume,
+6. only after the GitHub version stabilizes, consider a 6–8 page visual PDF projection.
 
 ## Main Hypothesis
 
 A senior developer portfolio is strongest when it behaves like a **technical evidence index**:
 
 > resume says what the candidate has done; portfolio lets the reviewer inspect how the candidate thinks, decides and verifies.
+
+For AX roles, the strongest evidence order is additionally:
+
+> actual useful automation first; AI tooling vocabulary second.
