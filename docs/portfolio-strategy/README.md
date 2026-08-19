@@ -15,11 +15,11 @@ Old strategy snapshots are never rewritten when the strategy changes.
 
 - **MAJOR** — output priority, core architecture, or hiring-positioning model changes materially.
 - **MINOR** — adds or materially changes a review gate, targeting method, evidence policy, or artifact semantics.
-- **PATCH** — wording, examples, links, or clarifications only.
+- **PATCH** — wording, examples, links, or visual/readability corrections only.
 
 ---
 
-# Current Strategy — `PS-v1.4.0`
+# Current Strategy — `PS-v1.4.1`
 
 Base delivery priority remains:
 
@@ -70,13 +70,27 @@ The main portfolio page must allow a reviewer to answer quickly:
 
 > What kinds of problems does this engineer solve, and which case should I inspect next?
 
-For an AX target, another gate applies:
+For an AX target:
 
 > If stronger actual-work automation evidence exists, do not let AI-tool/repository vocabulary outrank it.
 
-## Visual Rule
+## Visual Rule — `PS-v1.4.1`
 
-Use GitHub Mermaid only where a diagram explains a real boundary:
+Representative rendering of the first `PS-v1.4.0` main page showed that long 7–8-node horizontal flows could become too small inside GitHub's content column.
+
+The main page therefore uses compact models:
+
+```text
+main portfolio
+→ one primary diagram per case
+→ 3–5 nodes where possible
+→ summarize the decision, not every technical step
+
+deep dive
+→ detailed architecture/state/troubleshooting/verification flow
+```
+
+Use diagrams only where they explain a real boundary:
 
 - architecture flow,
 - state transition,
@@ -84,7 +98,7 @@ Use GitHub Mermaid only where a diagram explains a real boundary:
 - failure loop,
 - verification sequence.
 
-The main page uses one primary diagram per case; secondary diagrams belong in deep dives.
+Do not add decoration-only diagrams.
 
 ---
 
@@ -212,11 +226,6 @@ Public repository evidence:
 - `codex-workflow-skills`
 - `stackforge-atlas`
 
-Repository review:
-
-- `docs/github-portfolio/repository-candidate-matrix.md`
-- `docs/github-portfolio/featured-repo-audit-2026-08-17.md`
-
 Review artifacts:
 
 - `docs/reviews/ax-internal-tools-multi-lens-review-2026-08-17.md`
@@ -266,5 +275,6 @@ When proposing a new strategy version:
 - `PS-v1.2.0` — career-case-first; PHP reference deferred
 - `PS-v1.3.0` — first real Internal Tools / AX target adapter
 - `PS-v1.4.0` — resume/application/portfolio boundary + visual case studies + practical AX evidence priority
+- `PS-v1.4.1` — visual QA patch: compact main-page diagrams, full detail stays in deep dives
 
 See `CHANGELOG.md` and `versions/` for preserved snapshots.
