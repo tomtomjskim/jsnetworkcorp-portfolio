@@ -1,10 +1,10 @@
 # Public Claim Bank
 
-version: CL-v0.7
+version: CL-v0.8
 updated: 2026-08-17
 visibility: public-sanitized
 
-This file contains public-safe claim candidates after redaction and evidence-status review. A `ready` public claim is safe for the public portfolio layer, but final company submission still requires target-context and chronology checks. `selective`, `role-confirm`, `private-evidence`, and `needs verification` claims must not be silently promoted by downstream text generators.
+This file contains public-safe claim candidates after redaction and evidence-status review. A `ready` public claim is safe for the public portfolio layer, but final company submission still requires target-context and chronology checks. `selective`, `role-confirm`, `private-evidence`, `supporting`, `hold`, and `needs verification` claims must not be silently promoted by downstream text generators.
 
 ## Positioning
 
@@ -44,24 +44,66 @@ Detailed incident/state-mismatch examples remain draft/source-confirm until thei
 
 | ID | Public-safe claim | Status | Evidence boundary | Known limitation |
 |---|---|---|---|---|
-| `CL-AI-001` | 모호하거나 고위험인 Codex 작업을 intake → 구현 → 독립 검토 → session closeout으로 분리한 공개 skill 6종을 설계하고 검증 계약으로 고정 | ready | [public repository](https://github.com/tomtomjskim/codex-workflow-skills), [forward-test report](https://github.com/tomtomjskim/codex-workflow-skills/blob/main/docs/forward-test-report.md) | 2026-08-05 report 기준 881 tests 중 879 pass, 외부 환경 의존 2 skip. live/paid model 품질 증거가 아님 |
-| `CL-AI-002` | TypeScript 기반 AI usage intelligence 도구에서 prompt profile·diagnosis·adaptation·drift·LLM-as-Judge를 구조화하고 54 test files, 795 tests로 기능 기준을 검증 | selective | [public repository](https://github.com/tomtomjskim/aiwright), [merged PR #1](https://github.com/tomtomjskim/aiwright/pull/1) | CI run #1 검증 후 `main`에 squash merge됐지만 package release·외부 사용 지표는 없으므로 기능 검증 claim에만 사용 |
-| `CL-AI-003` | 개인 제품 개발에서 AI를 기획·구현·리뷰 보조로 사용하고 E2E 88/88, 시나리오 36/36, Flutter smoke 1/1로 결과를 검증 | private-evidence | protected evidence only; public에는 제품명·비공개 저장소 링크를 싣지 않음 | 배포 전이며 외부 인증·OCR·공공 API 일부는 mock |
-| `CL-AI-004` | AI 대화·산출물을 `inbox → generated → reviewed → canonical` 신뢰 계층으로 분리하고, 출처·민감도·사람 승격 규칙으로 지식화를 통제 | private-evidence | protected evidence only; 공개 문구는 구조와 통제 원칙만 사용 | 분류는 휴리스틱이며 CI가 문서 사실성을 증명하지 않음 |
+| `CL-AI-001` | 모호하거나 고위험인 Codex 작업을 intake → 구현 → 독립 검토 → session closeout으로 분리한 공개 skill 6종을 설계하고 검증 계약으로 고정 | ready | [public repository](https://github.com/tomtomjskim/codex-workflow-skills), [forward-test report](https://github.com/tomtomjskim/codex-workflow-skills/blob/main/docs/forward-test-report.md) | 테스트 통과는 live/paid model 품질, 생산성 향상률, 조직 채택을 증명하지 않음 |
+| `CL-AI-002` | TypeScript 기반 AI usage intelligence 도구에서 prompt profile·diagnosis·adaptation·drift·LLM-as-Judge를 구조화하고 기능 기준을 테스트로 검증 | hold | [public repository](https://github.com/tomtomjskim/aiwright) | 목적·실사용·면접 설명 가능성을 다시 확인하기 전 대표 사례로 사용하지 않음 |
+| `CL-AI-003` | 개인 제품 개발에서 AI를 기획·구현·리뷰 보조로 사용하고 E2E·시나리오·smoke 결과로 검증 | private-evidence | protected evidence only | 배포 전이며 일부 외부 기능은 mock; 이번 자기소개서의 대표 근거로 사용하지 않음 |
+| `CL-AI-004` | AI 대화·산출물을 `inbox → generated → reviewed → canonical` 신뢰 계층으로 분리하고, 출처·민감도·사람 승격 규칙으로 지식화를 통제 | supporting | protected source; public에는 구조만 사용 | 분류 규칙과 CI가 문서 사실성을 자동 증명하지 않음 |
+| `CL-AI-005` | 백엔드·프론트 2인 개발 환경에서 프로젝트 Skill·규칙, 소스맵, PR 리뷰, 커밋, 기능 검수 기준을 공통으로 사용 | private-evidence | protected commerce project source; public에는 sanitized case만 사용 | 신규 인력 온보딩, 대규모 팀 확산, 전사 AX 근거는 없음 |
+| `CL-AI-006` | 요구사항 정리, 설계 검수, 구현, 코드 검수, 디버깅, Playwright E2E, 사람 승인을 단계별 Workflow로 운용 | private-evidence | protected project rules and E2E artifacts | 모든 단계가 CI에서 자동 강제된다는 의미가 아님 |
+| `CL-AI-007` | Agent의 test skip·fail·미실행 보고 누락을 경험한 뒤 시나리오·결과 Markdown과 실제 산출물 확인을 완료 조건에 추가 | private-evidence | protected result docs and user interview | 세부 상태·내부 경로는 공개하지 않음 |
+| `CL-AI-008` | Ollama·Gemma 3 기반 로컬 번역 도구를 내부 PC에 구성해 한·영·일·중 언어팩 생성과 PHP/JSON 반영 업무에 적용 | private-evidence | public에는 i18n 결과 구조와 synthetic diagram만 사용 | GPU 없는 소형 모델의 속도·품질 한계, 사람 검수 필요, 정량 시간·정확도 없음 |
+| `CL-AI-009` | Skill, Hook, Handoff, Failure Recovery를 포함한 Claude Code 프로젝트 Workflow와 적용 가이드를 공개 저장소로 관리 | selective | [public repository](https://github.com/tomtomjskim/claude-code-guide) | 저장소 전체 기능을 모든 회사 프로젝트에 적용했다고 주장하지 않음 |
+| `CL-AI-010` | 프로젝트별 instruction, Hook, MCP, permission, Agent, Workflow를 모듈로 관리하는 개발자 도구를 구현 | supporting | [public repository](https://github.com/tomtomjskim/harness-kit) | npm 미배포, 팀 외부 채택 미확인 |
+| `CL-AI-011` | 요구사항–인터페이스–검증–유지보수 근거를 하나의 feature slice로 연결하는 가이드·하네스를 구성 | supporting | [public repository](https://github.com/tomtomjskim/stackforge-atlas) | 제한된 pilot 근거를 일반적인 운영 성과로 확대하지 않음 |
+| `CL-AI-012` | AI와 데이터베이스 사이의 읽기 권한·쿼리 검증·연결 경계를 다루는 MCP 도구를 개발 | supporting-hold | [public repository](https://github.com/tomtomjskim/db-mcp) | README의 강한 표현과 실제 검증 범위를 정리한 뒤 사용 |
+
+## Evidence Tiers
+
+### Tier A — Primary
+
+- `codex-workflow-skills`
+- `claude-code-guide`에서 실제 사용 범위
+- 운영 커머스 플랫폼의 sanitized 실무 사례
+- Ollama·Gemma 3 i18n 실무 사례
+
+### Tier B — Supporting
+
+- `stackforge-atlas`
+- `db-mcp` — 공개 표현 재검수 후
+- `harness-kit`
+- Personal Wiki trust layer — 구조만 공개
+- `codex-project-guide` — private 링크 없이 운영 경험만 설명
+
+### Tier C — Hold / Excluded
+
+| Evidence | Decision | Reason |
+|---|---|---|
+| `aiwright` | hold | 목적·실사용·설명 가능성 재검증 전 대표 사례 사용 금지 |
+| `image-translator` | excluded | 이번 이력서·AX 포트폴리오 근거에서 제외 |
+| `team-orchestrator-mcp` | hold | prototype 범위와 실제 채택·배포 근거 부족 |
+| `openclaw-secure-deploy` | hold | `production-ready` 표현과 실제 운영 근거 재검증 필요 |
+| `im-not-ai` | hold | 소유·기여·upstream 관계 확인 필요 |
+| `claude-code-team-system` | hold | `claude-code-guide`에 통합된 과거 원천 |
+| `awesome-codex-subagents` | hold | 직접 구현과 reference/curation 범위 구분 필요 |
 
 ## Verb Strength Guide
 
 | Use When Confirmed | Safer Default | Avoid Unless Proven |
 |---|---|---|
-| 설계·구현 | 참여·고도화·다룸 | 총괄·완료·상용화·전면 개선 |
-| 적용 | 검토·반영 | 주도·소유 |
-| 운영 | 운영 관점 검토 | SLA 달성, 수치 개선 |
+| 설계·구현·적용 | 참여·정리·검토·고도화·다룸 | 총괄·전면 혁신·완전 자동화 |
+| 공통 기준으로 사용 | 개인 또는 프로젝트 단위로 사용 | 전사 표준화·조직 확산 |
+| 실제 업무에 사용 | 시험 적용·prototype | 외부 adoption·상용 서비스 |
+| 테스트로 확인 | 확인 절차를 운영 | 생산성·정확도·품질 수치 개선 |
 
 ## Excluded Claims
 
 Do not use these in public resume/portfolio content:
 
-- unverifiable improvement percentages,
+- unverifiable productivity, time, cost, quality, or accuracy improvement percentages,
+- two-person project experience rewritten as enterprise-wide AX or organization-wide standardization,
+- onboarding or large-team rollout that has not actually occurred,
+- AI completing all tests, UI/UX review, or deployment without human verification,
+- local LLM translation quality guarantees or complete translation automation,
 - hard-to-prove maintenance rate claims,
 - unfinished/non-commercial app work as a primary career project,
 - direct private repository names or URLs,
@@ -71,7 +113,8 @@ Do not use these in public resume/portfolio content:
 - raw customer, order, admin, session, payment, shipment, production, or log data,
 - completed SaaS/platform claims unless a released product can be shown safely,
 - completed live-commerce integration claims unless separately verified and sanitized,
-- selective or role-confirm claims rewritten as default ownership statements.
+- selective or role-confirm claims rewritten as default ownership statements,
+- PR·CI·test pass rewritten as release, deployment, production adoption, or external usage.
 
 ## Public Resume Bullet Candidates
 
@@ -96,16 +139,16 @@ Do not use these in public resume/portfolio content:
 
 These conditional lines are authoring candidates only. Their presence in this file does not make them submission-ready.
 
-### AI Workflow Candidates
+### AI-assisted Workflow Candidates
 
 ```markdown
-- Codex 작업을 intake → 구현 → 독립 검토 → session closeout으로 분리한 공개 skill 6종을 설계하고, forward test에서 881 tests 중 879 pass·외부 환경 의존 2 skip을 기록
-- TypeScript 기반 AI usage intelligence 도구에서 prompt profile·diagnosis·adaptation·drift·LLM-as-Judge를 구조화하고 54 test files·795 tests로 기능 기준을 검증
-- 개인 제품 개발에서 AI 공동작업 결과를 E2E 88/88·시나리오 36/36·Flutter smoke 1/1로 검증하되, 배포 전·외부 API 일부 mock 상태를 함께 명시
-- AI 대화·산출물을 inbox → generated → reviewed → canonical로 분리하고, 출처·민감도·사람 승격 규칙을 적용한 Git/Markdown 지식 체계를 운영
+- 요구사항 정리, 설계 검수, 구현, 코드 검수, 디버깅, Playwright E2E, 사람 승인을 단계별 Workflow로 운영
+- Agent의 test skip·fail·미실행 보고 누락을 겪은 뒤 시나리오·결과 문서와 실제 산출물 확인을 완료 조건에 추가
+- 프로젝트 소스맵·기능 문서·Skill·개발 규칙을 2인 개발 환경의 PR 리뷰·커밋·기능 검수 기준으로 사용
+- Ollama·Gemma 3 기반 로컬 번역 도구를 내부 환경에 구성해 한·영·일·중 언어팩 생성과 PHP/JSON 반영 업무에 실제 사용
 ```
 
-Apply the status in the AI claim table before using any of these. `selective` and `private-evidence` lines are not default public submission claims.
+Apply the status in the AI claim table before using any of these. `selective`, `private-evidence`, `supporting`, and `hold` lines are not default public submission claims.
 
 ## Downstream Rule
 
@@ -118,4 +161,4 @@ claim bank status
 → web/PDF projection
 ```
 
-A polished downstream sentence never promotes its own evidence status.
+A polished downstream sentence never promotes its own evidence status. A public repository is evidence only for the behavior it actually contains; repository size or test count alone does not make it a primary resume case.
