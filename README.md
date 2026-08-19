@@ -1,208 +1,182 @@
 # JSNetworkCorp Portfolio
 
-Public-safe career portfolio, GitHub-native technical portfolio, and downstream Next.js visual surface.
+**Career facts, technical case studies, and public engineering evidence — kept separate on purpose.**
 
-## Start Here — Hiring Portfolio
+이 repository는 경력 내용을 한 문서에 길게 쌓는 곳이 아니라, 채용 과정의 서로 다른 질문에 서로 다른 surface로 답하기 위한 public-safe portfolio입니다.
 
-General backend / business-system roles:
+## Start Here
+
+### General Backend / Business Systems
 
 > **[`PORTFOLIO.md`](PORTFOLIO.md)**
 
-Internal Tools / AX / development-automation roles:
+### Internal Tools / AX / Development Automation
 
 > **[`PORTFOLIO-AX.md`](PORTFOLIO-AX.md)**
 
-The target-specific projection changes evidence selection and ordering. It does not create new factual experience.
+`PORTFOLIO-AX.md`는 `PS-v1.4.0`부터 **visual case-study index**로 동작합니다.
 
-The website is a later visual projection of the same evidence and must not become a separate factual source.
+---
 
-## Current Delivery Priority
+## Resume ≠ Application ≠ Portfolio
 
-Strategy: `PS-v1.3.0`
+| Artifact | 답해야 하는 질문 | 이 repository에서의 역할 |
+|---|---|---|
+| **Resume** | 언제, 어디서, 어떤 역할과 기술로 일했는가? | 짧은 사실·경력 projection |
+| **Application / Self-introduction** | 왜 이 포지션과 맞는가? | target requirement와 evidence 연결 |
+| **Portfolio** | 실제 문제를 어떻게 분석·판단·구현·검증하는가? | Case Study + diagram + evidence |
 
-```text
-P0    application / self-introduction text
-P1    career case studies + GitHub portfolio
-P1.5  public repository quality / verification
-P2    web visual projection
-P3    optional PDF supplement
-P4    protected interview deep dive
-```
+포트폴리오가 chronology와 기술목록 중심으로 변하면 실패로 판단합니다.
 
-A new PHP/MySQL reference repository remains **optional/deferred**, not a prerequisite for the portfolio.
+---
 
-## First Real Target Adapter
+# Current Portfolio Strategy — `PS-v1.4.0`
 
-The current target experiment is a public-safe Internal Tools / AX role family adapter.
-
-Recommended resume header:
-
-> **Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화**
-
-Artifacts:
-
-- `content/resume/variants/ax-internal-tools-ko.md`
-- `PORTFOLIO-AX.md`
-- `docs/targets/internal-tools-ax-requirement-evidence.md`
-- `docs/reviews/ax-internal-tools-multi-lens-review-2026-08-17.md`
-- `docs/portfolio-strategy/versions/PS-v1.3.0.md`
-
-The exact company/referral message that triggered this adapter stays in the private source layer and is not copied to this public repository.
-
-## Content Boundary
-
-This repository remains sanitized and public.
-
-Detailed interview materials should be generated separately and served only through a protected private surface. Do not commit detailed internal specs, raw evidence, private deployment values, production endpoints, customer data, order data, admin/session/payment data, private wiki exports, private repository URLs, raw AI transcripts, or confidential recruiting messages to this repository.
-
-Recommended split:
+AX/Internal Tools portfolio는 네 Case를 중심으로 구성합니다.
 
 ```text
-GitHub / PORTFOLIO*.md
-└─ primary public hiring/technical portfolio
+Case 01  harness-kit
+         Developer Internal Tooling
 
-portfolio.jsnetworkcorp.com
-└─ restrained visual projection of public-safe evidence
+Case 02  Commerce / Logistics
+         State-heavy Change Impact
 
-protected/private source
-└─ authoritative resume, internal recruiting context, deeper interview evidence
+Case 03  Manufacturing MES
+         Field Request → System Rules
+
+Case 04  AI-assisted Engineering
+         Model Output ≠ Completion Evidence
 ```
 
-## Separately Versioned Strategy
+Deep dives:
 
-Portfolio strategy is versioned independently from the `PF-*` content/site milestones.
+- [`docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md`](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
+- [`docs/portfolio-ax/cases/02-commerce-change-impact.md`](docs/portfolio-ax/cases/02-commerce-change-impact.md)
+- [`docs/portfolio-ax/cases/03-mes-requirement-modeling.md`](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
+- [`docs/portfolio-ax/cases/04-ai-assisted-verification.md`](docs/portfolio-ax/cases/04-ai-assisted-verification.md)
+
+Each case follows:
 
 ```text
-PF-* = public portfolio content / implementation milestone
-PS-* = portfolio strategy / output priority / review policy
+Problem
+→ Constraints
+→ Investigation / Model
+→ Decision
+→ Implementation
+→ Verification
+→ Limitation
+→ Evidence
 ```
 
-Current history:
+GitHub-native Mermaid diagrams are used for architecture, state, decision and verification flows where they improve comprehension.
 
-- `PS-v0.9.0` — parallel multi-output evidence-first proposal
-- `PS-v1.0.0` — application-first / GitHub-first
-- `PS-v1.1.0` — evidence-ranked repository promotion + proposed PHP reference
-- `PS-v1.2.0` — career-case-first refinement; PHP reference deferred
-- `PS-v1.3.0` — first real target adapter for Internal Tools / AX
+---
 
-See:
+# Evidence Model
 
-- `docs/portfolio-strategy/README.md`
-- `docs/portfolio-strategy/CHANGELOG.md`
-- `docs/portfolio-strategy/versions/PS-v1.3.0.md`
+## 1. Sanitized Career Cases
 
-Prior snapshots are preserved so strategy changes can be compared rather than silently overwritten.
+실제 장기 경력에서 확인된 업무·문제 해결 방식입니다.
 
-## Evidence Model
+- [`content/projects/commerce-fulfillment-operations.md`](content/projects/commerce-fulfillment-operations.md)
+- [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
+- [`content/projects/ai-assisted-development-workflow.md`](content/projects/ai-assisted-development-workflow.md)
 
-The portfolio separates evidence by what it can actually prove.
+실제 production code/data를 공개하지 않고 문제·제약·판단 모델만 비식별화합니다.
 
-### Career Case Studies
+## 2. Public Engineering Repositories
 
-Sanitized historical work/problem-solving evidence:
+현재 engineering capability를 직접 검토할 수 있는 공개 artifact입니다.
 
-- `content/projects/commerce-fulfillment-operations.md`
-- `content/projects/manufacturing-mes-business-systems.md`
+- [`stackforge-atlas`](https://github.com/tomtomjskim/stackforge-atlas)
+- [`harness-kit`](https://github.com/tomtomjskim/harness-kit)
+- [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills)
 
-Submission-safe facts are kept separate from selective/source-confirm/role-confirm deep-dive candidates.
+Public R&D를 이전 회사 production work로 표현하지 않습니다.
 
-### Public Engineering Artifacts
+### Target-specific ordering
 
-Current public implementation/verification evidence, selected and ordered by target role:
-
-- `stackforge-atlas`
-- `harness-kit`
-- `codex-workflow-skills`
-
-General backend and Internal Tools / AX roles intentionally use different ordering.
-
-Do not imply that recent public R&D/tooling is proprietary employer production work.
-
-### Application Text / Resume Variants
-
-- generic P0 candidate: `docs/application-text/claim-blocks-v2-candidate.md`
-- AX/Internal Tools target variant: `content/resume/variants/ax-internal-tools-ko.md`
-- canonical factual authority: `docs/resume-data/public-claim-bank.md`
-
-## Evidence-First Authoring Architecture
-
-Application text, GitHub portfolio, web, PDF, and protected interview material derive from one canonical evidence model.
-
-Reference set:
-
-- `docs/portfolio-reference-architecture.md`
-- `docs/content-system/case-study-schema.md`
-- `docs/content-system/output-contracts.md`
-- `docs/templates/project-case-study-template.md`
-- `docs/templates/decision-record-template.md`
-- `docs/templates/github-portfolio-template.md`
-- `docs/prompts/portfolio-master-orchestrator.md`
-- `docs/prompts/github-portfolio-builder.md`
-- `docs/prompts/company-targeting.md`
-- `docs/prompts/multichannel-renderer.md`
-- `docs/github-portfolio/repository-candidate-matrix.md`
-- `docs/reviews/source-confirmation-triage-2026-08-17.md`
-
-Core principle:
+General backend:
 
 ```text
-Evidence > Problem Solving > Impact > Architecture > Readability > Design > Animation
+Career cases
+→ StackForge Atlas
+→ target-dependent tooling
 ```
 
-Target adaptation may change selection, ordering, headline, and equivalent vocabulary. It must not change role scope, metrics, maturity, career-vs-R&D classification, or evidence status.
-
-## Scope
-
-- public-safe resume/application content management
-- GitHub-native general and target-specific portfolio projections
-- career case-study authoring
-- public repository evidence/review matrix
-- target-role content projection
-- Next.js App Router / React + TypeScript visual surface
-- project explorer and screen/wireframe gallery
-- static export target for `portfolio.jsnetworkcorp.com`
-- protected interview-surface guidance
-
-## Resume Data Versioning
-
-Public-safe resume and portfolio content is tracked under:
+Internal Tools / AX:
 
 ```text
-docs/resume-data/
-content/projects/
-content/resume/
-content/releases/
+harness-kit
+→ Commerce / MES operating judgment
+→ Codex Workflow Skills
+→ StackForge Atlas
 ```
 
-Current public target content:
+순서는 기술 우열이 아니라 채용 포지션에서 어떤 질문에 먼저 답해야 하는지에 따라 달라집니다.
+
+---
+
+# Strategy Versioning
+
+전략은 기존 문서를 덮어쓰지 않고 별도 version line으로 남깁니다.
 
 ```text
-CL-v0.7
-PF-v1.0.2
-PS-v1.3.0
+PS-v0.9.0  multi-output evidence-first proposal
+PS-v1.0.0  application-first / GitHub-first
+PS-v1.1.0  evidence-ranked repositories
+PS-v1.2.0  career-case-first; PHP sample deferred
+PS-v1.3.0  first real AX target adapter
+PS-v1.4.0  portfolio/resume boundary + visual case studies
 ```
 
-Private claim-to-evidence maps, internal project identifiers, raw evidence, deployment values, production endpoints, confidential recruiting context, and sensitive records remain outside the public surface.
+Current strategy:
 
-## Web Routes
+- [`docs/portfolio-strategy/versions/PS-v1.4.0.md`](docs/portfolio-strategy/versions/PS-v1.4.0.md)
+- [`docs/portfolio-strategy/CHANGELOG.md`](docs/portfolio-strategy/CHANGELOG.md)
 
-Current implemented routes:
+Previous AX portfolio is preserved for direct comparison:
+
+- [`docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md`](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md)
+
+---
+
+# Public / Private Boundary
+
+이 repository에는 다음을 넣지 않습니다.
+
+- private repository/evidence paths
+- customer/order/payment/shipping/production data
+- credentials, internal hosts/endpoints
+- raw production logs/screenshots
+- confidential recruiting messages
+- raw AI transcripts containing private context
+- unsupported metrics or ownership claims
+
+Protected resume/interview material은 private source layer에서 별도 관리합니다.
+
+---
+
+# Web / PDF
+
+GitHub portfolio가 canonical technical surface입니다.
+
+향후 Web/PDF는 다음을 재시각화합니다.
 
 ```text
-/
-/projects
-/projects/[slug]
-/ai-agents
-/screens
-/resume
-/releases
+Case Study
+→ architecture/state/decision diagrams
+→ verification evidence
+→ repository links
 ```
 
-Web implementation stays lower priority than application text, source confirmation, target-specific GitHub portfolio work, and selected-repository validation.
+Resume text를 다시 배치한 PDF는 portfolio로 취급하지 않습니다.
 
-See `docs/information-architecture.md`.
+---
 
-## Commands
+# Development
+
+The optional visual site is a Next.js / TypeScript static-export surface.
 
 ```bash
 npm install
@@ -211,22 +185,13 @@ npm run validate:content
 npm run build
 ```
 
-## Deployment
-
-Public web deployment remains a static export:
+Deployment remains:
 
 ```text
-GitHub Actions -> npm ci -> npm run build -> out/ -> rsync -> nginx static root
+GitHub Actions
+→ build / validation
+→ static export
+→ nginx static root
 ```
 
-Protected interview materials remain separate.
-
-## Next Validation Order
-
-```text
-1. merge the target adapter into an authoritative protected full resume
-2. reproduce current validation for repositories actually selected for the target
-3. prepare private referral/introduction text and interview responses
-4. use application/interview outcome to evaluate PS-v1.3 targeting quality
-5. implement web/PDF only when the target process shows clear value
-```
+Web implementation stays downstream from the GitHub case-study portfolio.
