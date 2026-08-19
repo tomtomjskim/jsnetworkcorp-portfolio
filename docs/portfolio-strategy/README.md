@@ -1,43 +1,145 @@
 # Portfolio Strategy Versioning
 
-This directory versions portfolio strategy separately from the application/site release version in `VERSION` and the `PF-*` content milestones.
+This directory versions portfolio strategy separately from public content/site milestones.
 
 ## Namespace
-
-Use `PS-vMAJOR.MINOR.PATCH` for portfolio strategy revisions.
 
 ```text
 PF-*  = public portfolio content / implementation milestone
 PS-*  = portfolio strategy, information model, output priority, review policy
 ```
 
-A strategy version is a research snapshot. Do not rewrite old version notes when the strategy changes.
+Old strategy snapshots are never rewritten when the strategy changes.
 
 ## Version Rules
 
-- **MAJOR**: output priority, core architecture, or hiring-positioning model changes materially.
-- **MINOR**: adds or materially changes a review gate, targeting method, evidence policy, or execution priority without invalidating the core model.
-- **PATCH**: wording, examples, links, or clarifications that do not change the strategy.
+- **MAJOR** — output priority, core architecture, or hiring-positioning model changes materially.
+- **MINOR** — adds or materially changes a review gate, targeting method, evidence policy, or artifact semantics.
+- **PATCH** — wording, examples, links, or clarifications only.
 
-## Current Strategy
+---
 
-`PS-v1.3.0`
+# Current Strategy — `PS-v1.4.0`
 
-Base priority remains:
+Base delivery priority remains:
 
 ```text
 P0    Application / self-introduction text
-P1    Sanitized career case studies + GitHub portfolio
+P1    GitHub case-study portfolio + sanitized career cases
 P1.5  Public repository quality / verification
-P2    Web portfolio
-P3    PDF visual supplement
+P2    Web visual projection
+P3    Optional visual PDF projection
 P4    Protected interview deep dive
 
 OPTIONAL
-New PHP/MySQL reference implementation
+New PHP/MySQL reference implementation only after a real gap trigger
 ```
 
-`PS-v1.3.0` adds the first real target-role adapter on top of the career-first model.
+## Artifact Semantics
+
+`PS-v1.4.0` makes the output boundary explicit.
+
+```text
+Resume
+= what / when / role / concise responsibility and result
+
+Application / Self-introduction
+= why the verified experience fits this target
+
+Portfolio
+= how the engineer identifies, models, decides, implements and verifies
+```
+
+A portfolio that becomes chronology/skill-list heavy fails the current strategy even when every sentence is factually correct.
+
+---
+
+# Portfolio Gate
+
+Every promoted portfolio case requires:
+
+1. **Problem**
+2. **Context / Constraints**
+3. **Investigation / Model**
+4. **Decision / Trade-off**
+5. **Visual Model**
+6. **Implementation Boundary**
+7. **Verification / Evidence**
+8. **Limitation / Unproven Scope**
+9. **Evidence Link**
+
+The main portfolio page must allow a reviewer to answer quickly:
+
+> What kinds of problems does this engineer solve, and which case should I inspect next?
+
+## Visual Rule
+
+Use GitHub Mermaid only where a diagram explains a real boundary:
+
+- architecture flow,
+- state transition,
+- decision tree,
+- failure loop,
+- verification sequence.
+
+Do not add decoration-only diagrams.
+
+---
+
+# Evidence Separation
+
+```text
+sanitized career case
+= historical work/problem-solving evidence
+
+public R&D/tooling repository
+= current engineering/verification evidence
+
+new reference implementation
+= optional current-code evidence when a target explicitly needs it
+
+target adapter
+= selection/order/vocabulary layer over existing evidence
+```
+
+These evidence types may support the same capability narrative but must never be presented as equivalent historical proof.
+
+---
+
+# Current AX / Internal Tools Case Set
+
+```text
+Case 01  harness-kit
+         Developer Internal Tooling
+
+Case 02  Commerce / Logistics
+         State-heavy Change Impact
+
+Case 03  Manufacturing MES
+         Field Request → System Rules
+
+Case 04  AI-assisted Engineering
+         Model Output ≠ Completion Evidence
+```
+
+Entry:
+
+- `PORTFOLIO-AX.md`
+
+Deep dives:
+
+- `docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md`
+- `docs/portfolio-ax/cases/02-commerce-change-impact.md`
+- `docs/portfolio-ax/cases/03-mes-requirement-modeling.md`
+- `docs/portfolio-ax/cases/04-ai-assisted-verification.md`
+
+Previous text-heavy target projection is preserved as:
+
+- `docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md`
+
+---
+
+# Target Adaptation Rules
 
 Target adaptation may change:
 
@@ -46,7 +148,7 @@ headline
 summary emphasis
 case selection/order
 public repository order
-vocabulary where semantically equivalent
+semantically equivalent vocabulary
 ```
 
 It must not change:
@@ -57,110 +159,90 @@ responsibility
 claim status
 metrics
 implementation maturity
+career-vs-R&D classification
 public/private boundary
 ```
 
-## Current Evidence Separation
+For the Internal Tools / AX family the role position remains:
 
-```text
-sanitized career case
-= historical work/problem-solving evidence
+> **Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화**
 
-public R&D/tooling repository
-= current engineering/verification evidence
+The exact company/referral source remains private.
 
-new reference implementation
-= optional current-code evidence only when a real target-role gap justifies it
+---
 
-target adapter
-= selection/order layer over the same verified evidence
-```
+# Current Core Artifacts
 
-These surfaces may support the same capability narrative but do not prove the same historical facts.
+## P0 — Application / Resume Projection
 
-## Current Core Artifacts
+- generic application candidate: `docs/application-text/claim-blocks-v2-candidate.md`
+- AX resume variant: `content/resume/variants/ax-internal-tools-ko.md`
+- claim authority: `docs/resume-data/public-claim-bank.md`
 
-### P0 application text
+## P1 — Technical Portfolio
 
-- current generic candidate: `docs/application-text/claim-blocks-v2-candidate.md`
-- previous baseline: `docs/application-text/claim-blocks-v1.md`
-- Internal Tools / AX resume adapter: `content/resume/variants/ax-internal-tools-ko.md`
+- general backend: `PORTFOLIO.md`
+- Internal Tools / AX: `PORTFOLIO-AX.md`
+- AX case index: `docs/portfolio-ax/README.md`
 
-### P1 hiring-facing portfolio
-
-General backend:
-
-- `PORTFOLIO.md`
-
-Internal Tools / AX target projection:
-
-- `PORTFOLIO-AX.md`
-- `docs/targets/internal-tools-ax-requirement-evidence.md`
-
-Career cases:
+Career sources:
 
 - `content/projects/commerce-fulfillment-operations.md`
 - `content/projects/manufacturing-mes-business-systems.md`
+- `content/projects/ai-assisted-development-workflow.md`
 
-Public repo review:
+Repository review:
 
 - `docs/github-portfolio/repository-candidate-matrix.md`
 - `docs/github-portfolio/featured-repo-audit-2026-08-17.md`
 
-### Review artifacts
+Review artifacts:
 
-- `docs/reviews/ps-v1.2-career-case-adversarial-review.md`
-- `docs/reviews/source-confirmation-triage-2026-08-17.md`
 - `docs/reviews/ax-internal-tools-multi-lens-review-2026-08-17.md`
+- `docs/reviews/ps-v1.4-ax-portfolio-case-study-review.md`
 
 Deferred option:
 
 - `docs/github-portfolio/backend-evidence-gap-plan.md`
-- Issue #13, closed as `not_planned` until a concrete trigger appears
+- Issue #13 remains closed/not-planned until a concrete trigger appears
 
-Canonical data/review contracts:
+---
 
-- `docs/content-system/case-study-schema.md`
-- `docs/content-system/output-contracts.md`
-- `docs/resume-data/public-claim-bank.md`
+# PDF / Web Rule
 
-## First Target Adapter
-
-Recommended header:
-
-> **Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화**
-
-Target public repository order:
+Future PDF and web outputs project the **case-study model**, not resume text.
 
 ```text
-1. harness-kit
-2. codex-workflow-skills
-3. stackforge-atlas
+GitHub case
+→ visual architecture/state/decision model
+→ evidence links
+→ restrained PDF/Web projection
 ```
 
-This differs from general-backend ordering because developer internal tooling and AI-assisted workflow automation are primary requirements in this role family.
+A resume exported as a designed PDF is still a resume, not a portfolio.
 
-The detailed company/referral source is private and is intentionally not copied into this public repository.
+---
 
-## Research Workflow
+# Research Workflow
 
 When proposing a new strategy version:
 
-1. preserve the prior version file,
-2. record the trigger for the change,
-3. list assumptions that changed,
-4. compare strengths and weaknesses against the previous version,
-5. identify measurable or reviewable outcomes,
-6. record which artifacts must migrate,
-7. run adversarial review before marking the version current.
+1. preserve the prior version/surface,
+2. record the trigger,
+3. state what was wrong with the previous assumption,
+4. define new pass/fail gates,
+5. migrate only the affected artifacts,
+6. run adversarial review,
+7. validate links/build/rendering,
+8. record actual application/interview feedback when available.
 
-## Files
+## Version History
 
-- `CHANGELOG.md` — concise version differences
-- `versions/PS-v0.9.0.md` — initial multi-output evidence-first proposal
-- `versions/PS-v1.0.0.md` — application-first, GitHub-first strategy
-- `versions/PS-v1.1.0.md` — evidence-ranked repo promotion + proposed backend reference
-- `versions/PS-v1.2.0.md` — career-case-first refinement; PHP reference deferred to optional
-- `versions/PS-v1.3.0.md` — first real target adapter for Internal Tools / AX
+- `PS-v0.9.0` — initial multi-output evidence-first proposal
+- `PS-v1.0.0` — application-first / GitHub-first
+- `PS-v1.1.0` — evidence-ranked repository promotion
+- `PS-v1.2.0` — career-case-first; PHP reference deferred
+- `PS-v1.3.0` — first real Internal Tools / AX target adapter
+- `PS-v1.4.0` — resume/application/portfolio boundary + visual case studies
 
-Future versions should be added rather than replacing these snapshots.
+See `CHANGELOG.md` and `versions/` for preserved snapshots.
