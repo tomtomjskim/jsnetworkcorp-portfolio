@@ -1,56 +1,107 @@
 # AI-assisted Development Workflow
 
-version: PF-v0.7.0
-updated: 2026-06-29
+version: PF-v1.0.2
+updated: 2026-08-19
 visibility: public-sanitized
 status: draft
 
 ## Summary
 
-A public-safe workflow case for using AI-assisted development without turning private evidence, raw transcripts, or internal notes into public portfolio content. The focus is documentation, review, test planning, release/version management, and public/private knowledge boundaries.
+운영 중인 PHP 커머스 프로젝트에서 LLM을 코드 생성 보조에만 두지 않고, 기존 구조 파악, 개발 규칙 정리, 리뷰, 테스트, 완료 판단까지 이어지는 개발 절차에 적용한 사례입니다.
 
-## Problem
+핵심은 AI가 더 많은 코드를 작성하게 만드는 것이 아니라 **프로젝트 맥락을 반복해서 잃지 않고, AI가 수행했다고 보고한 작업을 실제 증거로 다시 확인할 수 있는 절차를 만든 것**입니다.
 
-AI-assisted work can produce useful drafts, summaries, refactoring plans, and test ideas, but the outputs need trust levels, redaction checks, and version management before they are used in resumes or public portfolio pages.
+## Context
 
-## Workflow Model
+초기에는 개발자의 직접 구현과 코드 어시스턴트 수준의 LLM 활용으로 기능을 개발했습니다. 서비스와 외부 연동 범위가 커지면서 다음 문제가 더 크게 드러났습니다.
+
+- 레거시 코드의 변경 영향 범위를 매번 다시 탐색해야 하는 문제
+- 도메인 지식과 프로젝트 고유 규칙이 사람의 기억과 개별 문서에 흩어지는 문제
+- 코드 컨벤션, 보안·권한 처리, 반복 오류를 일관된 관점으로 검수하기 어려운 문제
+- 외부 API 문서와 요청·응답 필드를 연동 작업마다 다시 해석하는 문제
+- Agent가 테스트를 건너뛰거나 실패·미실행 상태를 충분히 보고하지 않는 문제
+
+실개발은 백엔드와 프론트엔드 개발자 2인이 진행했습니다.
+
+## What Changed
+
+프로젝트를 계속 운영하면서 다음 정보를 코드베이스와 개발 절차에 남기기 시작했습니다.
+
+- 도메인 지식과 주요 기능 문서
+- 코드 소스맵과 변경 영향 확인 기준
+- 프로젝트 공통 개발 규칙
+- PR 리뷰와 커밋 기준
+- 외부 API 문서·필드 분석 결과와 모듈 책임
+- 반복 검수 절차를 위한 Skill·체크리스트
+- E2E 시나리오와 실행 결과 문서
+
+이 기준은 문서 작성 자체가 목적이 아니라 실제 기능 개발과 리뷰에서 두 개발자가 함께 참조하는 작업 기준으로 사용했습니다.
+
+## Development Flow
 
 ```text
-private raw evidence
--> reviewed private notes
--> public-safe claim candidates
--> role-scope confirmation
--> resume bullets / project pages
--> protected interview kit when needed
+요구사항과 업무 목적 확인
+→ AS-IS 코드·DB·외부 계약 확인
+→ 설계와 변경 범위 정리
+→ 구현
+→ 코드 검수·디버깅
+→ Playwright E2E
+→ 시나리오·실행 결과 확인
+→ 사람 최종 검수
 ```
 
-## Architecture Themes
+LLM과 Agent는 코드·문서 탐색, 구현 후보, 외부 API 문서 및 필드 분석, 리뷰 관점 확장, 테스트 시나리오 작성에 활용했습니다. 최종 설계, 업무 정책, 운영 영향과 배포 판단은 실제 코드·DB·테스트 결과를 확인한 뒤 사람이 결정했습니다.
 
-| Theme | Public-Safe Description |
-|---|---|
-| Claim lifecycle | Raw evidence becomes a reviewed claim before public use. |
-| Redaction gate | Private identifiers, credentials, customer/order data, logs, and transcripts are blocked. |
-| Versioning | Resume raw data, claim bank, portfolio packet, and interview kit use separate version families. |
-| Role-scope control | Strong verbs require evidence and contribution-scope confirmation. |
-| Protected interview kit | Detailed Q&A and evidence maps are generated outside the static public portfolio. |
+## Failure Case: "Done" Is Not Evidence
 
-## Public Resume Claims Supported
+자동화가 늘어난 뒤 가장 명확하게 드러난 문제는 Agent의 완료 보고와 실제 검증 완료가 항상 일치하지 않는다는 점이었습니다.
 
-- AI-assisted workflow를 활용해 설계 문서화, 테스트 기준 정리, 변경 이력 관리를 병행
-- private evidence와 public portfolio content를 분리하는 redaction/release workflow 운영
-- 이력서 claim을 raw data, claim bank, target resume, protected interview material로 분리 관리
+실행 과정에서 테스트가 skip되거나 실패·미실행 항목이 충분히 보고되지 않는 사례를 경험했고, 이후 완료 판단 기준을 다음처럼 바꿨습니다.
 
-## Redaction Notes
+```text
+Agent 응답
+≠ 완료 증거
 
-- No raw AI transcripts
-- No private wiki exports
-- No private file paths
-- No credentials or endpoints
-- No customer/order/admin/session/payment data
-- No private source snippets
+실제 실행 결과
++ 시나리오 문서
++ 체크리스트
++ 필요한 사람 검수
+= 완료 판단 근거
+```
 
-## Next Evidence Work
+Playwright 시나리오와 결과는 Markdown 문서로 남겨 실행 여부를 확인할 수 있게 했습니다. UI/UX의 목적, 실제 사용자 동선, 운영 영향처럼 자동화만으로 판단하기 어려운 항목은 배포 전에 사람이 직접 확인합니다.
 
-- Public-safe workflow diagram
-- Claim status dashboard concept
-- Protected interview kit template kept outside public repo
+## External API Work
+
+외부 API 연동에서는 LLM을 공식 문서 대체재로 사용하지 않았습니다. 문서와 요청·응답 필드를 빠르게 비교하고 구현 후보를 정리하는 데 활용한 뒤, 실제 계약과 응답을 기준으로 검증했습니다.
+
+그 과정에서 Provider별 호출 코드를 한곳에 섞기보다 역할과 책임을 나누는 방향으로 모듈화하고, 실패 응답·입력 검증·후속 처리 등 프로젝트에 필요한 규칙을 문서와 코드에 함께 남겼습니다.
+
+## Public Evidence
+
+대표 공개 근거:
+
+- [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills) — intake, 독립 검토, adversarial review, 완료 검증 절차의 Skill화
+- [`claude-code-guide`](https://github.com/tomtomjskim/claude-code-guide) — Skill, Hook, Handoff, failure recovery와 프로젝트 적용 가이드
+
+보조 근거:
+
+- [`stackforge-atlas`](https://github.com/tomtomjskim/stackforge-atlas) — 의도, 구현, 검증 근거, 유지보수 지식을 연결하는 engineering guide
+- [`harness-kit`](https://github.com/tomtomjskim/harness-kit) — 프로젝트별 instruction, hook, MCP, agent, workflow의 재사용 구조
+
+## What This Does Not Claim
+
+- 전사 AX 도입이나 대규모 조직 확산을 주장하지 않습니다.
+- 신규 인력 온보딩 성과를 주장하지 않습니다.
+- 측정하지 않은 생산성 향상률을 사용하지 않습니다.
+- AI가 코드·정책·배포를 단독으로 결정했다고 표현하지 않습니다.
+- 테스트 통과를 사용자 가치나 운영 품질 개선의 직접 지표로 확대하지 않습니다.
+
+## Interview Angle
+
+이 사례에서 면접 시 설명할 핵심은 사용하는 모델 수가 아닙니다.
+
+1. 프로젝트가 커지면서 AI 활용 방식을 코드 보조에서 프로젝트 운영 절차로 바꾼 이유
+2. 도메인·소스맵·규칙을 어떻게 반복 가능한 컨텍스트로 만들었는지
+3. Agent의 skip·미보고 문제를 경험한 뒤 완료 기준을 어떻게 수정했는지
+4. 자동화 결과와 사람의 최종 판단 경계를 어디에 두었는지
