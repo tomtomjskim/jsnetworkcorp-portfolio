@@ -8,7 +8,7 @@
 
 이 페이지는 경력 연표를 다시 쓰는 이력서가 아닙니다. 아래 Case가 각각 **문제 → 판단 → 구현 → 검증 → 한계**를 보여줍니다.
 
-[General Backend Portfolio](PORTFOLIO.md) · [Case Study Index](docs/portfolio-ax/README.md) · [Public Resume Variant](content/resume/variants/ax-internal-tools-ko.md)
+[Case Study Index](docs/portfolio-ax/README.md) · [General Backend Portfolio](PORTFOLIO.md) · [Resume — facts only](content/resume/variants/ax-internal-tools-ko.md)
 
 ---
 
@@ -80,21 +80,8 @@ flowchart LR
 **Decision**  
 증상이 보이는 UI부터 수정하지 않고, 이번 변경에 연결된 상태와 후속 처리의 범위를 먼저 찾습니다.
 
-**Representative flow**
-
-```mermaid
-stateDiagram-v2
-    [*] --> Uploaded
-    Uploaded --> Previewed
-    Previewed --> Confirmed
-    Confirmed --> BatchProcessing
-    BatchProcessing --> Completed
-    BatchProcessing --> Failed
-    Failed --> Previewed
-```
-
-**Portfolio signal**  
-레거시 PHP 운영 시스템에서 DB 상태·권한·관리자·background work·외부 연동을 **한 변경의 blast radius**로 보는 방식입니다.
+**Representative signal**  
+외부 주문 등록에서 `upload → preview → confirm → batch completion/failure` 경계를 다룬 경험을 포함합니다. 세부 state model과 조사 흐름은 deep dive로 분리했습니다.
 
 **Evidence**  
 [Case Deep Dive](docs/portfolio-ax/cases/02-commerce-change-impact.md) · [Sanitized Career Source](content/projects/commerce-fulfillment-operations.md)
@@ -119,19 +106,8 @@ flowchart LR
 **Decision**  
 화면 요청을 UI task로만 보지 않고, 실제 작업순서와 상태·조회·권한·집계 규칙으로 분해합니다.
 
-**Troubleshooting boundary**
-
-```mermaid
-flowchart TD
-    E[Reported Error] --> A{Application / Data?}
-    A -->|Yes| CODE[Code / DB Investigation]
-    A -->|No| P{Permission / Account?}
-    P -->|Yes| AUTH[Role / Account]
-    P -->|No| ENV[Network / Device / Operator Environment]
-```
-
-**Portfolio signal**  
-현업 언어를 system condition으로 바꾸는 모델링과, application defect와 고객 환경 문제를 구분하는 운영 troubleshooting입니다.
+**Representative signal**  
+application/data 문제와 permission·network·printer/device·operator environment 문제를 분리하는 troubleshooting도 같은 Case에 포함합니다. 상세 triage model은 deep dive에서 확인할 수 있습니다.
 
 **Evidence**  
 [Case Deep Dive](docs/portfolio-ax/cases/03-mes-requirement-modeling.md) · [Sanitized Career Source](content/projects/manufacturing-mes-business-systems.md)
@@ -160,24 +136,8 @@ Model response != Completion evidence
 
 AI는 분석·구현·리뷰 후보를 만드는 participant로 사용하고, 상태·금액·권한의 최종 결정이나 검증 없는 production write를 기본 책임으로 주지 않습니다.
 
-**Failure accounting**
-
-```mermaid
-stateDiagram-v2
-    [*] --> Planned
-    Planned --> Running
-    Running --> Passed
-    Running --> Failed
-    Running --> Skipped
-    Planned --> NotRun
-    Running --> Blocked
-    Failed --> Rework
-    Blocked --> Rework
-    Rework --> Running
-```
-
 **Proof**  
-공개 workflow에서는 pass, skip, failure, `not_run`을 분리하고 실행하지 않은 live/external path를 성공으로 승격하지 않습니다.
+공개 workflow에서는 pass, skip, failure, `not_run`을 분리합니다. failure accounting state model과 deterministic automation vs AI decision tree는 deep dive로 분리했습니다.
 
 **Evidence**  
 [Case Deep Dive](docs/portfolio-ax/cases/04-ai-assisted-verification.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
@@ -198,7 +158,7 @@ flowchart LR
     F -->|No| H[Human acceptance / operational use]
 ```
 
-제가 포트폴리오에서 보여주려는 공통 역량은 특정 framework 숙련도보다 다음입니다.
+공통적으로 보여주는 역량은 특정 framework 이름보다 다음입니다.
 
 - **업무와 상태를 먼저 이해**하고,
 - 변경 경계를 명확히 만들고,
