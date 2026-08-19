@@ -1,8 +1,8 @@
 # AX / Internal Tools Portfolio — Case Study Index
 
-> Strategy: `PS-v1.4.0`
-> Surface: GitHub-first case-study portfolio
-> Status: draft on `agent/portfolio-ax-case-study-v2`
+> Strategy: `PS-v1.4.1`  
+> Surface: GitHub-first case-study portfolio  
+> Status: current candidate on `agent/portfolio-ax-visual-qa-v141`
 
 ## Why this directory exists
 
@@ -40,7 +40,7 @@ A case passes when it contains all of the following:
 3. **Decision** — what was selected and what was intentionally not selected.
 4. **Visual Model** — architecture, state, sequence, or decision diagram.
 5. **Implementation Boundary** — what is actually demonstrated.
-6. **Verification** — test, CI, failure accounting, rollout feedback, actual repeated usage, or source-bounded evidence.
+6. **Verification** — test, CI, failure accounting, rollout feedback, or source-bounded evidence.
 7. **Limitation** — what the evidence does not prove.
 8. **Evidence Link** — public repository or sanitized case source.
 
@@ -51,25 +51,7 @@ A case passes when it contains all of the following:
 | [01. harness-kit](cases/01-harness-kit-internal-tooling.md) | Can repeated developer friction be turned into a maintainable internal tool? | public repository + merged-main CI |
 | [02. Commerce / Logistics](cases/02-commerce-change-impact.md) | How are changes made safely in a state-heavy operational system? | sanitized career case + ready claim bank |
 | [03. Manufacturing MES](cases/03-mes-requirement-modeling.md) | How is an ambiguous field request converted into explicit system rules? | sanitized career case + source-bounded model |
-| [04. Practical AI Automation](cases/04-ai-assisted-verification.md) | Which parts of a repetitive task should use AI, deterministic code, or human validation? | actual sanitized Local LLM i18n workflow + public verification repositories |
-
-## Why Case 04 leads with a practical workflow
-
-The AX target should not be represented only by meta-level agent/process projects.
-
-`Local LLM i18n` provides a stronger practical signal:
-
-```text
-repetitive translation/copy/code-entry work
-→ local LLM for natural-language draft
-→ deterministic program for PHP/JSON conversion
-→ human validation for small-model limitations
-→ repeated use in actual frontend work
-```
-
-It is intentionally presented without unsupported productivity, accuracy, cost-saving, or organization-adoption metrics.
-
-The broader `model output != completion evidence` workflow remains supporting engineering discipline rather than replacing the practical automation case.
+| [04. Practical AI Automation](cases/04-ai-assisted-verification.md) | Which part should use AI, which part deterministic code, and where does human validation stay? | actual Local LLM work case + public workflow verification |
 
 ## Case Grammar
 
@@ -88,6 +70,20 @@ flowchart LR
 
 This common grammar is intentional: interviewers should not have to relearn how to read each project.
 
+## Main vs Deep Dive Visual Rule
+
+`PS-v1.4.1` adds a visual-layout rule after representative rendering showed that long horizontal diagrams become too small inside the GitHub content column.
+
+```text
+PORTFOLIO-AX.md
+→ compact 3–5-node decision model
+
+deep dive
+→ full technical model
+```
+
+This directory keeps the detailed state, troubleshooting, architecture and validation flows that were intentionally removed from the main scan page.
+
 ## Versioning
 
 The previous AX portfolio is preserved under [`versions/PS-v1.3.0-text-heavy-baseline.md`](versions/PS-v1.3.0-text-heavy-baseline.md).
@@ -102,15 +98,17 @@ The previous AX portfolio is preserved under [`versions/PS-v1.3.0-text-heavy-bas
 
 - case-study-first,
 - diagrams before long explanation,
-- practical AX evidence before abstract AI-tooling claims,
 - verification and limitation attached to every promoted case,
-- resume chronology removed from the main technical narrative,
-- GitHub repositories linked as evidence rather than used as the story itself.
+- actual Local LLM automation promoted as practical AX evidence.
+
+### `PS-v1.4.1`
+
+- same evidence and case structure,
+- compact hiring-facing diagrams after visual QA,
+- full detail preserved in these deep dives.
 
 ## Canonical Entry
 
 The hiring-facing entry remains:
 
 - [`/PORTFOLIO-AX.md`](../../PORTFOLIO-AX.md)
-
-The files in `cases/` are deep dives reached from that index.
