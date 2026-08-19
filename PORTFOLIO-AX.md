@@ -16,15 +16,15 @@
 
 ```mermaid
 flowchart TD
-    ME[Backend-centered Engineer] --> C1[Case 01\nDeveloper Internal Tooling]
-    ME --> C2[Case 02\nCommerce Change Impact]
-    ME --> C3[Case 03\nMES Requirement Modeling]
-    ME --> C4[Case 04\nAI-assisted Verification]
+    ME[Backend-centered Engineer] --> C1[Case 01<br/>Developer Internal Tooling]
+    ME --> C2[Case 02<br/>Commerce Change Impact]
+    ME --> C3[Case 03<br/>MES Requirement Modeling]
+    ME --> C4[Case 04<br/>AI-assisted Verification]
 
-    C1 --> S1[Configuration-as-Code\nValidation / CI]
-    C2 --> S2[State / Data Flow\nBlast Radius]
-    C3 --> S3[Business Rules\nOperational Troubleshooting]
-    C4 --> S4[AI Boundary\nFailure Accounting]
+    C1 --> S1[Configuration-as-Code<br/>Validation / CI]
+    C2 --> S2[State / Data Flow<br/>Blast Radius]
+    C3 --> S3[Business Rules<br/>Operational Troubleshooting]
+    C4 --> S4[AI Boundary<br/>Failure Accounting]
 ```
 
 | Case | 문제 | 핵심 판단 | 확인 가능한 증거 |
@@ -43,7 +43,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     B[복사되는 프로젝트 설정] --> D[중복 / Drift]
-    D --> DEC{반복 변경이\n실제 비용인가?}
+    D --> DEC{반복 변경이<br/>실제 비용인가?}
     DEC -->|No| DIRECT[직접 편집 유지]
     DEC -->|Yes| MOD[Typed Modules]
     MOD --> VAL[Validation]
