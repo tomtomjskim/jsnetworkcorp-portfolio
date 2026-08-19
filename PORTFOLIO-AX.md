@@ -24,7 +24,7 @@ flowchart TD
     C1 --> S1[Configuration-as-Code<br/>Validation / CI]
     C2 --> S2[State / Data Flow<br/>Blast Radius]
     C3 --> S3[Business Rules<br/>Operational Troubleshooting]
-    C4 --> S4[AI Boundary<br/>Failure Accounting]
+    C4 --> S4[AI Boundary<br/>Failure Accounting + Practical Automation]
 ```
 
 | Case | 문제 | 핵심 판단 | 확인 가능한 증거 |
@@ -32,7 +32,7 @@ flowchart TD
 | **01. harness-kit** | 프로젝트별 AI 개발 설정의 중복과 drift | 모든 설정을 플랫폼화하지 않고 반복되는 경계만 typed module로 공통화 | public code + Node 22/24 security-gated CI |
 | **02. Commerce / Logistics** | 화면 증상이 DB·관리자·batch·외부 API까지 연결 | 코드 수정 전 변경 blast radius부터 탐색 | sanitized career case + ready claim bank |
 | **03. Manufacturing MES** | 모호한 현장 요구가 상태·조회·통계·권한 규칙을 숨김 | 요청 문구를 실제 업무순서와 system condition으로 분해 | sanitized career case + requirement model |
-| **04. AI-assisted Engineering** | Agent의 `done`과 실제 검증 완료가 다를 수 있음 | model output과 completion evidence를 분리 | public workflow repos + test/CI/failure accounting |
+| **04. AI-assisted Engineering** | Agent의 `done`과 실제 검증 완료가 다를 수 있음 | model output과 completion evidence를 분리하고, AI가 필요한 구간만 선택 | public workflow repos + local LLM i18n 실무 사례 |
 
 ---
 
@@ -139,8 +139,11 @@ AI는 분석·구현·리뷰 후보를 만드는 participant로 사용하고, �
 **Proof**  
 공개 workflow에서는 pass, skip, failure, `not_run`을 분리합니다. failure accounting state model과 deterministic automation vs AI decision tree는 deep dive로 분리했습니다.
 
+**Practical automation example**  
+다국어 언어팩 업무에서는 자연어 번역만 로컬 LLM에 맡기고, PHP/JSON 파일 생성과 변환은 별도 deterministic program으로 분리했습니다. GPU가 없는 내부 PC의 소형 모델 한계를 전제로 결과 검수는 사람이 유지했고, 프론트 개발자가 실제 반복 업무에 사용했습니다.
+
 **Evidence**  
-[Case Deep Dive](docs/portfolio-ax/cases/04-ai-assisted-verification.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
+[Case Deep Dive](docs/portfolio-ax/cases/04-ai-assisted-verification.md) · [Local LLM i18n](content/projects/local-llm-i18n-workflow.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
 
 ---
 
@@ -199,6 +202,7 @@ Public career cases는 비식별화한 문제 해결 모델이고, 공개 R&D re
 
 1. **Internal Tools / AX 역할:** 이 페이지 → [Case 01](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md) → [Case 04](docs/portfolio-ax/cases/04-ai-assisted-verification.md)
 2. **Backend / Operations 역할:** [General Backend Portfolio](PORTFOLIO.md) → [Case 02](docs/portfolio-ax/cases/02-commerce-change-impact.md) → [Case 03](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
-3. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → current `PS-v1.4.0`
+3. **Practical AI automation:** [Local LLM i18n workflow](content/projects/local-llm-i18n-workflow.md)
+4. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → current `PS-v1.4.0`
 
 **Resume는 경력과 사실을 요약하고, 이 포트폴리오는 그 사실 뒤의 문제 해결 방식을 증명합니다.**
