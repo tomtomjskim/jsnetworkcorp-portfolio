@@ -1,5 +1,30 @@
 # Portfolio Strategy Changelog
 
+## PS-v1.4.0 — 2026-08-19
+
+### Changed
+
+- Corrected an artifact-boundary defect: the AX portfolio had become too similar to an expanded text resume even though the target positioning itself was valid.
+- Redefined `PORTFOLIO-AX.md` as a **case-study-first visual evidence index**.
+- Added four dedicated deep dives: developer internal tooling, commerce change-impact analysis, MES requirement modeling, and AI-assisted verification.
+- Added GitHub-native Mermaid architecture/state/decision/verification diagrams where they explain actual system boundaries.
+- Added a formal portfolio gate requiring `Problem → Constraints → Decision → Visual Model → Implementation Boundary → Verification → Limitation → Evidence`.
+- Removed chronology and exhaustive technology enumeration from the main AX portfolio narrative.
+- Preserved the exact PS-v1.3.0 AX portfolio as a text-heavy baseline for future comparison.
+- Defined future PDF/web outputs as projections of case studies rather than re-rendered resume text.
+
+### Rationale
+
+The resume, application text, and portfolio answer different hiring questions:
+
+```text
+resume       → what / when / role
+application  → why this target
+portfolio    → how the engineer thinks, decides, implements and verifies
+```
+
+PS-v1.3.0 solved target relevance but did not enforce that distinction strongly enough. PS-v1.4.0 treats the portfolio as a technical evidence index and uses progressive disclosure: the main page can be scanned quickly, while each case has its own inspectable deep dive.
+
 ## PS-v1.3.0 — 2026-08-17
 
 ### Changed
