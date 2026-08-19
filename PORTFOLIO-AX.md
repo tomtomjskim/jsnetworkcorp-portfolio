@@ -1,287 +1,209 @@
 # Backend / Internal Tools / AX Portfolio
 
-> Strategy `PS-v1.3.0` · target-specific public-sanitized projection · 2026-08-17
+> `PS-v1.4.0` · **Case-study-first GitHub Portfolio** · 2026-08-19
 
 ## Backend Engineer | 업무시스템 · 내부도구 · AX/개발자동화
 
-PHP/MySQL 기반 제조 MES와 커머스·물류 업무시스템을 개발·유지보수해 왔습니다.
+운영형 PHP/MySQL 업무시스템에서 **상태·권한·관리자·배치·외부 연동의 변경 영향**을 다뤄 왔고, 최근에는 반복되는 개발 문제를 **내부도구와 검증 가능한 AI-assisted workflow**로 구조화하고 있습니다.
 
-기능을 수정할 때 AS-IS 코드와 DB 구조·상태값, 권한, 관리자 화면, batch/cron, 외부 API 영향을 확인한 뒤 변경 범위를 산정하는 운영형 개발 방식에 익숙합니다.
+이 페이지는 경력 연표를 다시 쓰는 이력서가 아닙니다. 아래 Case가 각각 **문제 → 판단 → 구현 → 검증 → 한계**를 보여줍니다.
 
-최근에는 반복되는 개발 설정과 검수 절차를 내부 도구와 workflow로 구조화하고, 결과를 test·CI·독립 리뷰로 검증하는 공개 engineering 프로젝트를 진행하고 있습니다.
-
-이 문서는 특정 회사나 내부 추천 정보를 포함하지 않는 **Internal Tools / AX 역할용 공개 projection**입니다.
+[Case Study Index](docs/portfolio-ax/README.md) · [General Backend Portfolio](PORTFOLIO.md) · [Resume — facts only](content/resume/variants/ax-internal-tools-ko.md)
 
 ---
 
-## 30-Second Fit
+# 30-Second Portfolio Map
 
-| Target signal | Evidence |
-|---|---|
-| Backend / business systems | PHP/MySQL, MES, commerce/logistics career cases |
-| Developer internal tools | `harness-kit` |
-| AI-assisted workflow / automation | `codex-workflow-skills` |
-| Admin / operational surfaces | commerce/MES career cases + change-impact method |
-| API / data-flow reasoning | career working method + StackForge interface contracts |
-| Web breadth | workflow/admin UI와 backend/data flow를 함께 고려하는 범위 |
-| Verification discipline | tests, CI, dependency audit, failure accounting, adversarial review |
+```mermaid
+flowchart TD
+    ME[Backend-centered Engineer] --> C1[Case 01<br/>Developer Internal Tooling]
+    ME --> C2[Case 02<br/>Commerce Change Impact]
+    ME --> C3[Case 03<br/>MES Requirement Modeling]
+    ME --> C4[Case 04<br/>Practical AI Automation]
 
-The positioning is **backend-centered**. It does not claim ML/model-training specialization or frontend-specialist depth.
-
----
-
-# Career Foundation
-
-## 1. Business-System Change Impact
-
-**Ready working-method evidence**
-
-기능 변경 전 다음 경계를 함께 확인해 수정 범위를 산정합니다.
-
-```text
-AS-IS code
-→ DB structure / state
-→ permission
-→ administrator surface
-→ batch / cron
-→ external API
-→ affected workflow
+    C1 --> S1[Configuration-as-Code<br/>Validation / CI]
+    C2 --> S2[State / Data Flow<br/>Blast Radius]
+    C3 --> S3[Business Rules<br/>Operational Troubleshooting]
+    C4 --> S4[Local LLM + Deterministic Code<br/>Human Validation]
 ```
 
-이 방식은 한 화면의 증상만 고치는 대신, 운영 중인 상태와 후속 처리의 blast radius를 먼저 확인하는 데 초점을 둡니다.
-
-Canonical support: `CL-PUB-011`.
-
-## 2. Commerce / Logistics Operations
-
-Public-ready evidence:
-
-- 셀러형 커머스·물류 운영 시스템의 상품, 입고, 재고, 외부출고, 대시보드 기능 개선 참여
-- 외부 주문 등록에서 upload → preview → confirm 단계를 구분하고 batch 처리 경계를 다룬 경험
-
-Detailed architecture ownership such as canonical model, idempotency, signed API, PII/security policy, and reconciliation remains role-confirm.
-
-Deep dive: [`content/projects/commerce-fulfillment-operations.md`](content/projects/commerce-fulfillment-operations.md)
-
-## 3. Manufacturing MES / Business Systems
-
-Public-ready evidence:
-
-- PHP 기반 MES 및 업무시스템 개발·유지보수
-- 제조 생산관리 도메인을 다룬 경험
-- 일반적인 변경 영향 분석 방식은 ready claim으로 사용
-
-Detailed field-requirement decomposition, legacy modularization, rollout/support chronology, customer-count, and development-lead scope remain selective/source-confirm material.
-
-Deep dive: [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
+| Case | 문제 | 핵심 판단 | 확인 가능한 증거 |
+|---|---|---|---|
+| **01. harness-kit** | 프로젝트별 AI 개발 설정의 중복과 drift | 모든 설정을 플랫폼화하지 않고 반복되는 경계만 typed module로 공통화 | public code + Node 22/24 security-gated CI |
+| **02. Commerce / Logistics** | 화면 증상이 DB·관리자·batch·외부 API까지 연결 | 코드 수정 전 변경 blast radius부터 탐색 | sanitized career case + ready claim bank |
+| **03. Manufacturing MES** | 모호한 현장 요구가 상태·조회·통계·권한 규칙을 숨김 | 요청 문구를 실제 업무순서와 system condition으로 분해 | sanitized career case + requirement model |
+| **04. Practical AI Automation** | 다국어 번역·복사·코드입력 반복과 AI 품질 한계 | 자연어 번역만 local LLM, 파일 변환은 deterministic code, 최종 판단은 사람 | 실제 반복 사용된 local LLM i18n + public verification workflow |
 
 ---
 
-# Internal Tooling / AX Evidence
+# Case 01 — Developer Internal Tooling
 
-## 1. harness-kit — Developer Internal Tooling
+## 반복 설정을 언제 도구로 바꿀 것인가?
 
-Repository: https://github.com/tomtomjskim/harness-kit
-
-### Problem
-
-프로젝트가 늘수록 CLAUDE.md, hooks, MCP, permissions, agents, workflows 같은 개발자 설정을 직접 복사하면 중복과 configuration drift가 발생합니다.
-
-### Approach
-
-설정을 module/configuration-as-code 형태로 관리하고 다음 build pipeline으로 다시 생성합니다.
-
-```text
-Resolver
-→ Loader
-→ Validator
-→ Merger
-→ Renderer
-→ Writer
+```mermaid
+flowchart LR
+    B[복사되는 프로젝트 설정] --> D[중복 / Drift]
+    D --> DEC{반복 변경이<br/>실제 비용인가?}
+    DEC -->|No| DIRECT[직접 편집 유지]
+    DEC -->|Yes| MOD[Typed Modules]
+    MOD --> VAL[Validation]
+    VAL --> GEN[Deterministic Generation]
+    GEN --> CI[Audit / Test / Build / Smoke]
 ```
 
-### Why this matters for Internal Tools
+**Decision**  
+프로젝트 수가 적고 변경이 드물면 직접 편집이 더 단순합니다. 공통 규칙 변경과 drift가 반복될 때만 module/configuration-as-code를 사용합니다.
 
-- 반복되는 개발자 설정 문제를 도구로 전환
-- typed configuration과 validation boundary
-- project-specific values를 parameterized module로 분리
-- abstraction이 과한 조건과 npm 미배포 상태도 README에 명시
+**Proof**  
+첫 functional CI가 green이었지만 dependency high-severity 항목을 발견해 포트폴리오 승격을 중지했습니다. remediation 후 `npm audit --audit-level=high`를 hard gate로 추가하고 Node.js 22/24에서 **audit → typecheck → 36 tests → build → CLI smoke**를 merged `main`에서 다시 통과시켰습니다.
 
-### Public Verification — merged main
-
-검증 PR에서 단순 test pass만 보고 승격하지 않고 dependency 상태까지 적대적으로 확인했습니다.
-
-첫 검수에서는 lint/test/build가 통과했지만 locked dependency에 high-severity 항목이 남아 있어 promotion을 보류했습니다. lockfile을 기존 dependency range 안에서 remediation한 뒤 security gate를 추가했고, 최종적으로 `main`에 squash merge했습니다.
-
-Merged main validation:
-
-```text
-Node.js 22 / 24
-npm ci
-npm audit --audit-level=high
-npm run lint
-npm test          # 36 tests
-npm run build
-node dist/cli.js --help
-```
-
-위 단계가 양쪽 Node 버전에서 모두 성공했습니다.
-
-Known limitation:
-
-- npm publication/adoption 성과는 아직 증명하지 않음
-- low-severity dev-tool advisory는 high gate와 분리해 known limitation으로 유지
-- CI 성공은 production adoption 또는 생산성 향상률을 의미하지 않음
+**Evidence**  
+[harness-kit](https://github.com/tomtomjskim/harness-kit) · [Validation PR](https://github.com/tomtomjskim/harness-kit/pull/1) · [Case Deep Dive](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
 
 ---
 
-## 2. Codex Workflow Skills — AI Workflow / Development Automation
+# Case 02 — Commerce / Logistics Change Impact
 
-Repository: https://github.com/tomtomjskim/codex-workflow-skills
+## 한 화면의 변경은 정말 한 화면에서 끝나는가?
 
-### Problem
-
-복잡한 AI-assisted 개발 작업은 생성 능력보다 scope drift, 약한 검증, stale context, review 누락으로 실패할 수 있습니다.
-
-### Approach
-
-```text
-Intake
-→ Implementation
-→ Independent Review
-→ Validation
-→ Session Closeout
+```mermaid
+flowchart LR
+    R[Change Request] --> C[AS-IS Code]
+    C --> DB[DB State]
+    DB --> P[Permission]
+    P --> A[Admin]
+    A --> B[Batch / Cron]
+    B --> X[External API]
+    X --> S[Bounded Change Scope]
 ```
 
-작업 범위, 승인 경계, 검증 상태와 실패 receipt를 명시적인 contract로 관리합니다.
+**Decision**  
+증상이 보이는 UI부터 수정하지 않고, 이번 변경에 연결된 상태와 후속 처리의 범위를 먼저 찾습니다.
 
-### Public Verification
+**Representative signal**  
+외부 주문 등록에서 `upload → preview → confirm → batch completion/failure` 경계를 다룬 경험을 포함합니다. 세부 state model과 조사 흐름은 deep dive로 분리했습니다.
 
-- 2026-08-05 public forward-test report: 881 tests discovered / 879 pass / 2 external-environment skip
-- paid/live path는 prerequisite 부재 시 `not_run`으로 유지
-- reviewed HEAD의 `Validate Skills` GitHub Actions success 확인
-
-### Why this matters for AX
-
-AI 사용을 개인 prompt skill에 머무르게 하지 않고 반복 가능한 workflow, review와 evidence contract로 전환한 사례입니다.
+**Evidence**  
+[Case Deep Dive](docs/portfolio-ax/cases/02-commerce-change-impact.md) · [Sanitized Career Source](content/projects/commerce-fulfillment-operations.md)
 
 ---
 
-## 3. StackForge Atlas — Engineering Guardrail
+# Case 03 — MES Requirement Modeling
 
-Repository: https://github.com/tomtomjskim/stackforge-atlas
+## “화면을 바꿔 주세요”를 무엇으로 번역할 것인가?
 
-### Problem
-
-자동화와 agent가 구현 속도를 높일수록 제품 의도, interface, test와 운영 지식이 분리될 수 있습니다.
-
-### Approach
-
-```text
-Intent
-→ Interface
-→ Implementation
-→ Verification Evidence
-→ Failure / Recovery
-→ Evolution
+```mermaid
+flowchart LR
+    F[현장 요구] --> W[실제 작업순서]
+    W --> I[입력 순서]
+    I --> Q[조회 조건]
+    Q --> S[상태 규칙]
+    S --> R[통계 / Report]
+    R --> P[권한]
+    P --> B[Screen + DB Scope]
 ```
 
-### Public Verification
+**Decision**  
+화면 요청을 UI task로만 보지 않고, 실제 작업순서와 상태·조회·권한·집계 규칙으로 분해합니다.
 
-- runnable Node pilot
-- PostgreSQL durability pilot
-- operational recovery drill
-- reviewed HEAD의 `Validate Atlas` GitHub Actions success
-- PITR / host loss / replication / failover 등 증명하지 않은 범위를 README에서 제한
+**Representative signal**  
+application/data 문제와 permission·network·printer/device·operator environment 문제를 분리하는 troubleshooting도 같은 Case에 포함합니다. 상세 triage model은 deep dive에서 확인할 수 있습니다.
 
-### Why this matters for AX
-
-AI/tooling 프로젝트가 software-engineering 기본기를 대체하지 않도록 interface, DB, test와 failure path를 같은 evidence chain으로 관리합니다.
+**Evidence**  
+[Case Deep Dive](docs/portfolio-ax/cases/03-mes-requirement-modeling.md) · [Sanitized Career Source](content/projects/manufacturing-mes-business-systems.md)
 
 ---
 
-# AX Working Model
+# Case 04 — Practical AI Automation
 
-```text
-업무 또는 개발상의 반복 문제
-→ 현재 흐름과 제약 파악
-→ 자동화할 범위 선택
-→ 내부 도구 / workflow 구현
-→ test / static check / CI
-→ 독립 검토
-→ 사람 승인
-→ 문서화 / 재사용
+## AI를 쓸 수 있다고 전부 AI에 맡겨야 하는가?
+
+```mermaid
+flowchart LR
+    K[한국어 key/value] --> PY[Internal Python Server]
+    PY --> L[Ollama / Gemma 3]
+    L --> TR[EN / JA / ZH Draft]
+    TR --> CV[Deterministic Converter]
+    CV --> PHP[PHP / JSON Language Pack]
+    PHP --> H[Human Validation]
 ```
 
-AI는 이 pipeline의 일부이며 책임을 대신하는 주체로 취급하지 않습니다.
+**Decision**  
+자연어 번역처럼 규칙만으로 처리하기 어려운 구간만 local LLM에 맡기고, key/value 구조·PHP 파일 생성·JSON 변환처럼 입력과 출력이 명확한 부분은 일반 프로그램으로 분리했습니다. GPU가 없는 내부 PC와 소형 모델의 품질 한계를 전제로 최종 검수는 사람이 유지했습니다.
 
-## Practical Guardrails
+**Practical result**  
+프론트 개발자가 실제 언어팩 업무에 반복 사용했고, 언어별 번역기를 열어 결과를 복사하고 코드에 다시 입력하는 작업을 줄였습니다. 다만 생산성 향상률·번역 정확도·비용 절감률은 측정하지 않았으므로 수치 성과로 주장하지 않습니다.
 
-- private/customer/production data를 public evidence로 복사하지 않음
-- AI output을 검증하지 않은 상태에서 fact 또는 completion으로 승격하지 않음
-- 모델/도구 이름보다 실제 workflow와 failure boundary를 설명
-- 미실행·차단·skip을 pass와 분리
-- public R&D를 previous-employer production system으로 표현하지 않음
+**Verification principle**
+
+```text
+Model response != Completion evidence
+```
+
+같은 원칙을 coding Agent에도 적용해 pass, failure, skip, `not_run`을 분리하고 static/test/CI/review/human acceptance를 완료 판단 근거로 둡니다.
+
+**Evidence**  
+[Case Deep Dive](docs/portfolio-ax/cases/04-ai-assisted-verification.md) · [Local LLM i18n](content/projects/local-llm-i18n-workflow.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
 
 ---
 
-# Backend + Web Breadth
+# What Connects the Four Cases
 
-이 target에서 frontend는 별도의 전문성 경쟁이 아니라 **필요한 업무 도구를 end-to-end로 완성할 수 있는 범위**로 봅니다.
-
-```text
-operator / developer workflow
-→ web/admin surface
-→ API
-→ business rule
-→ database/state
-→ background/external boundary
+```mermaid
+flowchart LR
+    O[Observe real workflow] --> B[Find boundary]
+    B --> D[Choose smallest useful change]
+    D --> I[Implement]
+    I --> V[Verify evidence]
+    V --> F{Failure / Limit?}
+    F -->|Yes| R[Revise contract / scope]
+    R --> I
+    F -->|No| H[Human acceptance / operational use]
 ```
 
-주력은 backend/data/state이고, 필요한 업무 화면과 workflow UI를 함께 이해하고 구현하는 방향입니다.
+공통적으로 보여주는 역량은 특정 framework 이름보다 다음입니다.
 
-Do not infer from this section:
-
-- advanced design-system specialization,
-- high-end frontend animation expertise,
-- frontend-only career positioning.
+- **업무와 상태를 먼저 이해**하고,
+- 변경 경계를 명확히 만들고,
+- 과한 abstraction은 피하며,
+- AI와 일반 코드를 문제 특성에 맞게 분리하고,
+- 실제 실행 증거로 검증하며,
+- 증명하지 못한 범위는 한계로 남기는 것.
 
 ---
 
-# Role Requirement Mapping
+# Public Repository Index
 
-Detailed generic matrix: [`docs/targets/internal-tools-ax-requirement-evidence.md`](docs/targets/internal-tools-ax-requirement-evidence.md)
+| Repository | 열어볼 이유 | Verification | 명시적 한계 |
+|---|---|---|---|
+| [harness-kit](https://github.com/tomtomjskim/harness-kit) | developer internal tooling, typed config, deterministic generation | Node 22/24 audit + typecheck + 36 tests + build + CLI smoke | production adoption / productivity claim 없음 |
+| [codex-workflow-skills](https://github.com/tomtomjskim/codex-workflow-skills) | intake/review/validation/failure accounting contract | public forward-test + GitHub Actions | external/live path 일부 `not_run`/skip |
+| [stackforge-atlas](https://github.com/tomtomjskim/stackforge-atlas) | intent→interface→evidence→recovery 연결 | Node/PostgreSQL pilots + recovery drill + CI | PITR/HA/failover proof 아님 |
 
-Highest-confidence mapping:
-
-```text
-Internal tools        → harness-kit
-AI workflow           → codex-workflow-skills
-Engineering quality   → stackforge-atlas
-Business systems      → Commerce + MES career cases
-Operational judgment  → CL-PUB-011
-```
+Repository는 기술 로고를 보여주기 위한 링크가 아니라 **각 Case의 판단·구현·검증을 직접 확인하는 Evidence**입니다.
 
 ---
 
-# Known Gaps
+# Evidence Boundary
 
-1. Modern frontend is useful breadth, not the primary specialization.
-2. Public tooling does not prove company-wide production AX ownership.
-3. No unsupported productivity/time-saving percentage is used.
-4. Model training, inference serving, enterprise RAG ownership are not claimed.
-5. Stronger historical architecture/leadership claims remain behind the canonical source-confirm gate.
+이 포트폴리오는 다음을 의도적으로 주장하지 않습니다.
+
+- `AI Engineer / ML Engineer` 경력
+- company-wide AX platform ownership
+- production RAG / inference serving
+- frontend-specialist depth
+- 측정하지 않은 생산성·매출·성능 개선률
+- 공개할 수 없는 고객·주문·생산·결제 데이터 또는 production architecture
+
+Public career cases는 비식별화한 문제 해결 모델이고, 공개 R&D repository는 현재 engineering capability의 증거입니다. 두 종류를 서로 바꿔 말하지 않습니다.
 
 ---
 
-# Reading Order for Interviewers
+# Read Next
 
-```text
-1. This page
-2. harness-kit README + merged validation workflow
-3. Codex Workflow Skills README + forward-test report
-4. StackForge Atlas README / recovery evidence
-5. Career case deep dives
-```
+1. **Internal Tools:** 이 페이지 → [Case 01](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
+2. **Practical AX / AI Automation:** [Case 04](docs/portfolio-ax/cases/04-ai-assisted-verification.md) → [Local LLM i18n](content/projects/local-llm-i18n-workflow.md)
+3. **Backend / Operations:** [General Backend Portfolio](PORTFOLIO.md) → [Case 02](docs/portfolio-ax/cases/02-commerce-change-impact.md) → [Case 03](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
+4. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → current `PS-v1.4.0`
 
-For a general backend role, use [`PORTFOLIO.md`](PORTFOLIO.md) instead; it uses a different evidence order.
+**Resume는 경력과 사실을 요약하고, 이 포트폴리오는 그 사실 뒤의 문제 해결 방식을 증명합니다.**
