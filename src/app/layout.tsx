@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'JSNetworkCorp Portfolio',
-  description: 'Backend, full-stack, AI workflow, live commerce, and agent tooling portfolio.'
+  description: 'Backend business systems, practical AI automation, internal tools, and verification-focused engineering portfolio.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Link href="/">JSNetworkCorp</Link>
           <nav>
             <Link href="/projects/">Projects</Link>
+            <Link href="/ax/">AX Cases</Link>
             <Link href="/ai-agents/">AI Agents</Link>
             <Link href="/screens/">Screens</Link>
             <Link href="/resume/">Resume</Link>
