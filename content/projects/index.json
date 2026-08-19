@@ -1,6 +1,6 @@
 {
-  "version": "PF-v0.7.0",
-  "updated": "2026-06-29",
+  "version": "PF-v1.0.2",
+  "updated": "2026-08-19",
   "visibility": "public-sanitized",
   "projects": [
     {
@@ -37,6 +37,15 @@
       "status": "draft-page",
       "source": "content/projects/ai-assisted-development-workflow.md",
       "contentPath": "content/projects/ai-assisted-development-workflow.md",
+      "redactionLevel": "PUBLIC_SAFE"
+    },
+    {
+      "slug": "local-llm-i18n-workflow",
+      "title": "Local LLM i18n Workflow",
+      "family": "ai-workflow-agent-tooling",
+      "status": "draft-page",
+      "source": "content/projects/local-llm-i18n-workflow.md",
+      "contentPath": "content/projects/local-llm-i18n-workflow.md",
       "redactionLevel": "PUBLIC_SAFE"
     },
     {
