@@ -44,9 +44,21 @@ Case 02  Commerce / Logistics
 Case 03  Manufacturing MES
          Field Request → System Rules
 
-Case 04  AI-assisted Engineering
-         Model Output ≠ Completion Evidence
+Case 04  Practical AI Automation
+         Local LLM + Deterministic Code + Human Validation
 ```
+
+Case 04는 추상적인 `AI를 잘 활용한다`는 설명보다 실제 반복 업무를 먼저 보여줍니다.
+
+```text
+다국어 번역·복사·코드입력 반복
+→ Local LLM이 자연어 번역 초안 담당
+→ 일반 프로그램이 PHP/JSON 변환 담당
+→ 사람이 소형 모델 결과를 검수
+→ 실제 frontend 언어팩 작업에서 반복 사용
+```
+
+생산성 %, 번역 정확도 %, 비용 절감률은 측정하지 않았으므로 주장하지 않습니다.
 
 Deep dives:
 
@@ -74,23 +86,24 @@ GitHub-native Mermaid diagrams are used for architecture, state, decision and ve
 
 # Evidence Model
 
-## 1. Sanitized Career Cases
+## 1. Sanitized Career / Work Cases
 
-실제 장기 경력에서 확인된 업무·문제 해결 방식입니다.
+실제 장기 경력 또는 실제 업무에서 확인된 문제·해결 방식입니다.
 
 - [`content/projects/commerce-fulfillment-operations.md`](content/projects/commerce-fulfillment-operations.md)
 - [`content/projects/manufacturing-mes-business-systems.md`](content/projects/manufacturing-mes-business-systems.md)
+- [`content/projects/local-llm-i18n-workflow.md`](content/projects/local-llm-i18n-workflow.md)
 - [`content/projects/ai-assisted-development-workflow.md`](content/projects/ai-assisted-development-workflow.md)
 
 실제 production code/data를 공개하지 않고 문제·제약·판단 모델만 비식별화합니다.
 
 ## 2. Public Engineering Repositories
 
-현재 engineering capability를 직접 검토할 수 있는 공개 artifact입니다.
+현재 engineering capability와 verification discipline을 직접 검토할 수 있는 공개 artifact입니다.
 
-- [`stackforge-atlas`](https://github.com/tomtomjskim/stackforge-atlas)
 - [`harness-kit`](https://github.com/tomtomjskim/harness-kit)
 - [`codex-workflow-skills`](https://github.com/tomtomjskim/codex-workflow-skills)
+- [`stackforge-atlas`](https://github.com/tomtomjskim/stackforge-atlas)
 
 Public R&D를 이전 회사 production work로 표현하지 않습니다.
 
@@ -108,9 +121,9 @@ Internal Tools / AX:
 
 ```text
 harness-kit
+→ Local LLM practical automation
 → Commerce / MES operating judgment
-→ Codex Workflow Skills
-→ StackForge Atlas
+→ Codex Workflow Skills / StackForge as verification evidence
 ```
 
 순서는 기술 우열이 아니라 채용 포지션에서 어떤 질문에 먼저 답해야 하는지에 따라 달라집니다.
@@ -147,6 +160,7 @@ Previous AX portfolio is preserved for direct comparison:
 
 - private repository/evidence paths
 - customer/order/payment/shipping/production data
+- internal translation-server source/address
 - credentials, internal hosts/endpoints
 - raw production logs/screenshots
 - confidential recruiting messages
