@@ -25,7 +25,7 @@ Base delivery priority remains:
 
 ```text
 P0    Application / self-introduction text
-P1    GitHub case-study portfolio + sanitized career cases
+P1    GitHub case-study portfolio + sanitized career/work cases
 P1.5  Public repository quality / verification
 P2    Web visual projection
 P3    Optional visual PDF projection
@@ -36,8 +36,6 @@ New PHP/MySQL reference implementation only after a real gap trigger
 ```
 
 ## Artifact Semantics
-
-`PS-v1.4.0` makes the output boundary explicit.
 
 ```text
 Resume
@@ -64,13 +62,17 @@ Every promoted portfolio case requires:
 4. **Decision / Trade-off**
 5. **Visual Model**
 6. **Implementation Boundary**
-7. **Verification / Evidence**
+7. **Verification / Actual-use Evidence**
 8. **Limitation / Unproven Scope**
 9. **Evidence Link**
 
 The main portfolio page must allow a reviewer to answer quickly:
 
 > What kinds of problems does this engineer solve, and which case should I inspect next?
+
+For an AX target, another gate applies:
+
+> If stronger actual-work automation evidence exists, do not let AI-tool/repository vocabulary outrank it.
 
 ## Visual Rule
 
@@ -82,15 +84,15 @@ Use GitHub Mermaid only where a diagram explains a real boundary:
 - failure loop,
 - verification sequence.
 
-Do not add decoration-only diagrams.
+The main page uses one primary diagram per case; secondary diagrams belong in deep dives.
 
 ---
 
 # Evidence Separation
 
 ```text
-sanitized career case
-= historical work/problem-solving evidence
+sanitized career/work case
+= historical or actual-work problem-solving evidence
 
 public R&D/tooling repository
 = current engineering/verification evidence
@@ -118,9 +120,21 @@ Case 02  Commerce / Logistics
 Case 03  Manufacturing MES
          Field Request → System Rules
 
-Case 04  AI-assisted Engineering
-         Model Output ≠ Completion Evidence
+Case 04  Practical AI Automation
+         Local LLM + Deterministic Code + Human Validation
 ```
+
+Case 04 is anchored by the sanitized Local LLM i18n workflow rather than only abstract agent workflow contracts.
+
+```text
+repetitive translation/copy/code-entry work
+→ Local LLM for linguistic draft
+→ deterministic PHP/JSON conversion
+→ human validation under CPU/small-model constraints
+→ repeated actual use
+```
+
+No productivity, translation-accuracy, cost-saving, or organization-wide adoption metric is inferred from that usage.
 
 Entry:
 
@@ -159,7 +173,7 @@ responsibility
 claim status
 metrics
 implementation maturity
-career-vs-R&D classification
+career/work-vs-R&D classification
 public/private boundary
 ```
 
@@ -185,11 +199,18 @@ The exact company/referral source remains private.
 - Internal Tools / AX: `PORTFOLIO-AX.md`
 - AX case index: `docs/portfolio-ax/README.md`
 
-Career sources:
+Career/work sources:
 
 - `content/projects/commerce-fulfillment-operations.md`
 - `content/projects/manufacturing-mes-business-systems.md`
+- `content/projects/local-llm-i18n-workflow.md`
 - `content/projects/ai-assisted-development-workflow.md`
+
+Public repository evidence:
+
+- `harness-kit`
+- `codex-workflow-skills`
+- `stackforge-atlas`
 
 Repository review:
 
@@ -215,7 +236,8 @@ Future PDF and web outputs project the **case-study model**, not resume text.
 ```text
 GitHub case
 → visual architecture/state/decision model
-→ evidence links
+→ verification / bounded actual-use evidence
+→ repository links
 → restrained PDF/Web projection
 ```
 
@@ -243,6 +265,6 @@ When proposing a new strategy version:
 - `PS-v1.1.0` — evidence-ranked repository promotion
 - `PS-v1.2.0` — career-case-first; PHP reference deferred
 - `PS-v1.3.0` — first real Internal Tools / AX target adapter
-- `PS-v1.4.0` — resume/application/portfolio boundary + visual case studies
+- `PS-v1.4.0` — resume/application/portfolio boundary + visual case studies + practical AX evidence priority
 
 See `CHANGELOG.md` and `versions/` for preserved snapshots.
