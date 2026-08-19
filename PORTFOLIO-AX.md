@@ -19,12 +19,12 @@ flowchart TD
     ME[Backend-centered Engineer] --> C1[Case 01<br/>Developer Internal Tooling]
     ME --> C2[Case 02<br/>Commerce Change Impact]
     ME --> C3[Case 03<br/>MES Requirement Modeling]
-    ME --> C4[Case 04<br/>AI-assisted Verification]
+    ME --> C4[Case 04<br/>Practical AI Automation]
 
     C1 --> S1[Configuration-as-Code<br/>Validation / CI]
     C2 --> S2[State / Data Flow<br/>Blast Radius]
     C3 --> S3[Business Rules<br/>Operational Troubleshooting]
-    C4 --> S4[AI Boundary<br/>Failure Accounting + Practical Automation]
+    C4 --> S4[Local LLM + Deterministic Code<br/>Human Validation]
 ```
 
 | Case | 문제 | 핵심 판단 | 확인 가능한 증거 |
@@ -32,7 +32,7 @@ flowchart TD
 | **01. harness-kit** | 프로젝트별 AI 개발 설정의 중복과 drift | 모든 설정을 플랫폼화하지 않고 반복되는 경계만 typed module로 공통화 | public code + Node 22/24 security-gated CI |
 | **02. Commerce / Logistics** | 화면 증상이 DB·관리자·batch·외부 API까지 연결 | 코드 수정 전 변경 blast radius부터 탐색 | sanitized career case + ready claim bank |
 | **03. Manufacturing MES** | 모호한 현장 요구가 상태·조회·통계·권한 규칙을 숨김 | 요청 문구를 실제 업무순서와 system condition으로 분해 | sanitized career case + requirement model |
-| **04. AI-assisted Engineering** | Agent의 `done`과 실제 검증 완료가 다를 수 있음 | model output과 completion evidence를 분리하고, AI가 필요한 구간만 선택 | public workflow repos + local LLM i18n 실무 사례 |
+| **04. Practical AI Automation** | 다국어 번역·복사·코드입력 반복과 AI 품질 한계 | 자연어 번역만 local LLM, 파일 변환은 deterministic code, 최종 판단은 사람 | 실제 반복 사용된 local LLM i18n + public verification workflow |
 
 ---
 
@@ -114,33 +114,33 @@ application/data 문제와 permission·network·printer/device·operator environ
 
 ---
 
-# Case 04 — AI-assisted Engineering
+# Case 04 — Practical AI Automation
 
-## Agent가 `done`이라고 하면 완료인가?
+## AI를 쓸 수 있다고 전부 AI에 맡겨야 하는가?
 
 ```mermaid
 flowchart LR
-    P[Problem / Requirement] --> S[Scope / Constraints]
-    S --> A[AI-assisted Work]
-    A --> T[Test / Static / CI]
-    T --> R[Independent Review]
-    R --> H[Human Acceptance]
-    H --> K[Knowledge / Reuse]
+    K[한국어 key/value] --> PY[Internal Python Server]
+    PY --> L[Ollama / Gemma 3]
+    L --> TR[EN / JA / ZH Draft]
+    TR --> CV[Deterministic Converter]
+    CV --> PHP[PHP / JSON Language Pack]
+    PHP --> H[Human Validation]
 ```
 
-**Decision**
+**Decision**  
+자연어 번역처럼 규칙만으로 처리하기 어려운 구간만 local LLM에 맡기고, key/value 구조·PHP 파일 생성·JSON 변환처럼 입력과 출력이 명확한 부분은 일반 프로그램으로 분리했습니다. GPU가 없는 내부 PC와 소형 모델의 품질 한계를 전제로 최종 검수는 사람이 유지했습니다.
+
+**Practical result**  
+프론트 개발자가 실제 언어팩 업무에 반복 사용했고, 언어별 번역기를 열어 결과를 복사하고 코드에 다시 입력하는 작업을 줄였습니다. 다만 생산성 향상률·번역 정확도·비용 절감률은 측정하지 않았으므로 수치 성과로 주장하지 않습니다.
+
+**Verification principle**
 
 ```text
 Model response != Completion evidence
 ```
 
-AI는 분석·구현·리뷰 후보를 만드는 participant로 사용하고, 상태·금액·권한의 최종 결정이나 검증 없는 production write를 기본 책임으로 주지 않습니다.
-
-**Proof**  
-공개 workflow에서는 pass, skip, failure, `not_run`을 분리합니다. failure accounting state model과 deterministic automation vs AI decision tree는 deep dive로 분리했습니다.
-
-**Practical automation example**  
-다국어 언어팩 업무에서는 자연어 번역만 로컬 LLM에 맡기고, PHP/JSON 파일 생성과 변환은 별도 deterministic program으로 분리했습니다. GPU가 없는 내부 PC의 소형 모델 한계를 전제로 결과 검수는 사람이 유지했고, 프론트 개발자가 실제 반복 업무에 사용했습니다.
+같은 원칙을 coding Agent에도 적용해 pass, failure, skip, `not_run`을 분리하고 static/test/CI/review/human acceptance를 완료 판단 근거로 둡니다.
 
 **Evidence**  
 [Case Deep Dive](docs/portfolio-ax/cases/04-ai-assisted-verification.md) · [Local LLM i18n](content/projects/local-llm-i18n-workflow.md) · [Codex Workflow Skills](https://github.com/tomtomjskim/codex-workflow-skills) · [StackForge Atlas](https://github.com/tomtomjskim/stackforge-atlas)
@@ -166,7 +166,8 @@ flowchart LR
 - **업무와 상태를 먼저 이해**하고,
 - 변경 경계를 명확히 만들고,
 - 과한 abstraction은 피하며,
-- 실제 실행 증거로 검증하고,
+- AI와 일반 코드를 문제 특성에 맞게 분리하고,
+- 실제 실행 증거로 검증하며,
 - 증명하지 못한 범위는 한계로 남기는 것.
 
 ---
@@ -200,9 +201,9 @@ Public career cases는 비식별화한 문제 해결 모델이고, 공개 R&D re
 
 # Read Next
 
-1. **Internal Tools / AX 역할:** 이 페이지 → [Case 01](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md) → [Case 04](docs/portfolio-ax/cases/04-ai-assisted-verification.md)
-2. **Backend / Operations 역할:** [General Backend Portfolio](PORTFOLIO.md) → [Case 02](docs/portfolio-ax/cases/02-commerce-change-impact.md) → [Case 03](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
-3. **Practical AI automation:** [Local LLM i18n workflow](content/projects/local-llm-i18n-workflow.md)
+1. **Internal Tools:** 이 페이지 → [Case 01](docs/portfolio-ax/cases/01-harness-kit-internal-tooling.md)
+2. **Practical AX / AI Automation:** [Case 04](docs/portfolio-ax/cases/04-ai-assisted-verification.md) → [Local LLM i18n](content/projects/local-llm-i18n-workflow.md)
+3. **Backend / Operations:** [General Backend Portfolio](PORTFOLIO.md) → [Case 02](docs/portfolio-ax/cases/02-commerce-change-impact.md) → [Case 03](docs/portfolio-ax/cases/03-mes-requirement-modeling.md)
 4. **Version comparison:** [PS-v1.3.0 text-heavy baseline](docs/portfolio-ax/versions/PS-v1.3.0-text-heavy-baseline.md) → current `PS-v1.4.0`
 
 **Resume는 경력과 사실을 요약하고, 이 포트폴리오는 그 사실 뒤의 문제 해결 방식을 증명합니다.**
