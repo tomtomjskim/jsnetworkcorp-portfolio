@@ -10,6 +10,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
+      <head>
+        <link rel="preload" href="/fonts/pyeojin-gothic/files/PyeojinGothic-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="stylesheet" href="/fonts/pyeojin-gothic/pyeojin-gothic.css" />
+      </head>
       <body>
         <header className="siteHeader">
           <Link href="/">JSNetworkCorp</Link>
