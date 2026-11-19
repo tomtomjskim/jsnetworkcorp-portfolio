@@ -1,0 +1,6 @@
+/* Pyeojin Gothic (펴진고딕) v1.3 — 공식 woff2 무수정 셀프 호스팅. OFL.txt 참고.
+   원본: github.com/Jihwan-Suh/PyeojinGothic @ 0f9af0f, 생성: ~/.agents/assets/fonts/pyeojin-gothic */
+@font-face{font-family:"Pyeojin Gothic";src:url("./files/PyeojinGothic-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Pyeojin Gothic";src:url("./files/PyeojinGothic-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Pyeojin Gothic";src:url("./files/PyeojinGothic-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{--font-sans:"Pyeojin Gothic",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
